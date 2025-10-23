@@ -1,8 +1,6 @@
-import org.gradle.external.javadoc.Javadoc
-import org.gradle.jvm.toolchain.JavaLanguageVersion
-
 plugins {
     alias(libs.plugins.android.application)
+    id("org.jetbrains.dokka") version "1.9.0"
 }
 
 android {
@@ -45,12 +43,13 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 }
 
-tasks.register("generateJavadoc", Javadoc::class) {
-    source = android.sourceSets["main"].java.srcDirs
-    classpath = files(android.bootClasspath)
-
-    destinationDir = file("$buildDir/docs/javadoc")
-
-    sourceCompatibility = "1.8"
-    targetCompatibility = "1.8"
+tasks.register<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
+    outputDirectory.set(buildDir.resolve("docs/javadoc"))
+    dokkaSourceSets {
+        configureEach {
+            includeNonPublic.set(false)
+            skipEmptyPackages.set(true)
+            reportUndocumented.set(false)
+        }
+    }
 }

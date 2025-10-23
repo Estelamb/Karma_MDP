@@ -22,9 +22,9 @@ jobs:
     - name: Grant Gradle execution permissions
       run: chmod +x ./karma/gradlew
 
-    - name: Build Javadoc
+    - name: Build Dokka HTML
       working-directory: ./karma
-      run: ./gradlew :app:generateJavadoc
+      run: ./gradlew :app:dokkaHtml
     
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
