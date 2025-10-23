@@ -43,13 +43,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 }
 
-tasks.register<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
+tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
     outputDirectory.set(buildDir.resolve("docs/javadoc"))
-    dokkaSourceSets {
-        configureEach {
-            includeNonPublic.set(false)
-            skipEmptyPackages.set(true)
-            reportUndocumented.set(false)
-        }
-    }
 }
