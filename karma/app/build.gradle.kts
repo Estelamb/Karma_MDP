@@ -1,4 +1,5 @@
 import org.gradle.external.javadoc.Javadoc
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 
 plugins {
     alias(libs.plugins.android.application)
@@ -44,8 +45,12 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 }
 
-task generateJavadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += files(android.getBootClasspath().join(File.pathSeparator))
-    destinationDir = file("${buildDir}/docs/javadoc")
+tasks.register("generateJavadoc", Javadoc::class) {
+    source = android.sourceSets["main"].java.srcDirs
+    classpath = files(android.bootClasspath)
+
+    destinationDir = file("$buildDir/docs/javadoc")
+
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
 }
