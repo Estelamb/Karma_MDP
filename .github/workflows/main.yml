@@ -23,10 +23,11 @@ jobs:
       run: chmod +x ./karma/gradlew
 
     - name: Build Javadoc
-      run: ./karma/gradlew generateJavadoc
-
+      working-directory: ./karma
+      run: ./gradlew :app:generateJavadoc
+    
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: app/build/docs/javadoc
+        publish_dir: karma/app/build/docs/javadoc

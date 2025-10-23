@@ -1,3 +1,5 @@
+import org.gradle.external.javadoc.Javadoc
+
 plugins {
     alias(libs.plugins.android.application)
 }
