@@ -1,2 +1,36 @@
-\section{App user requirements}
-\todo{1 page}
+\section{App User Requirements}
+
+This section defines the set of requirements that guide the design and development of the \textbf{Karma} application. The requirements have been classified into four main categories: functional, non-functional, quality, and domain-specific.
+
+\begin{table}[H]
+    \centering
+    \caption{Requirements}
+    \label{tab:requirements}
+    \begin{tabular}{p{0.25\textwidth}p{0.7\textwidth}}
+        \toprule
+        \textbf{Requirement} & \textbf{Description} \\
+        \midrule
+        User Registration & The system shall allow users to register and authenticate using email and password. \\
+        Action Management & Users shall be able to create, publish, and complete social or sustainable actions. \\
+        Karma Points System & The app shall assign, track, and update \textit{Karma Points} based on completed actions and steps. \\
+        Leaderboard Visualization & The system shall display a leaderboard showing users ranked by total Karma Points. \\
+        Step Counter Integration & The system shall use the device's motion sensor to register steps and award points accordingly. \\
+        Open Data Integration & The system shall retrieve and display nearby recycling or garbage points from open data sources. \\
+        User Profile & The app shall display a user profile showing completed actions, accumulated points, and activity history. \\
+        Daily Statistics Chart & The system shall generate a chart representing daily Karma Points gained by all users. \\
+        \midrule
+        Accessibility Compliance & The interface shall comply with \gls{WCAG} 2 standards \cite{initiativewaiWCAG2Overview} to support users with visual impairments. \\
+        Responsiveness & The application shall maintain full usability in both portrait and landscape orientations. \\
+        Performance & The system shall respond to user actions within 2 seconds under normal conditions. \\
+        Compatibility & The app shall be compatible with Android. \\
+        \midrule
+        Usability & The user interface shall be intuitive, requiring no more than 5 minutes of learning for new users. \\
+        Reliability & The system shall recover automatically from minor communication or network failures. \\
+        Maintainability & Source code shall follow modular and documented design patterns to facilitate updates. \\
+        \midrule
+        \gls{SDG} Alignment & The system shall explicitly support \glspl{SDG} 3, 11, 12, and 13 through its features and functionalities. \\
+        Open Data Usage & The app shall retrieve data from publicly available, open-access \glspl{API} compliant with local open data policies. \\
+        Sensor Integration & The app shall utilize device sensors according to Android privacy and permission policies. \\
+        \bottomrule
+    \end{tabular}
+\end{table}
