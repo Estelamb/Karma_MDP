@@ -44,16 +44,17 @@ dependencies {
 }
 
 tasks.register<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtmlAndroid") {
-    outputDirectory.set(file("$buildDir/docs/dokka"))
+    outputDirectory.set(buildDir.resolve("docs/dokka"))
 
     dokkaSourceSets.configureEach {
         displayName.set("Karma Android App")
-        sourceRoots.from(file("src/main/java/masterIoT/mdp/karma"))
+        sourceRoots.from(file("src/main/java"))
         platform.set(org.jetbrains.dokka.Platform.jvm)
-        skipEmptyPackages.set(true)
+        skipEmptyPackages.set(false)
         includeNonPublic.set(false)
         reportUndocumented.set(true)
         jdkVersion.set(11)
     }
 }
+
 
