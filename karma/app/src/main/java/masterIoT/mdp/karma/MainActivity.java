@@ -13,28 +13,30 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Main activity of the Karma app.
+ * @brief Main activity of the Karma app.
+ *
  * Displays random motivational messages every 10 seconds.
  */
 public class MainActivity extends AppCompatActivity {
 
-    /** TextView that displays motivational messages */
+    /** @brief TextView that displays motivational messages */
     private TextView mensajesMotivados;
 
-    /** Handler for scheduling periodic updates */
+    /** @brief Handler for scheduling periodic updates */
     private Handler handler;
 
-    /** Runnable that updates the TextView with a random message */
+    /** @brief Runnable that updates the TextView with a random message */
     private Runnable runnable;
 
-    /** List of motivational messages */
+    /** @brief List of motivational messages */
     private List<String> mensajes;
 
-    /** Random generator for selecting messages */
+    /** @brief Random generator for selecting messages */
     private Random random;
 
     /**
-     * Called when the activity is first created.
+     * @brief Called when the activity is first created.
+     *
      * Sets up the UI and starts the periodic message updates.
      *
      * @param savedInstanceState Previous state of the activity, if any.
@@ -67,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
         random = new Random();
         handler = new Handler();
         runnable = new Runnable() {
+            /**
+             * @brief Updates the TextView with a random motivational message
+             *        and schedules the next update.
+             */
             @Override
             public void run() {
                 String mensaje = mensajes.get(random.nextInt(mensajes.size()));
@@ -78,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Called when the activity is destroyed.
+     * @brief Called when the activity is destroyed.
+     *
      * Stops the handler to avoid memory leaks.
      */
     @Override
