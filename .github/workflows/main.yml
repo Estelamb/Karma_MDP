@@ -1,52 +1,33 @@
-name: Deploy Documentation
+name: Doxygen Documentation
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        persist-credentials: false
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+    - name: Instalar Doxygen
+      run: sudo apt-get update && sudo apt-get install -y doxygen
 
-    - name: Install dependencies
-      working-directory: docs
-      run: pip install -r requirements.txt
-
-    - name: Build documentation
-      working-directory: docs
+    - name: Generar documentación de karma
       run: |
-        rm -rf build/ pdfbuild/
-        sphinx-build -b html source build
-        sphinx-build -b simplepdf source pdfbuild
-        mkdir -p build  # Ensure build directory exists before moving or touching
-        mv pdfbuild/*.pdf build || echo "No PDF files to move"
-        touch build/.nojekyll
+        cd karma
+        doxygen Doxyfile
 
-    - name: Configure Git
+    - name: Verificar si se generaron archivos HTML
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
+        ls -la ./karma/docs/
+        ls -la ./karma/docs/html
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4  # UPDATED TO V4
+    - name: Deploy a GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}  # RECOMMENDED FIX
-        publish_dir: docs/build
-        keep_files: false
-        force_orphan: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./karma/docs/html
