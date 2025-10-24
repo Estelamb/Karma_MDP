@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("org.jetbrains.dokka") version "1.9.0"
 }
 
 android {
@@ -42,19 +41,4 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
-
-tasks.register<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtmlAndroid") {
-    outputDirectory.set(buildDir.resolve("docs/dokka"))
-
-    dokkaSourceSets.configureEach {
-        displayName.set("Karma Android App")
-        sourceRoots.from(file("src/main/java"))
-        platform.set(org.jetbrains.dokka.Platform.jvm)
-        skipEmptyPackages.set(false)
-        includeNonPublic.set(false)
-        reportUndocumented.set(true)
-        jdkVersion.set(11)
-    }
-}
-
 
