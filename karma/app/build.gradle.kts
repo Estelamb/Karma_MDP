@@ -44,5 +44,5 @@ dependencies {
 }
 
 tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
-    outputDirectory.set(buildDir.resolve("docs/javadoc"))
+    outputDirectory.set(file("$buildDir/docs/dokka"))
 }
