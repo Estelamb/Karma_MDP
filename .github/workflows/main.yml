@@ -23,12 +23,13 @@ jobs:
         working-directory: ./karma
         run: chmod +x gradlew
 
-      - name: Build Dokka documentation
+      - name: Build Dokka docs
         working-directory: ./karma
-        run: ./gradlew :app:dokkaHtml
-
+        run: ./gradlew :app:dokkaHtmlAndroid
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./karma/app/build/docs/dokka
+
