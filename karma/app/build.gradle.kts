@@ -43,6 +43,17 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 }
 
-tasks.named<org.jetbrains.dokka.gradle.DokkaTask>("dokkaHtml") {
+tasks.dokkaHtml.configure {
     outputDirectory.set(file("$buildDir/docs/dokka"))
+    dokkaSourceSets {
+        named("main") {
+            displayName.set("Karma App")
+            sourceRoots.from(file("src/main/java"))
+            includeNonPublic.set(false)
+            skipEmptyPackages.set(true)
+            reportUndocumented.set(true)
+            platform.set(org.jetbrains.dokka.Platform.jvm)
+            languageVersion.set("8")
+        }
+    }
 }
