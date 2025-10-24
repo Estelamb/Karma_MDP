@@ -1,7 +1,6 @@
 package masterIoT.mdp.karma;
 
 import android.os.Bundle;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -14,37 +13,31 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * MainActivity is the entry point of the Karma app.
- * <p>
- * It displays a motivational message that changes automatically every 10 seconds.
- * The messages are randomly selected from a predefined list.
- * </p>
+ * Main activity of the Karma app.
+ * Displays random motivational messages every 10 seconds.
  */
 public class MainActivity extends AppCompatActivity {
 
-    /** TextView used to display motivational messages on screen. */
+    /** TextView that displays motivational messages */
     private TextView mensajesMotivados;
 
-    /** Handler used to schedule and repeat the message updates. */
+    /** Handler for scheduling periodic updates */
     private Handler handler;
 
-    /** Runnable that updates the motivational message every few seconds. */
+    /** Runnable that updates the TextView with a random message */
     private Runnable runnable;
 
-    /** List containing all motivational messages available for display. */
+    /** List of motivational messages */
     private List<String> mensajes;
 
-    /** Random generator used to pick messages from the list. */
+    /** Random generator for selecting messages */
     private Random random;
 
     /**
      * Called when the activity is first created.
-     * <p>
-     * This method initializes the user interface, prepares the list of motivational messages,
-     * and starts a repeating task that changes the message every 10 seconds.
-     * </p>
+     * Sets up the UI and starts the periodic message updates.
      *
-     * @param savedInstanceState The previously saved state of the activity, if any.
+     * @param savedInstanceState Previous state of the activity, if any.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +45,12 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Configure window insets for edge-to-edge layout
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialize UI components and data
         mensajesMotivados = findViewById(R.id.txvwMensajesPositivos);
         mensajes = Arrays.asList(
                 "Believe in yourself and all that you are.",
@@ -73,32 +64,22 @@ public class MainActivity extends AppCompatActivity {
                 "Small steps every day lead to big results.",
                 "Stay positive, work hard, make it happen."
         );
-
         random = new Random();
         handler = new Handler();
-
-        // Define the repeating task that updates the motivational message
         runnable = new Runnable() {
             @Override
             public void run() {
-                // Pick a random message and display it
                 String mensaje = mensajes.get(random.nextInt(mensajes.size()));
                 mensajesMotivados.setText(mensaje);
-
-                // Schedule the next update in 10 seconds (10,000 ms)
                 handler.postDelayed(this, 10000);
             }
         };
-
-        // Start the first update immediately
         handler.post(runnable);
     }
 
     /**
-     * Called when the activity is being destroyed.
-     * <p>
-     * This method stops the repeating message updates to prevent memory leaks.
-     * </p>
+     * Called when the activity is destroyed.
+     * Stops the handler to avoid memory leaks.
      */
     @Override
     protected void onDestroy() {
