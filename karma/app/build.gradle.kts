@@ -48,7 +48,7 @@ tasks.dokkaHtml.configure {
     dokkaSourceSets {
         named("main") {
             displayName.set("Karma App")
-            sourceRoots.from(file("src/main/java"))
+            sourceRoots.from(file("src/main/java/masterIoT/mdp/karma"))
             includeNonPublic.set(false)
             skipEmptyPackages.set(true)
             reportUndocumented.set(true)
