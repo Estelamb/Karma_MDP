@@ -1,18 +1,21 @@
 var indexSectionsWithContent =
 {
-  0: "em",
-  1: "em"
+  0: "dekmp",
+  1: "em",
+  2: "dkmp"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "classes"
+  1: "classes",
+  2: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Data Structures"
+  1: "Data Structures",
+  2: "Pages"
 };
 
