@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--!
+    \file missions.xml
+    \brief Layout for the Missions activity.
+
+    \details
+    This layout uses a ConstraintLayout containing a RecyclerView and a Button.
+    The RecyclerView occupies most of the screen and displays mission items.
+    The Button is anchored at the bottom of the screen to add a new mission.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--! RecyclerView displaying a list of mission items -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -15,6 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/addMission" />
 
+    <!--! Button to add a new mission, anchored at the bottom -->
     <Button
         android:id="@+id/addMission"
         android:layout_width="wrap_content"

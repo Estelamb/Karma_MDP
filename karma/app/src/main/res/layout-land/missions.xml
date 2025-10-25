@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/addMission" />
-    
+
     <Button
         android:id="@+id/addMission"
         android:layout_width="wrap_content"
