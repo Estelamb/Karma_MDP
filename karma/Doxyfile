@@ -1040,6 +1040,7 @@ FILE_PATTERNS          = *.c \
                          *.ucf \
                          *.qsf \
                          *.ice \
+                         *.xml \
                          *.ino
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
