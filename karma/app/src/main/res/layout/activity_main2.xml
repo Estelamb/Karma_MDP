@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--!
     \file missions.xml
-    \brief Layout (landscape) for the Missions activity.
+    \brief Layout for the Missions activity.
 
     \details
     This layout uses a ConstraintLayout containing a RecyclerView and a Button.
