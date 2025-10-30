@@ -6,7 +6,8 @@ var annotated_dup =
           [ "ExampleInstrumentedTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleInstrumentedTest.html", null ],
           [ "ExampleUnitTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleUnitTest.html", null ],
           [ "MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", null ],
-          [ "MainActivity2", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity2.html", null ]
+          [ "MainActivity2", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity2.html", null ],
+          [ "Profile", "classmasterIoT_1_1mdp_1_1karma_1_1Profile.html", null ]
         ] ]
       ] ]
     ] ]
