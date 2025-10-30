@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--!
+    \file activity_profile.xml
+    \brief Layout for the profile activity.
+
+    \details
+    This layout uses a LinearLayout containing a several TextViews, a RecyclerView and a Chart.
+    The TextViews display the user's profile information.
+    The RecyclerView displays the missions the user has submitted.
+    The Chart displays the user's step through time.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,7 +26,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
-
+        <!--! TextView displaying "Your Profile:" -->
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
@@ -24,6 +35,7 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+        <!--! TextView displaying the Karma points the user has -->
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
@@ -34,6 +46,7 @@
             android:text="0 Karma points"
             android:textSize="24sp" />
 
+        <!--! TextView displaying "Your missions:" -->
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
@@ -41,12 +54,14 @@
             android:text="Your missions:"
             android:textSize="20sp" />
 
+        <!--! RecyclerView displaying the missions the user has submitted -->
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </LinearLayout>
 
+    <!--! Chart displaying the user's step through time -->
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
