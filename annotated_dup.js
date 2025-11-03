@@ -4,6 +4,7 @@ var annotated_dup =
       [ "mdp", null, [
         [ "karma", null, [
           [ "missions", null, [
+            [ "AddMission", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html", null ],
             [ "Mission", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html", null ],
             [ "MissionsActivity", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsActivity.html", null ],
             [ "MissionsDataset", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html", null ],

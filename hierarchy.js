@@ -3,6 +3,7 @@ var hierarchy =
     [ "RecyclerView.Adapter", null, [
       [ "masterIoT.mdp.karma.missions.MyAdapter", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyAdapter.html", null ]
     ] ],
+    [ "masterIoT.mdp.karma.missions.AddMission", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html", null ],
     [ "AppCompatActivity", null, [
       [ "masterIoT.mdp.karma.BoardActivity", "classmasterIoT_1_1mdp_1_1karma_1_1BoardActivity.html", null ],
       [ "masterIoT.mdp.karma.MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", null ],
