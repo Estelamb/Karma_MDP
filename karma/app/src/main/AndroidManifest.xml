@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Karma">
         <activity
+            android:name=".BoardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
@@ -27,5 +30,6 @@
             </intent-filter>
         </activity>
     </application>
-
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 </manifest>
