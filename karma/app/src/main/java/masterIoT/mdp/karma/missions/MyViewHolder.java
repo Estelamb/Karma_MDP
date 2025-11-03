@@ -1,7 +1,6 @@
 package masterIoT.mdp.karma.missions;
 import masterIoT.mdp.karma.R;
 
-
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;

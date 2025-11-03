@@ -1,13 +1,16 @@
 package masterIoT.mdp.karma.missions;
-import masterIoT.mdp.karma.MainActivity;
 import masterIoT.mdp.karma.R;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.selection.ItemKeyProvider;
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 //ACTIVIDAD DE LAS MISIONES
@@ -32,21 +36,14 @@ public class MissionsActivity extends AppCompatActivity {
     private final MyOnMissionActivatedListener myOnMissionActivatedListener =
             new MyOnMissionActivatedListener(this, dataset);
 
+    private ActivityResultLauncher<Intent> galleryLauncher;
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private Bitmap selectedBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_missions);
-
-        bAddMission=findViewById(R.id.addMission);
-
-//        bAddMission.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, MissionsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         recyclerView = findViewById(R.id.recyclerView);
         MyAdapter recyclerViewAdapter = new MyAdapter(dataset);
@@ -66,6 +63,33 @@ public class MissionsActivity extends AppCompatActivity {
                 .build();
 
         recyclerViewAdapter.setSelectionTracker(tracker);
+
+        // Registrar los launchers aquí (válido porque onCreate es antes de STARTED)
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                Uri imageUri = result.getData().getData();
+                try {
+                    selectedBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                Bundle extras = result.getData().getExtras();
+                selectedBitmap = (Bitmap) extras.get("data");
+            }
+        });
+
+        // Botón de añadir misión
+        Button bAddMission = findViewById(R.id.addMission);
+        bAddMission.setOnClickListener(v -> {
+            AddMission dialog = new AddMission(
+                    this, dataset, recyclerViewAdapter, galleryLauncher, cameraLauncher);
+            dialog.show();
+        });
 
         if (savedInstanceState != null) {
             // Restore state related to selections previously made

@@ -91,6 +91,8 @@ public class MissionsDataset {
         return position;
     }
 
+    void addMission(Mission mission) { listofmissions.add(mission); }
+
     void removeMissionAtPosition(int i) { listofmissions.remove(i); }
 
     void removeMissionWithKey(Long key) {
