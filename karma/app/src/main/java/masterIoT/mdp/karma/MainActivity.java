@@ -1,4 +1,5 @@
 package masterIoT.mdp.karma;
+import masterIoT.mdp.karma.missions.MissionsActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import masterIoT.mdp.karma.missions.MissionsActivity;
 
 //IMPORTANTE CHICOS, EN EL XML DEL LAYOUT HAY UN TEXTVIEW CON VISIBILIDAD GONE PARA LA CUENTA DE LOS PASOS
 //SOLO HACE FALTA CAMBIARLE LA VISIBILIDAD Y PONER LA CANTIDAD DE PASOS
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         bMissions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                Intent intent = new Intent(MainActivity.this, MissionsActivity.class);
                 startActivity(intent);
             }
         });
