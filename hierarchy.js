@@ -4,6 +4,7 @@ var hierarchy =
       [ "masterIoT.mdp.karma.missions.MyAdapter", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyAdapter.html", null ]
     ] ],
     [ "AppCompatActivity", null, [
+      [ "masterIoT.mdp.karma.BoardActivity", "classmasterIoT_1_1mdp_1_1karma_1_1BoardActivity.html", null ],
       [ "masterIoT.mdp.karma.MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", null ],
       [ "masterIoT.mdp.karma.ProfileActivity", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html", null ],
       [ "masterIoT.mdp.karma.missions.MissionsActivity", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsActivity.html", null ]
@@ -20,6 +21,9 @@ var hierarchy =
     [ "masterIoT.mdp.karma.missions.MissionsDataset", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html", null ],
     [ "OnItemActivatedListener", null, [
       [ "masterIoT.mdp.karma.missions.MyOnMissionActivatedListener", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyOnMissionActivatedListener.html", null ]
+    ] ],
+    [ "SensorEventListener", null, [
+      [ "masterIoT.mdp.karma.MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", null ]
     ] ],
     [ "RecyclerView.ViewHolder", null, [
       [ "masterIoT.mdp.karma.missions.MyViewHolder", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyViewHolder.html", null ]

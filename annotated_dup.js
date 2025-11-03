@@ -13,6 +13,7 @@ var annotated_dup =
             [ "MyOnMissionActivatedListener", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyOnMissionActivatedListener.html", null ],
             [ "MyViewHolder", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyViewHolder.html", null ]
           ] ],
+          [ "BoardActivity", "classmasterIoT_1_1mdp_1_1karma_1_1BoardActivity.html", null ],
           [ "ExampleInstrumentedTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleInstrumentedTest.html", null ],
           [ "ExampleUnitTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleUnitTest.html", null ],
           [ "MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", null ],
