@@ -64,30 +64,10 @@ public class MissionsActivity extends AppCompatActivity {
 
         recyclerViewAdapter.setSelectionTracker(tracker);
 
-        // Registrar los launchers aquí (válido porque onCreate es antes de STARTED)
-        galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                Uri imageUri = result.getData().getData();
-                try {
-                    selectedBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                Bundle extras = result.getData().getExtras();
-                selectedBitmap = (Bitmap) extras.get("data");
-            }
-        });
-
         // Botón de añadir misión
         Button bAddMission = findViewById(R.id.addMission);
         bAddMission.setOnClickListener(v -> {
-            AddMission dialog = new AddMission(
-                    this, dataset, recyclerViewAdapter, galleryLauncher, cameraLauncher);
+            AddMission dialog = new AddMission(this, dataset, recyclerViewAdapter);
             dialog.show();
         });
 

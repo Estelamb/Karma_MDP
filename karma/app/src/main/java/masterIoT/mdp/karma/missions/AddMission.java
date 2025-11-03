@@ -2,7 +2,6 @@ package masterIoT.mdp.karma.missions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,20 +18,14 @@ public class AddMission {
     private final Context context;
     private final MissionsDataset dataset;
     private final RecyclerView.Adapter<?> adapter;
-    private final ActivityResultLauncher<Intent> galleryLauncher;
-    private final ActivityResultLauncher<Intent> cameraLauncher;
-    private Bitmap selectedBitmap;
+    EditText inputTitle, inputKarma, inputDescription;
     private ImageView previewImage;
 
     public AddMission(Context context, MissionsDataset dataset,
-                      RecyclerView.Adapter<?> adapter,
-                      ActivityResultLauncher<Intent> galleryLauncher,
-                      ActivityResultLauncher<Intent> cameraLauncher) {
+                      RecyclerView.Adapter<?> adapter) {
         this.context = context;
         this.dataset = dataset;
         this.adapter = adapter;
-        this.galleryLauncher = galleryLauncher;
-        this.cameraLauncher = cameraLauncher;
     }
 
     public void show() {
@@ -40,22 +33,10 @@ public class AddMission {
         View dialogView = LayoutInflater.from(context).inflate(R.layout.add_mission, null);
         builder.setView(dialogView);
 
-        EditText inputTitle = dialogView.findViewById(R.id.inputTitle);
-        EditText inputKarma = dialogView.findViewById(R.id.inputKarma);
-        EditText inputDescription = dialogView.findViewById(R.id.inputDescription);
+        inputTitle = dialogView.findViewById(R.id.inputTitle);
+        inputKarma = dialogView.findViewById(R.id.inputKarma);
+        inputDescription = dialogView.findViewById(R.id.inputDescription);
         previewImage = dialogView.findViewById(R.id.previewImage);
-        Button buttonGallery = dialogView.findViewById(R.id.buttonGallery);
-        Button buttonCamera = dialogView.findViewById(R.id.buttonCamera);
-
-        buttonGallery.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            galleryLauncher.launch(intent);
-        });
-
-        buttonCamera.setOnClickListener(v -> {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            cameraLauncher.launch(intent);
-        });
 
         builder.setPositiveButton("Add", (dialog, which) -> {
             String title = inputTitle.getText().toString().trim();
@@ -65,7 +46,7 @@ public class AddMission {
                 karmaPoints = Integer.parseInt(inputKarma.getText().toString().trim());
             } catch (NumberFormatException ignored) {}
 
-            int imageRes = R.drawable.ecocommuter;
+            int imageRes = R.drawable.addmission;
             Mission newMission = new Mission(title, imageRes, karmaPoints, description, (long) dataset.getSize());
             dataset.addMission(newMission);
             adapter.notifyItemInserted(dataset.getSize() - 1);

@@ -1,5 +1,7 @@
 package masterIoT.mdp.karma.missions;
 
+import android.net.Uri;
+
 public class Mission {
     // This class contains the actual data of each item of the dataset
 
@@ -18,27 +20,12 @@ public class Mission {
     }
 
     public int getImage() { return image; }
+    public String getTitle() { return title; }
+    public int getKarmaPoints() { return karmaPoints; }
+    public String getDescription() { return description; }
+    public Long getKey() { return key; }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public int getKarmaPoints() {
-        return karmaPoints;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Long getKey() {
-        return key;
-    }
-
-    // We override the "equals" operator to only compare keys
-    // (useful when searching for the position of a specific key in a list of Items):
-    public boolean equals(Object other) {
-        return this.key == ((Mission) other).getKey();
-    }
+    @Override
+    public boolean equals(Object other) { return this.key.equals(((Mission) other).getKey()); }
 
 }
