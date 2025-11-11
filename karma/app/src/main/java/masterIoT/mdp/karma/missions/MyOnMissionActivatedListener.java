@@ -38,7 +38,9 @@ public class MyOnMissionActivatedListener implements OnItemActivatedListener<Lon
 //        i.putExtra("text", "Clicked item with position = " + itemdetails.getPosition()
 //                + " and key = " + itemdetails.getSelectionKey());
 //        context.startActivity(i);
-
+        Mission mission = dataset.getMissionAtPosition(itemdetails.getPosition());
+        MissionInfo dialog = new MissionInfo(context, mission);
+        dialog.show();
 
 //        Long key =(Long) missiondetails.getSelectionKey();
 //        int pos = dataset.getPositionOfKey(key);
@@ -49,6 +51,6 @@ public class MyOnMissionActivatedListener implements OnItemActivatedListener<Lon
 //            context.startActivity(intent);
 //            return true;
 //        }
-        return false;
+        return true;
     }
 }

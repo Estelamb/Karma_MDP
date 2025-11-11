@@ -61,12 +61,14 @@ public class MissionsDataset {
                                     "Offer assistance to elderly people, whether by shopping for them, spending time, or lending a hand.",
                                     "Report public issues like broken lights, damaged sidewalks, or waste problems to local authorities."};
 
+    private String[] mapType = {"none", "trash", "none", "none", "none", "none", "none", "blood", "giver", "none", "none", "none"};
+
     MissionsDataset() {
         Log.d(TAG, "Dataset() called");
         listofmissions = new ArrayList<>();
 
         for (int i = 0; i < images.length; ++i) {
-            listofmissions.add(new Mission(titles[i], images[i], karmaPoints[i], description[i], (long) i));
+            listofmissions.add(new Mission(titles[i], images[i], karmaPoints[i], description[i], (long) i, mapType[i]));
         }
     }
 
@@ -87,7 +89,7 @@ public class MissionsDataset {
         // The following works because in Item, the method "equals" is overriden to compare only keys:
         //int position = listofmissions.indexOf(new Item("placeholder", "placeholder", searchedkey));
         //Log.d(TAG, "getPositionOfKey() called for key " + searchedkey + ", returns " + position);
-        int position = listofmissions.indexOf(new Mission("placeholder",0, 0, "descrption", searchedkey));
+        int position = listofmissions.indexOf(new Mission("placeholder",0, 0, "descrption", searchedkey, "none"));
         return position;
     }
 

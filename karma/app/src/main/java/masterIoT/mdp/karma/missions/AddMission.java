@@ -47,7 +47,7 @@ public class AddMission {
             } catch (NumberFormatException ignored) {}
 
             int imageRes = R.drawable.addmission;
-            Mission newMission = new Mission(title, imageRes, karmaPoints, description, (long) dataset.getSize());
+            Mission newMission = new Mission(title, imageRes, karmaPoints, description, (long) dataset.getSize(), "");
             dataset.addMission(newMission);
             adapter.notifyItemInserted(dataset.getSize() - 1);
         });

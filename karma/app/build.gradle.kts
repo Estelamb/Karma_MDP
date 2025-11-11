@@ -39,6 +39,8 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.mpandroidchart)
     implementation(libs.recyclerview.selection)
+    implementation(libs.play.services.maps)
+    implementation("com.google.maps.android:android-maps-utils:3.19.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
