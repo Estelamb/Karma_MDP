@@ -34,6 +34,14 @@
             android:text="TextView"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="See map of locations"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"

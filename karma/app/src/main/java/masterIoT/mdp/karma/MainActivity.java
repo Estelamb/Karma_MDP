@@ -42,8 +42,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Switch stepSwitch;
     private boolean stepSensorAct;
     private int numbSteps;
+    private int karmaPoints;
     private Vibrator vibrator;
-    private TextView mensajesMotivados, tvSteps;
+    private TextView mensajesMotivados, tvSteps, tvKarma;
     private Handler handler;
     private Runnable runnable;
     private List<String> mensajes;
@@ -71,10 +72,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         bMissions=findViewById(R.id.btnMissions);
         bBoard=findViewById(R.id.btnLeaderBoard);
         bProfile=findViewById(R.id.imageView);
+        tvKarma = findViewById(R.id.tvKarmaPoints);
 
         stepSensorAct=false;
         stepSwitch=findViewById(R.id.swSteps);
         tvSteps=findViewById(R.id.txvwNumeroPasos);
+
+        SharedPreferences prefs=getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+        karmaPoints = prefs.getInt("totalKarma", 0);
+        tvKarma.setText(String.valueOf(karmaPoints));
 
         bMissions.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,11 +175,33 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
     @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences prefs= getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("totalKarma", karmaPoints);
+        editor.apply();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences prefs=getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+        karmaPoints = prefs.getInt("totalKarma", 0);
+        tvKarma.setText(String.valueOf(karmaPoints));
+
+    }
+    @Override
     public void onSensorChanged(SensorEvent sensorEvent){
         System.out.println(sensorEvent.sensor.getType());
         if (sensorEvent.sensor.getType()==18){
             numbSteps= (int)sensorEvent.values[0] +numbSteps;
-            if(numbSteps%250==0){vibrator.vibrate(1000);}
+            if(numbSteps!=0&&numbSteps%250==0){
+                vibrator.vibrate(1000);
+                SharedPreferences prefs=getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+                karmaPoints = prefs.getInt("totalKarma", 0);
+                karmaPoints++;
+                tvKarma.setText(String.valueOf(karmaPoints));
+            }
             tvSteps.setText("Pasos: "+numbSteps);
         }
     }

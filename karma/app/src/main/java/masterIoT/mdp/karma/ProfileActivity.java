@@ -1,6 +1,9 @@
 package masterIoT.mdp.karma;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class ProfileActivity extends AppCompatActivity {
-
+    private TextView tvKarma;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +23,9 @@ public class ProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        tvKarma=findViewById(R.id.textView3);
+        SharedPreferences prefs=getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+        int karmaPoints = prefs.getInt("totalKarma", 0);
+        tvKarma.setText(String.valueOf(karmaPoints) + " Karma Points");
     }
 }
