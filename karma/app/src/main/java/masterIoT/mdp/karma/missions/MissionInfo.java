@@ -9,10 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import masterIoT.mdp.karma.MainActivity;
-import masterIoT.mdp.karma.ProfileActivity;
 import masterIoT.mdp.karma.R;
 import masterIoT.mdp.karma.MapActivity;
+import masterIoT.mdp.karma.MQTT;
 
 public class MissionInfo {
 
@@ -21,10 +20,13 @@ public class MissionInfo {
     TextView title, karma, description;
     Button mapButton;
     private ImageView previewImage;
+    private MQTT mqttClient;
 
     public MissionInfo(Context context, Mission mission) {
         this.context = context;
         this.mission = mission;
+        this.mqttClient = MQTT.getInstance(context);
+        this.mqttClient.connect();
     }
 
     public void show() {
@@ -55,12 +57,19 @@ public class MissionInfo {
             dialog.dismiss();
             SharedPreferences prefs= context.getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
             int karma = prefs.getInt("totalKarma", 0);
-            karma += mission.getKarmaPoints();
+            int points = mission.getKarmaPoints();
+            karma=karma+points;
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("totalKarma", karma);
             editor.apply();
+            publicarKarma(points,karma);
         });
         builder.setNegativeButton("Close", (dialog, which) -> dialog.dismiss());
         builder.create().show();
+    }
+
+    private void publicarKarma(int points, int karma){
+        mqttClient.publish("app/addPuntos",String.valueOf(points));
+        mqttClient.publish("app/karmaTotal", String.valueOf(karma));
     }
 }
