@@ -22,9 +22,11 @@ var hierarchy =
     [ "ItemKeyProvider", null, [
       [ "masterIoT.mdp.karma.missions.MyMissionKeyProvider", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider.html", null ]
     ] ],
+    [ "masterIoT.mdp.karma.MQTT.MessageCallback", "interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html", null ],
     [ "masterIoT.mdp.karma.missions.Mission", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html", null ],
     [ "masterIoT.mdp.karma.missions.MissionInfo", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionInfo.html", null ],
     [ "masterIoT.mdp.karma.missions.MissionsDataset", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html", null ],
+    [ "masterIoT.mdp.karma.MQTT", "classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html", null ],
     [ "OnItemActivatedListener", null, [
       [ "masterIoT.mdp.karma.missions.MyOnMissionActivatedListener", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyOnMissionActivatedListener.html", null ]
     ] ],

@@ -24,6 +24,7 @@ var annotated_dup =
           [ "ExampleUnitTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleUnitTest.html", null ],
           [ "MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", null ],
           [ "MapActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html", null ],
+          [ "MQTT", "classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html", "classmasterIoT_1_1mdp_1_1karma_1_1MQTT" ],
           [ "ProfileActivity", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html", null ]
         ] ]
       ] ]
