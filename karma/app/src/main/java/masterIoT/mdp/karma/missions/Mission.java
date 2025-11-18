@@ -11,14 +11,16 @@ public class Mission {
     private String description;
     private Long key; // In this app we use keys of type Long
     private String mapType;
+    private boolean user;
 
-    Mission(String title, int image, int karmaPoints, String description, Long key, String mapType) {
+    Mission(String title, int image, int karmaPoints, String description, Long key, String mapType, boolean user) {
         this.image = image;
         this.title = title;
         this.karmaPoints = karmaPoints;
         this.description = description;
         this.key = key;
         this.mapType = mapType;
+        this.user = user;
     }
 
     public int getImage() { return image; }
@@ -28,6 +30,8 @@ public class Mission {
     public Long getKey() { return key; }
 
     public String getMapType() { return mapType; }
+
+    public boolean getUser() { return user; }
 
 
     @Override

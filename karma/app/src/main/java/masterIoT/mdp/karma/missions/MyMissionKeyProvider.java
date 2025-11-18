@@ -26,7 +26,7 @@ public class MyMissionKeyProvider extends ItemKeyProvider<Long> {
      * @param scope Scope can't be changed at runtime.
      */
     @SuppressLint("LongLogTag")
-    protected MyMissionKeyProvider(int scope, RecyclerView rv) {
+    public MyMissionKeyProvider(int scope, RecyclerView rv) {
         super(scope);
         recView = rv;
         Log.d(TAG, "MyMissionKeyProvider() called");

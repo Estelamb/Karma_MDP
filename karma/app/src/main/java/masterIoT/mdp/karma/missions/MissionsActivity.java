@@ -29,7 +29,7 @@ import java.util.Iterator;
 public class MissionsActivity extends AppCompatActivity {
 
     // App-specific dataset:
-    private static final MissionsDataset dataset = new MissionsDataset();
+    private static final MissionsDataset dataset = MissionsDataset.getInstance();
     private Button bAddMission;
     private RecyclerView recyclerView;
     private SelectionTracker<Long> tracker;
@@ -65,7 +65,7 @@ public class MissionsActivity extends AppCompatActivity {
         recyclerViewAdapter.setSelectionTracker(tracker);
 
         // Botón de añadir misión
-        Button bAddMission = findViewById(R.id.addMission);
+        bAddMission = findViewById(R.id.addMission);
         bAddMission.setOnClickListener(v -> {
             AddMission dialog = new AddMission(this, dataset, recyclerViewAdapter);
             dialog.show();

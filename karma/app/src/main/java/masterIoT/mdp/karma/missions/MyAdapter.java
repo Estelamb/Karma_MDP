@@ -72,4 +72,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         this.selectionTracker = selectionTracker;
     }
 
+    public void deleteItem(int position) {
+        dataset.removeMissionAtPosition(position);
+        notifyItemRemoved(position);
+    }
+
 }

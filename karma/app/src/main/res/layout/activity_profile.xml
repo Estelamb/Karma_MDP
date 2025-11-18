@@ -47,10 +47,18 @@
         android:textSize="20sp" />
     <!--! RecyclerView displaying the missions the user has submitted -->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
     <!--! Chart displaying the user's step through time -->
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:text="Remove Selection" />
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"
         android:layout_width="match_parent"

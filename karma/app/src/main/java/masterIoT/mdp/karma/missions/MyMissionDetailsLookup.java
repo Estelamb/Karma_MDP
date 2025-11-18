@@ -17,7 +17,7 @@ final public class MyMissionDetailsLookup  extends ItemDetailsLookup<Long> {
     private final RecyclerView mRecyclerView;
 
     @SuppressLint("LongLogTag")
-    MyMissionDetailsLookup(RecyclerView recyclerView) {
+    public MyMissionDetailsLookup(RecyclerView recyclerView) {
         Log.d(TAG, "MyMissionDetailsLookup() called");
         mRecyclerView = recyclerView;
     }

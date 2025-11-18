@@ -4,12 +4,14 @@ import masterIoT.mdp.karma.R;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class MissionsDataset {
 
     // This dataset is a list of Missions
-
+    private static MissionsDataset inst;
     private static final String TAG = "TAGListOfMissions, Dataset";
     private List<Mission> listofmissions;
     private int[] images = {R.drawable.ecocommuter,
@@ -68,10 +70,16 @@ public class MissionsDataset {
         listofmissions = new ArrayList<>();
 
         for (int i = 0; i < images.length; ++i) {
-            listofmissions.add(new Mission(titles[i], images[i], karmaPoints[i], description[i], (long) i, mapType[i]));
+            listofmissions.add(new Mission(titles[i], images[i], karmaPoints[i], description[i], (long) i, mapType[i], false));
         }
     }
 
+    public static MissionsDataset getInstance() {
+        if (inst == null) {
+            inst = new MissionsDataset();
+        }
+        return inst;
+    }
     int getSize() {
         return listofmissions.size();
     }
@@ -89,7 +97,7 @@ public class MissionsDataset {
         // The following works because in Item, the method "equals" is overriden to compare only keys:
         //int position = listofmissions.indexOf(new Item("placeholder", "placeholder", searchedkey));
         //Log.d(TAG, "getPositionOfKey() called for key " + searchedkey + ", returns " + position);
-        int position = listofmissions.indexOf(new Mission("placeholder",0, 0, "descrption", searchedkey, "none"));
+        int position = listofmissions.indexOf(new Mission("placeholder",0, 0, "descrption", searchedkey, "none", false));
         return position;
     }
 
@@ -97,7 +105,7 @@ public class MissionsDataset {
 
     void removeMissionAtPosition(int i) { listofmissions.remove(i); }
 
-    void removeMissionWithKey(Long key) {
+    public void removeMissionWithKey(Long key) {
         removeMissionAtPosition(getPositionOfKey(key));
     }
 
