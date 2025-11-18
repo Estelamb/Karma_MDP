@@ -21,6 +21,7 @@ var NAVTREEINDEX0 =
 "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider.html#a37823ef4269ab70d8e340df2dc5b1747":[1,0,0,0,0,0,7,0],
 "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyOnMissionActivatedListener.html":[1,0,0,0,0,0,8],
 "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyViewHolder.html":[1,0,0,0,0,0,9],
+"classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1UserMissionsDataset.html":[1,0,0,0,0,0,10],
 "classmasterIoT_1_1mdp_1_1karma_1_1modelo_1_1WaypointItem.html":[1,0,0,0,0,1,0],
 "functions.html":[1,3,0],
 "functions_func.html":[1,3,1],

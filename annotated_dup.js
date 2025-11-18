@@ -13,7 +13,8 @@ var annotated_dup =
             [ "MyMissionDetailsLookup", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionDetailsLookup.html", null ],
             [ "MyMissionKeyProvider", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider.html", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider" ],
             [ "MyOnMissionActivatedListener", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyOnMissionActivatedListener.html", null ],
-            [ "MyViewHolder", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyViewHolder.html", null ]
+            [ "MyViewHolder", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyViewHolder.html", null ],
+            [ "UserMissionsDataset", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1UserMissionsDataset.html", null ]
           ] ],
           [ "modelo", null, [
             [ "WaypointItem", "classmasterIoT_1_1mdp_1_1karma_1_1modelo_1_1WaypointItem.html", null ]
