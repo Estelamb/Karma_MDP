@@ -69,7 +69,15 @@ public class MissionInfo {
     }
 
     private void publicarKarma(int points, int karma){
-        mqttClient.publish("app/addPuntos",String.valueOf(points));
-        mqttClient.publish("app/karmaTotal", String.valueOf(karma));
+        String username=getUsername();
+        mqttClient.publish("app/addPuntos",String.valueOf(points), false);
+        String message= username+":"+karma;
+        mqttClient.publish("app/users/"+username+"/karmaTotal", message,true);
     }
+
+    private String getUsername() {
+        SharedPreferences prefs = context.getSharedPreferences("KarmaAppPrefs", Context.MODE_PRIVATE);
+        return prefs.getString("username", "Usuario"); // "Usuario" es valor por defecto
+    }
+
 }

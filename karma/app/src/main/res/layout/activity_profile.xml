@@ -22,7 +22,7 @@
     tools:context=".ProfileActivity">
     <!--! TextView displaying "Your Profile:" -->
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/NameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Your Profile:"

@@ -1,7 +1,11 @@
 package masterIoT.mdp.karma;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -10,6 +14,17 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Vibrator;
+import android.text.InputType;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,23 +33,15 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import android.os.Handler;
-import android.os.Vibrator;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
 import masterIoT.mdp.karma.missions.MissionsActivity;
 
-
-//IMPORTANTE CHICOS, EN EL XML DEL LAYOUT HAY UN TEXTVIEW CON VISIBILIDAD GONE PARA LA CUENTA DE LOS PASOS
-//SOLO HACE FALTA CAMBIARLE LA VISIBILIDAD Y PONER LA CANTIDAD DE PASOS
-
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
+        private static final String TAG = "MQTT";
     private Button bMissions, bBoard;
     private ImageView bProfile;
     private SensorManager sensorManager;
@@ -44,12 +51,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private int numbSteps;
     private int karmaPoints;
     private Vibrator vibrator;
-    private TextView mensajesMotivados, tvSteps, tvKarma;
+    private TextView mensajesMotivados, tvSteps, tvKarma, tvTest;
     private Handler handler;
     private Runnable runnable;
     private List<String> mensajes;
     private Random random;
-    private static final int REQUEST_ACTIVITY_RECOGNITION=1001;
+    private static final int REQUEST_ACTIVITY_RECOGNITION = 1001;
+
+    // Constantes para SharedPreferences
+    private static final String PREFS_NAME = "KarmaAppPrefs";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_FIRST_TIME = "first_time";
+
+    private MQTT mqttClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +75,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // Verificar si es la primera vez que se inicia la app
+        checkFirstTime();
 
+        // El resto de tu código existente...
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -69,18 +86,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     REQUEST_ACTIVITY_RECOGNITION);
         }
 
-        bMissions=findViewById(R.id.btnMissions);
-        bBoard=findViewById(R.id.btnLeaderBoard);
-        bProfile=findViewById(R.id.imageView);
+        bMissions = findViewById(R.id.btnMissions);
+        bBoard = findViewById(R.id.btnLeaderBoard);
+        bProfile = findViewById(R.id.imageView);
         tvKarma = findViewById(R.id.tvKarmaPoints);
+        tvTest=findViewById(R.id.textViewTest);
 
-        stepSensorAct=false;
-        stepSwitch=findViewById(R.id.swSteps);
-        tvSteps=findViewById(R.id.txvwNumeroPasos);
+        stepSensorAct = false;
+        stepSwitch = findViewById(R.id.swSteps);
+        tvSteps = findViewById(R.id.txvwNumeroPasos);
 
-        SharedPreferences prefs=getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
         karmaPoints = prefs.getInt("totalKarma", 0);
         tvKarma.setText(String.valueOf(karmaPoints));
+
+        setupMQTT();
 
         bMissions.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,105 +126,169 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-        sensorManager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        step=sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        vibrator=(Vibrator) getSystemService(VIBRATOR_SERVICE);
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        step = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         stepSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked){
+            if (isChecked) {
                 sensorManager.registerListener(MainActivity.this, step, SensorManager.SENSOR_DELAY_NORMAL);
                 tvSteps.setVisibility(View.VISIBLE);
                 tvSteps.setText("Waiting for first step sensor value");
-                stepSensorAct=true;
-            }else{
+                stepSensorAct = true;
+            } else {
                 sensorManager.unregisterListener(MainActivity.this, step);
-                stepSensorAct=false;
+                stepSensorAct = false;
                 tvSteps.setText("Proximity sensor is OFF");
                 tvSteps.setVisibility(View.GONE);
             }
         });
 
-        mensajesMotivados=findViewById(R.id.txvwMensajesPositivos);
-        mensajes = Arrays.asList("Believe in yourself and all that you are.", "Every day is a new beginning.", "You are stronger than you think.", "Dream big and dare to fail.", "Keep going — you’re doing great!", "The best time for new beginnings is now.", "Be the energy you want to attract.", "Your only limit is your mind.", "Small steps every day lead to big results.", "Stay positive, work hard, make it happen.");
-        random= new Random();
-        handler= new Handler();
-        runnable= new Runnable(){
+        mensajesMotivados = findViewById(R.id.txvwMensajesPositivos);
+        mensajes = Arrays.asList("Believe in yourself and all that you are.", "Every day is a new beginning.", "You are stronger than you think.", "Dream big and dare to fail.", "Keep going — you're doing great!", "The best time for new beginnings is now.", "Be the energy you want to attract.", "Your only limit is your mind.", "Small steps every day lead to big results.", "Stay positive, work hard, make it happen.");
+        random = new Random();
+        handler = new Handler();
+        runnable = new Runnable() {
             @Override
-            public void run(){
-                String mensaje=mensajes.get(random.nextInt((mensajes.size())));
+            public void run() {
+                String mensaje = mensajes.get(random.nextInt((mensajes.size())));
                 mensajesMotivados.setText(mensaje);
                 handler.postDelayed(this, 10000);
             }
         };
         handler.post(runnable);
     }
+
+    private void checkFirstTime() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        boolean isFirstTime = prefs.getBoolean(KEY_FIRST_TIME, true);
+
+        if (isFirstTime) {
+            showUsernameDialog();
+        } else {
+            String username = prefs.getString(KEY_USERNAME, "");
+            if (!username.isEmpty()) {
+                Toast.makeText(this, "Welcome back, " + username + "!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void showUsernameDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Welcome\n");
+        builder.setMessage("Please, enter your username:");
+
+        // Set up the input
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setHint("User name");
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String username = input.getText().toString().trim();
+                if (!username.isEmpty()) {
+                    saveUsername(username);
+                    Toast.makeText(MainActivity.this, "Welcome, " + username + "!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        builder.setCancelable(false);
+
+        builder.show();
+    }
+
+    private void saveUsername(String username) {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(KEY_USERNAME, username);
+        editor.putBoolean(KEY_FIRST_TIME, false); // Marcar que ya no es la primera vez
+        editor.apply();
+    }
+
+    public String getUsername() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return prefs.getString(KEY_USERNAME, "");
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         // Detiene el handler cuando la actividad se destruye
         handler.removeCallbacks(runnable);
     }
+
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
-        SharedPreferences prefs= getSharedPreferences("SensorData", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("totalSteps", numbSteps);
         editor.putBoolean("estadoStep", stepSensorAct);
         editor.commit();
         sensorManager.unregisterListener(MainActivity.this);
+        mqttClient.disconnect();
     }
+
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
-        SharedPreferences prefs=getSharedPreferences("SensorData", Context.MODE_PRIVATE);
-        numbSteps= prefs.getInt("totalSteps", -1);
-        boolean savedStepState= prefs.getBoolean("estadoStep", false);
+        SharedPreferences prefs = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
+        numbSteps = prefs.getInt("totalSteps", -1);
+        boolean savedStepState = prefs.getBoolean("estadoStep", false);
 
         stepSensorAct = savedStepState;
 
-        if(savedStepState){
+        if (savedStepState) {
             sensorManager.registerListener(this, step, SensorManager.SENSOR_DELAY_NORMAL);
-            if (numbSteps!=-1f){
-                tvSteps.setText("Pasos: "+numbSteps);
-            }else{
+            if (numbSteps != -1f) {
+                tvSteps.setText("Pasos: " + numbSteps);
+            } else {
                 tvSteps.setText("Waiting for first step detection value");
             }
-        }else{
+        } else {
             tvSteps.setText("Step detector sensor is OFF");
         }
     }
+
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences prefs= getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("totalKarma", karmaPoints);
         editor.apply();
+        mqttClient.disconnect();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences prefs=getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
         karmaPoints = prefs.getInt("totalKarma", 0);
         tvKarma.setText(String.valueOf(karmaPoints));
-
+        setupMQTT();
     }
+
     @Override
-    public void onSensorChanged(SensorEvent sensorEvent){
+    public void onSensorChanged(SensorEvent sensorEvent) {
         System.out.println(sensorEvent.sensor.getType());
-        if (sensorEvent.sensor.getType()==18){
-            numbSteps= (int)sensorEvent.values[0] +numbSteps;
-            if(numbSteps!=0&&numbSteps%250==0){
+        if (sensorEvent.sensor.getType() == 18) {
+            numbSteps = (int) sensorEvent.values[0] + numbSteps;
+            if (numbSteps != 0 && numbSteps % 250 == 0) {
                 vibrator.vibrate(1000);
-                SharedPreferences prefs=getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+                SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
                 karmaPoints = prefs.getInt("totalKarma", 0);
                 karmaPoints++;
                 tvKarma.setText(String.valueOf(karmaPoints));
             }
-            tvSteps.setText("Pasos: "+numbSteps);
+            tvSteps.setText("Pasos: " + numbSteps);
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -221,9 +305,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         }
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // No necesitamos hacer nada aquí, pero el método debe estar presente
     }
 
+    private void setupMQTT() {
+        Log.i(TAG, "ENTRE EN MQTT");
+        mqttClient = MQTT.getInstance(this);
+        mqttClient.connect();
+        Toast.makeText(this,getSharedPreferences("UsersKarma",Context.MODE_PRIVATE).getAll().toString(),Toast.LENGTH_LONG).show();
+    }
 }

@@ -30,7 +30,7 @@ import masterIoT.mdp.karma.missions.MyOnMissionActivatedListener;
 import masterIoT.mdp.karma.missions.UserMissionsDataset;
 
 public class ProfileActivity extends AppCompatActivity {
-    private TextView tvKarma;
+    private TextView tvKarma, tvName;
     private Button btnDelete;
     private MQTT mqttClient;
     int karma_points = 0;
@@ -53,6 +53,9 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         tvKarma = findViewById(R.id.textView3);
+        tvName=findViewById(R.id.NameTextView);
+        String username= getUsername();
+        tvName.setText(username+" Profile: ");
 
         btnDelete = findViewById(R.id.button2);
         btnDelete.setOnClickListener(this::deleteCurrentSelection);
@@ -88,33 +91,38 @@ public class ProfileActivity extends AppCompatActivity {
         mqttClient = MQTT.getInstance(this);
         mqttClient.connect();
 
-        tvKarma.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mqttClient.subscribe("mv/KarmaPoints", new MQTT.MessageCallback() {
-                    @Override
-                    public void onMessageReceived(String topic, String message) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    karma_points = Integer.parseInt(message.trim());
+//        tvKarma.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mqttClient.subscribe("mv/KarmaPoints", new MQTT.MessageCallback() {
+//                    @Override
+//                    public void onMessageReceived(String topic, String message) {
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                try {
+//                                    karma_points = Integer.parseInt(message.trim());
+//
+//                                    // Guardar en shared preferences
+//                                    SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+//                                    SharedPreferences.Editor editor = prefs.edit();
+//                                    editor.putInt("totalKarma", karma_points);
+//                                    editor.apply();
+//
+//                                } catch (NumberFormatException e) {
+//                                    tvKarma.setText("Error: " + message);
+//                                }
+//                            }
+//                        });
+//                    }
+//                });
+//            }
+//        }, 1000); // Esperar 1 segundo para conectar
+    }
 
-                                    // Guardar en shared preferences
-                                    SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = prefs.edit();
-                                    editor.putInt("totalKarma", karma_points);
-                                    editor.apply();
-
-                                } catch (NumberFormatException e) {
-                                    tvKarma.setText("Error: " + message);
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        }, 1000); // Esperar 1 segundo para conectar
+    private String getUsername() {
+        SharedPreferences prefs = getSharedPreferences("KarmaAppPrefs", Context.MODE_PRIVATE);
+        return prefs.getString("username", "Usuario"); // "Usuario" es valor por defecto
     }
 
     @Override
@@ -130,7 +138,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (mqttClient != null) {
-            mqttClient.unsubscribe("mv/KarmaPoints");
+            mqttClient.unsubscribeAll("mv/KarmaPoints");
         }
     }
 

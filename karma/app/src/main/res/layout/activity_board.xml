@@ -57,6 +57,12 @@
             android:padding="16dp">
 
             <!-- Gráfico de barras horizontales -->
+            <TextView
+                android:id="@+id/textViewTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
             <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/horizontalBarChart"
                 android:layout_width="match_parent"
