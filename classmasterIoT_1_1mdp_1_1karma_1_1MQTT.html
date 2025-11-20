@@ -141,21 +141,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a98f4e357e0fff3dcfa0168d5453691c3" id="r_a98f4e357e0fff3dcfa0168d5453691c3"><td class="memItemLeft" align="right" valign="top"><a id="a98f4e357e0fff3dcfa0168d5453691c3" name="a98f4e357e0fff3dcfa0168d5453691c3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>connect</b> ()</td></tr>
 <tr class="separator:a98f4e357e0fff3dcfa0168d5453691c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab77434b6925b1208a021cbf21b2cc27a" id="r_ab77434b6925b1208a021cbf21b2cc27a"><td class="memItemLeft" align="right" valign="top"><a id="ab77434b6925b1208a021cbf21b2cc27a" name="ab77434b6925b1208a021cbf21b2cc27a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>subscribe</b> (String topic, <a class="el" href="interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html">MessageCallback</a> callback)</td></tr>
-<tr class="separator:ab77434b6925b1208a021cbf21b2cc27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39670be245e9f8529c4dd92d0ba639d0" id="r_a39670be245e9f8529c4dd92d0ba639d0"><td class="memItemLeft" align="right" valign="top"><a id="a39670be245e9f8529c4dd92d0ba639d0" name="a39670be245e9f8529c4dd92d0ba639d0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>publish</b> (String topic, String message)</td></tr>
-<tr class="separator:a39670be245e9f8529c4dd92d0ba639d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a060b5b152fc02a88db2e7615fa2bcb1f" id="r_a060b5b152fc02a88db2e7615fa2bcb1f"><td class="memItemLeft" align="right" valign="top"><a id="a060b5b152fc02a88db2e7615fa2bcb1f" name="a060b5b152fc02a88db2e7615fa2bcb1f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribe</b> (String topic)</td></tr>
-<tr class="separator:a060b5b152fc02a88db2e7615fa2bcb1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3309a48beaffbba7930474f25b94406" id="r_ac3309a48beaffbba7930474f25b94406"><td class="memItemLeft" align="right" valign="top"><a id="ac3309a48beaffbba7930474f25b94406" name="ac3309a48beaffbba7930474f25b94406"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>subscribe_MQTT</b> (String topic)</td></tr>
+<tr class="separator:ac3309a48beaffbba7930474f25b94406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff7f34e7b81107789368553973d48355" id="r_aff7f34e7b81107789368553973d48355"><td class="memItemLeft" align="right" valign="top"><a id="aff7f34e7b81107789368553973d48355" name="aff7f34e7b81107789368553973d48355"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>publish</b> (String topic, String message, boolean retained)</td></tr>
+<tr class="separator:aff7f34e7b81107789368553973d48355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19941329419f002d234a7a0b0b0ca1cb" id="r_a19941329419f002d234a7a0b0b0ca1cb"><td class="memItemLeft" align="right" valign="top"><a id="a19941329419f002d234a7a0b0b0ca1cb" name="a19941329419f002d234a7a0b0b0ca1cb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribe</b> (String topic, <a class="el" href="interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html">MessageCallback</a> callback)</td></tr>
+<tr class="separator:a19941329419f002d234a7a0b0b0ca1cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c3c2e751c816bbb88b1118132b7a0bd" id="r_a4c3c2e751c816bbb88b1118132b7a0bd"><td class="memItemLeft" align="right" valign="top"><a id="a4c3c2e751c816bbb88b1118132b7a0bd" name="a4c3c2e751c816bbb88b1118132b7a0bd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unsubscribeAll</b> (String topic)</td></tr>
+<tr class="separator:a4c3c2e751c816bbb88b1118132b7a0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d7107d9bd8c59e4e1d9c731ea5086f1" id="r_a3d7107d9bd8c59e4e1d9c731ea5086f1"><td class="memItemLeft" align="right" valign="top"><a id="a3d7107d9bd8c59e4e1d9c731ea5086f1" name="a3d7107d9bd8c59e4e1d9c731ea5086f1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>disconnect</b> ()</td></tr>
 <tr class="separator:a3d7107d9bd8c59e4e1d9c731ea5086f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2faa187325a7c5c7ec86460c57257e4" id="r_af2faa187325a7c5c7ec86460c57257e4"><td class="memItemLeft" align="right" valign="top"><a id="af2faa187325a7c5c7ec86460c57257e4" name="af2faa187325a7c5c7ec86460c57257e4"></a>
 boolean&#160;</td><td class="memItemRight" valign="bottom"><b>isConnected</b> ()</td></tr>
 <tr class="separator:af2faa187325a7c5c7ec86460c57257e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade5a69909cb8d8378b221429b3f751c6" id="r_ade5a69909cb8d8378b221429b3f751c6"><td class="memItemLeft" align="right" valign="top"><a id="ade5a69909cb8d8378b221429b3f751c6" name="ade5a69909cb8d8378b221429b3f751c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printCallbacks</b> ()</td></tr>
+<tr class="separator:ade5a69909cb8d8378b221429b3f751c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
