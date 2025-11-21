@@ -41,7 +41,7 @@ import java.util.Random;
 import masterIoT.mdp.karma.missions.MissionsActivity;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
-        private static final String TAG = "MQTT";
+    private static final String TAG = "MQTT";
     private Button bMissions, bBoard;
     private ImageView bProfile;
     private SensorManager sensorManager;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private int numbSteps;
     private int karmaPoints;
     private Vibrator vibrator;
-    private TextView mensajesMotivados, tvSteps, tvKarma, tvTest;
+    private TextView mensajesMotivados, tvSteps, tvKarma;
     private Handler handler;
     private Runnable runnable;
     private List<String> mensajes;
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         bBoard = findViewById(R.id.btnLeaderBoard);
         bProfile = findViewById(R.id.imageView);
         tvKarma = findViewById(R.id.tvKarmaPoints);
-        tvTest=findViewById(R.id.textViewTest);
 
         stepSensorAct = false;
         stepSwitch = findViewById(R.id.swSteps);

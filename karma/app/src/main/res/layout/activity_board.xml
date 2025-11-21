@@ -57,11 +57,14 @@
             android:padding="16dp">
 
             <!-- Gráfico de barras horizontales -->
+
             <TextView
-                android:id="@+id/textViewTest"
+                android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:gravity="center"
+                android:text="KarmaPoints score:"
+                android:textSize="24sp" />
 
             <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/horizontalBarChart"
