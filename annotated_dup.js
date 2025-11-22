@@ -20,9 +20,9 @@ var annotated_dup =
             [ "WaypointItem", "classmasterIoT_1_1mdp_1_1karma_1_1modelo_1_1WaypointItem.html", "classmasterIoT_1_1mdp_1_1karma_1_1modelo_1_1WaypointItem" ]
           ] ],
           [ "BoardActivity", "classmasterIoT_1_1mdp_1_1karma_1_1BoardActivity.html", "classmasterIoT_1_1mdp_1_1karma_1_1BoardActivity" ],
-          [ "DescargaFichero", "classmasterIoT_1_1mdp_1_1karma_1_1DescargaFichero.html", "classmasterIoT_1_1mdp_1_1karma_1_1DescargaFichero" ],
           [ "ExampleInstrumentedTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleInstrumentedTest.html", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleInstrumentedTest" ],
           [ "ExampleUnitTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleUnitTest.html", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleUnitTest" ],
+          [ "FileDownload", "classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html", "classmasterIoT_1_1mdp_1_1karma_1_1FileDownload" ],
           [ "MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity" ],
           [ "MapActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html", "classmasterIoT_1_1mdp_1_1karma_1_1MapActivity" ],
           [ "MQTT", "classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html", "classmasterIoT_1_1mdp_1_1karma_1_1MQTT" ],

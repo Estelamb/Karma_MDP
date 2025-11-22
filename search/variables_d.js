@@ -9,5 +9,5 @@ var searchData=
   ['step_6',['step',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a07d1843edf1ddc953db9449e99a19f65',1,'masterIoT::mdp::karma::MainActivity']]],
   ['stepsensoract_7',['stepSensorAct',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a410094be0b323648a22bfd1b7076e71f',1,'masterIoT::mdp::karma::MainActivity']]],
   ['stepswitch_8',['stepSwitch',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#afc63c2a221fe7a6b31071e3d418eabd7',1,'masterIoT::mdp::karma::MainActivity']]],
-  ['strurl_9',['strURL',['../classmasterIoT_1_1mdp_1_1karma_1_1DescargaFichero.html#a600e6adf08d5d8e4bac264ac02f84569',1,'masterIoT::mdp::karma::DescargaFichero']]]
+  ['strurl_9',['strURL',['../classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html#a5a40d37e862a149a558fac80cb1d9bbc',1,'masterIoT::mdp::karma::FileDownload']]]
 ];

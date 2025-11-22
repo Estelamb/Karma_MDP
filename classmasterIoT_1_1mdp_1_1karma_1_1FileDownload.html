@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Embedded Platforms and Communications for IoT" />
 <meta name="twitter:description" content="Estela Mora Barba" />
 <!-- END twitter metadata -->
-<title>Karma: masterIoT.mdp.karma.MQTT.MessageCallback Interface Reference</title>
+<title>Karma: masterIoT.mdp.karma.FileDownload Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -97,7 +97,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -124,40 +124,57 @@ $(document).ready(function(){initNavTree('interfacemasterIoT_1_1mdp_1_1karma_1_1
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
-  <div class="headertitle"><div class="title">masterIoT.mdp.karma.MQTT.MessageCallback Interface Reference</div></div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
+  <div class="headertitle"><div class="title">masterIoT.mdp.karma.FileDownload Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Callback interface for receiving MQTT messages.  
- <a href="interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html#details">More...</a></p>
+<p>Runnable class that performs an HTTP GET request in a background thread.  
+ <a href="classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aff865bb51474871a66aab5d5733c746b" id="r_aff865bb51474871a66aab5d5733c746b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html#aff865bb51474871a66aab5d5733c746b">onMessageReceived</a> (String topic, String message)</td></tr>
-<tr class="memdesc:aff865bb51474871a66aab5d5733c746b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a message is received on a subscribed topic.  <br /></td></tr>
-<tr class="separator:aff865bb51474871a66aab5d5733c746b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad144bc2ac709458baf6dbe4b1980a4a5" id="r_ad144bc2ac709458baf6dbe4b1980a4a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html#ad144bc2ac709458baf6dbe4b1980a4a5">FileDownload</a> (Handler <a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html#a6cdc10abdf36689593103164a22c143e">handler</a>, String <a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html#a5a40d37e862a149a558fac80cb1d9bbc">strURL</a>)</td></tr>
+<tr class="memdesc:ad144bc2ac709458baf6dbe4b1980a4a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the FileDownload class.  <br /></td></tr>
+<tr class="separator:ad144bc2ac709458baf6dbe4b1980a4a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cb2e78c8ffbd9b472ead9134efd4369" id="r_a6cb2e78c8ffbd9b472ead9134efd4369"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html#a6cb2e78c8ffbd9b472ead9134efd4369">run</a> ()</td></tr>
+<tr class="memdesc:a6cb2e78c8ffbd9b472ead9134efd4369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the HTTP GET request and sends the result through the Handler.  <br /></td></tr>
+<tr class="separator:a6cb2e78c8ffbd9b472ead9134efd4369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6cdc10abdf36689593103164a22c143e" id="r_a6cdc10abdf36689593103164a22c143e"><td class="memItemLeft" align="right" valign="top">Handler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html#a6cdc10abdf36689593103164a22c143e">handler</a></td></tr>
+<tr class="memdesc:a6cdc10abdf36689593103164a22c143e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler used to return the downloaded content to the main thread.  <br /></td></tr>
+<tr class="separator:a6cdc10abdf36689593103164a22c143e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a40d37e862a149a558fac80cb1d9bbc" id="r_a5a40d37e862a149a558fac80cb1d9bbc"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html#a5a40d37e862a149a558fac80cb1d9bbc">strURL</a></td></tr>
+<tr class="memdesc:a5a40d37e862a149a558fac80cb1d9bbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">URL string from which the content will be downloaded.  <br /></td></tr>
+<tr class="separator:a5a40d37e862a149a558fac80cb1d9bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Callback interface for receiving MQTT messages. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aff865bb51474871a66aab5d5733c746b" name="aff865bb51474871a66aab5d5733c746b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff865bb51474871a66aab5d5733c746b">&#9670;&#160;</a></span>onMessageReceived()</h2>
+<div class="textblock"><p>Runnable class that performs an HTTP GET request in a background thread. </p>
+<p>The download result (success or exception) is sent back through a Handler, inside a message bundle with key <code>"response"</code>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad144bc2ac709458baf6dbe4b1980a4a5" name="ad144bc2ac709458baf6dbe4b1980a4a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad144bc2ac709458baf6dbe4b1980a4a5">&#9670;&#160;</a></span>FileDownload()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void masterIoT.mdp.karma.MQTT.MessageCallback.onMessageReceived </td>
+          <td class="memname">masterIoT.mdp.karma.FileDownload.FileDownload </td>
           <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>topic</em>, </td>
+          <td class="paramtype">Handler&#160;</td>
+          <td class="paramname"><em>handler</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>message</em>&#160;</td>
+          <td class="paramname"><em>strURL</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -165,28 +182,114 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Called when a message is received on a subscribed topic. </p>
+<p>Constructor of the FileDownload class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">topic</td><td>Topic on which the message was received. </td></tr>
-    <tr><td class="paramname">message</td><td>Payload of the MQTT message. </td></tr>
+    <tr><td class="paramname">handler</td><td>Handler to deliver the result back to the main thread. </td></tr>
+    <tr><td class="paramname">strURL</td><td>String containing the URL to download. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<hr/>The documentation for this interface was generated from the following file:<ul>
-<li>app/src/main/java/masterIoT/mdp/karma/<a class="el" href="MQTT_8java.html">MQTT.java</a></li>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6cb2e78c8ffbd9b472ead9134efd4369" name="a6cb2e78c8ffbd9b472ead9134efd4369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cb2e78c8ffbd9b472ead9134efd4369">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void masterIoT.mdp.karma.FileDownload.run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Performs the HTTP GET request and sends the result through the Handler. </p>
+<p>The result is returned in a Message bundle with key:</p><ul>
+<li><code>"response"</code> → Contains the downloaded text or an exception message.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>This method runs automatically when the thread starts. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Field Documentation</h2>
+<a id="a6cdc10abdf36689593103164a22c143e" name="a6cdc10abdf36689593103164a22c143e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cdc10abdf36689593103164a22c143e">&#9670;&#160;</a></span>handler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Handler masterIoT.mdp.karma.FileDownload.handler</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handler used to return the downloaded content to the main thread. </p>
+
+</div>
+</div>
+<a id="a5a40d37e862a149a558fac80cb1d9bbc" name="a5a40d37e862a149a558fac80cb1d9bbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a40d37e862a149a558fac80cb1d9bbc">&#9670;&#160;</a></span>strURL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String masterIoT.mdp.karma.FileDownload.strURL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>URL string from which the content will be downloaded. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>app/src/main/java/masterIoT/mdp/karma/<a class="el" href="FileDownload_8java.html">FileDownload.java</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>masterIoT</b></li><li class="navelem"><b>mdp</b></li><li class="navelem"><a class="el" href="namespacemasterIoT_1_1mdp_1_1karma.html">karma</a></li><li class="navelem"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html">MQTT</a></li><li class="navelem"><a class="el" href="interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html">MessageCallback</a></li>
+    <li class="navelem"><b>masterIoT</b></li><li class="navelem"><b>mdp</b></li><li class="navelem"><a class="el" href="namespacemasterIoT_1_1mdp_1_1karma.html">karma</a></li><li class="navelem"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html">FileDownload</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['karma_20mobiles_20device_20programming_0',['Karma - Mobiles Device Programming',['../index.html',1,'']]],
-  ['karmapoints_1',['karmapoints',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a69fb7e472176a499f5100881a1bbe2f0',1,'masterIoT.mdp.karma.MainActivity.karmaPoints'],['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html#a96a357c33bf5b5e2ad7b4e61bed35987',1,'masterIoT.mdp.karma.missions.Mission.karmaPoints'],['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a54f7b461f9be3716c16169413c21052a',1,'masterIoT.mdp.karma.missions.MissionsDataset.karmaPoints']]],
-  ['key_2',['key',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html#acc652a1072d8fc53dc4ccf79e2ff270e',1,'masterIoT::mdp::karma::missions::Mission']]],
-  ['key_5ffirst_5ftime_3',['KEY_FIRST_TIME',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#ae00adc1bf100813953ed5cdbefe6bf86',1,'masterIoT::mdp::karma::MainActivity']]],
-  ['key_5fusername_4',['KEY_USERNAME',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#affc673782d736f2093163564bbbfd46f',1,'masterIoT::mdp::karma::MainActivity']]]
+  ['ic_5flauncher_2exml_0',['ic_launcher.xml',['../ic__launcher_8xml.html',1,'']]],
+  ['ic_5flauncher_5fbackground_2exml_1',['ic_launcher_background.xml',['../ic__launcher__background_8xml.html',1,'']]],
+  ['ic_5flauncher_5fforeground_2exml_2',['ic_launcher_foreground.xml',['../ic__launcher__foreground_8xml.html',1,'']]],
+  ['ic_5flauncher_5fround_2exml_3',['ic_launcher_round.xml',['../ic__launcher__round_8xml.html',1,'']]],
+  ['image_4',['image',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html#ace57270e4fec74027606a419f3fe5743',1,'masterIoT::mdp::karma::missions::Mission']]],
+  ['images_5',['images',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a472837a1a48836044c27a8f70e3cbd61',1,'masterIoT::mdp::karma::missions::MissionsDataset']]],
+  ['inst_6',['inst',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a2d615cfcbbe009ddd0510e8231cc6828',1,'masterIoT::mdp::karma::missions::MissionsDataset']]],
+  ['instance_7',['instance',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#a5912aacef8940e6c12bbe982759adb2b',1,'masterIoT::mdp::karma::MQTT']]],
+  ['isconnected_8',['isConnected',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#af2faa187325a7c5c7ec86460c57257e4',1,'masterIoT::mdp::karma::MQTT']]]
 ];

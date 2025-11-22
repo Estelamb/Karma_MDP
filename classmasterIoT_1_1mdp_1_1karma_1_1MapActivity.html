@@ -131,30 +131,41 @@ $(document).ready(function(){initNavTree('classmasterIoT_1_1mdp_1_1karma_1_1MapA
   <div class="headertitle"><div class="title">masterIoT.mdp.karma.MapActivity Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Loads waypoint data from a remote JSON source and displays it on a Google Map.  
+ <a href="classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3af1df9002ffeb0fd2c189c191e10d78" id="r_a3af1df9002ffeb0fd2c189c191e10d78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html#a3af1df9002ffeb0fd2c189c191e10d78">onMapReady</a> (@NonNull GoogleMap googleMap)</td></tr>
+<tr class="memdesc:a3af1df9002ffeb0fd2c189c191e10d78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback executed when the Google Map instance is fully ready.  <br /></td></tr>
 <tr class="separator:a3af1df9002ffeb0fd2c189c191e10d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a45135173e9bb5ac834e96f498d18e7fd" id="r_a45135173e9bb5ac834e96f498d18e7fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html#a45135173e9bb5ac834e96f498d18e7fd">onCreate</a> (Bundle savedInstanceState)</td></tr>
+<tr class="memdesc:a45135173e9bb5ac834e96f498d18e7fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Activity, UI, map fragment, resolves dataset type, and triggers download.  <br /></td></tr>
 <tr class="separator:a45135173e9bb5ac834e96f498d18e7fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a1dc2904735c230f08c80f9c82d3c134c" id="r_a1dc2904735c230f08c80f9c82d3c134c"><td class="memItemLeft" align="right" valign="top">Map&lt; String, LatLng &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html#a1dc2904735c230f08c80f9c82d3c134c">parseJsonBookandBlood</a> (String Response)  throws JSONException </td></tr>
+<tr class="memdesc:a1dc2904735c230f08c80f9c82d3c134c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses JSON for "blood" and "giver" map types (dataset with @graph array).  <br /></td></tr>
 <tr class="separator:a1dc2904735c230f08c80f9c82d3c134c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfc6fcc23077948cc12b39c928da4aa3" id="r_acfc6fcc23077948cc12b39c928da4aa3"><td class="memItemLeft" align="right" valign="top">Map&lt; String, LatLng &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html#acfc6fcc23077948cc12b39c928da4aa3">parseJsonTrash</a> (String Response)  throws JSONException </td></tr>
+<tr class="memdesc:acfc6fcc23077948cc12b39c928da4aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses JSON for "trash" map type (simple array of objects).  <br /></td></tr>
 <tr class="separator:acfc6fcc23077948cc12b39c928da4aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a09caa6ecb16ed9daeb1882bf7964ebae" id="r_a09caa6ecb16ed9daeb1882bf7964ebae"><td class="memItemLeft" align="right" valign="top">ClusterManager&lt; WaypointItem &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html#a09caa6ecb16ed9daeb1882bf7964ebae">clusterManager</a></td></tr>
+<tr class="memdesc:a09caa6ecb16ed9daeb1882bf7964ebae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cluster manager for grouping map marker items (currently unused).  <br /></td></tr>
 <tr class="separator:a09caa6ecb16ed9daeb1882bf7964ebae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Loads waypoint data from a remote JSON source and displays it on a Google Map. </p>
+<p>The Activity determines the dataset based on the "mapType" extra. Data is downloaded asynchronously using FileDownload and populated on the map once ready. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a45135173e9bb5ac834e96f498d18e7fd" name="a45135173e9bb5ac834e96f498d18e7fd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a45135173e9bb5ac834e96f498d18e7fd">&#9670;&#160;</a></span>onCreate()</h2>
 
@@ -178,6 +189,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Initializes the Activity, UI, map fragment, resolves dataset type, and triggers download. </p>
 
 </div>
 </div>
@@ -205,6 +218,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Callback executed when the Google Map instance is fully ready. </p>
+<p>Sets up UI settings, initial camera position, and displays markers if already parsed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">googleMap</td><td>Ready-to-use map instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a1dc2904735c230f08c80f9c82d3c134c" name="a1dc2904735c230f08c80f9c82d3c134c"></a>
@@ -230,6 +252,21 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Parses JSON for "blood" and "giver" map types (dataset with @graph array). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Response</td><td>Raw JSON string obtained from Madrid Open Data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Map of waypoint titles to their geographic LatLng positions. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">JSONException</td><td>If parsing fails. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -257,6 +294,21 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Parses JSON for "trash" map type (simple array of objects). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Response</td><td>Raw JSON array string from Madrid Open Data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Map of IDs to LatLng coordinates. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">JSONException</td><td>If JSON is malformed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Field Documentation</h2>
@@ -279,6 +331,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Cluster manager for grouping map marker items (currently unused). </p>
 
 </div>
 </div>
