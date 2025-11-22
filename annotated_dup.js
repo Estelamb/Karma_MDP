@@ -23,7 +23,7 @@ var annotated_dup =
           [ "DescargaFichero", "classmasterIoT_1_1mdp_1_1karma_1_1DescargaFichero.html", null ],
           [ "ExampleInstrumentedTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleInstrumentedTest.html", null ],
           [ "ExampleUnitTest", "classmasterIoT_1_1mdp_1_1karma_1_1ExampleUnitTest.html", null ],
-          [ "MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", null ],
+          [ "MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity" ],
           [ "MapActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MapActivity.html", null ],
           [ "MQTT", "classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html", "classmasterIoT_1_1mdp_1_1karma_1_1MQTT" ],
           [ "ProfileActivity", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html", null ]

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['karma_20mobiles_20device_20programming_0',['Karma - Mobiles Device Programming',['../index.html',1,'']]]
+  ['getusername_0',['getUsername',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6327c360541d607d85ea36baac64c069',1,'masterIoT::mdp::karma::MainActivity']]]
 ];
