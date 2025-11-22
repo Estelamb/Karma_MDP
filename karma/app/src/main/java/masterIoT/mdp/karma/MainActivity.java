@@ -40,45 +40,94 @@ import java.util.Random;
 
 import masterIoT.mdp.karma.missions.MissionsActivity;
 
+/**
+ * @brief Main activity of the Karma app.
+ * @details Handles UI initialization, step sensor management, motivational messages,
+ *          user profile handling, SharedPreferences storage and MQTT communication.
+ */
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
+
+    /** TAG for MQTT logs */
     private static final String TAG = "MQTT";
+
+    /** Missions button */
     private Button bMissions, bBoard;
+
+    /** Profile button */
     private ImageView bProfile;
+
+    /** Sensor manager */
     private SensorManager sensorManager;
+
+    /** Step detector sensor */
     private Sensor step;
+
+    /** Switch to activate step counting */
     private Switch stepSwitch;
+
+    /** Indicates if step sensor is active */
     private boolean stepSensorAct;
+
+    /** Number of counted steps */
     private int numbSteps;
+
+    /** Total karma points */
     private int karmaPoints;
+
+    /** Vibrator for feedback */
     private Vibrator vibrator;
+
+    /** Motivational messages text view */
     private TextView mensajesMotivados, tvSteps, tvKarma;
+
+    /** Handler for timed messages */
     private Handler handler;
+
+    /** Runnable for motivational message updates */
     private Runnable runnable;
+
+    /** List of motivational phrases */
     private List<String> mensajes;
+
+    /** Random generator for messages */
     private Random random;
+
+    /** Request code for activity recognition */
     private static final int REQUEST_ACTIVITY_RECOGNITION = 1001;
 
-    // Constantes para SharedPreferences
+    // SharedPreferences keys
+    /** Preferences filename */
     private static final String PREFS_NAME = "KarmaAppPrefs";
+
+    /** Username key */
     private static final String KEY_USERNAME = "username";
+
+    /** First time key */
     private static final String KEY_FIRST_TIME = "first_time";
 
+    /** MQTT client instance */
     private MQTT mqttClient;
 
+    /**
+     * @brief Called when the activity is created.
+     * @param savedInstanceState Instance state bundle.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // Verificar si es la primera vez que se inicia la app
+
+        // First-time check
         checkFirstTime();
 
-        // El resto de tu código existente...
+        // Request sensor permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -95,40 +144,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         stepSwitch = findViewById(R.id.swSteps);
         tvSteps = findViewById(R.id.txvwNumeroPasos);
 
+        // Load karma
         SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
         karmaPoints = prefs.getInt("totalKarma", 0);
         tvKarma.setText(String.valueOf(karmaPoints));
 
         setupMQTT();
 
-        bMissions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MissionsActivity.class);
-                startActivity(intent);
-            }
+        bMissions.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MissionsActivity.class);
+            startActivity(intent);
         });
 
-        bBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, BoardActivity.class);
-                startActivity(intent);
-            }
+        bBoard.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, BoardActivity.class);
+            startActivity(intent);
         });
 
-        bProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
+        bProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
         });
 
+        // Sensor configuration
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         step = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
+        // Step switch listener
         stepSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 sensorManager.registerListener(MainActivity.this, step, SensorManager.SENSOR_DELAY_NORMAL);
@@ -143,21 +186,28 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        // Motivational messages loop
         mensajesMotivados = findViewById(R.id.txvwMensajesPositivos);
-        mensajes = Arrays.asList("Believe in yourself and all that you are.", "Every day is a new beginning.", "You are stronger than you think.", "Dream big and dare to fail.", "Keep going — you're doing great!", "The best time for new beginnings is now.", "Be the energy you want to attract.", "Your only limit is your mind.", "Small steps every day lead to big results.", "Stay positive, work hard, make it happen.");
+        mensajes = Arrays.asList("Believe in yourself and all that you are.",
+                "Every day is a new beginning.", "You are stronger than you think.",
+                "Dream big and dare to fail.", "Keep going — you're doing great!",
+                "The best time for new beginnings is now.", "Be the energy you want to attract.",
+                "Your only limit is your mind.", "Small steps every day lead to big results.",
+                "Stay positive, work hard, make it happen.");
+
         random = new Random();
         handler = new Handler();
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                String mensaje = mensajes.get(random.nextInt((mensajes.size())));
-                mensajesMotivados.setText(mensaje);
-                handler.postDelayed(this, 10000);
-            }
+        runnable = () -> {
+            String mensaje = mensajes.get(random.nextInt((mensajes.size())));
+            mensajesMotivados.setText(mensaje);
+            handler.postDelayed(runnable, 10000);
         };
         handler.post(runnable);
     }
 
+    /**
+     * @brief Checks if the user launches the app for the first time.
+     */
     private void checkFirstTime() {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean isFirstTime = prefs.getBoolean(KEY_FIRST_TIME, true);
@@ -172,54 +222,60 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /**
+     * @brief Shows dialog to request the username.
+     */
     private void showUsernameDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Welcome\n");
         builder.setMessage("Please, enter your username:");
 
-        // Set up the input
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         input.setHint("User name");
         builder.setView(input);
 
-        // Set up the buttons
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String username = input.getText().toString().trim();
-                if (!username.isEmpty()) {
-                    saveUsername(username);
-                    Toast.makeText(MainActivity.this, "Welcome, " + username + "!", Toast.LENGTH_LONG).show();
-                }
+        builder.setPositiveButton("Save", (dialog, which) -> {
+            String username = input.getText().toString().trim();
+            if (!username.isEmpty()) {
+                saveUsername(username);
+                Toast.makeText(MainActivity.this, "Welcome, " + username + "!", Toast.LENGTH_LONG).show();
             }
         });
 
         builder.setCancelable(false);
-
         builder.show();
     }
 
+    /**
+     * @brief Saves the username in SharedPreferences.
+     * @param username Username entered by the user.
+     */
     private void saveUsername(String username) {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(KEY_USERNAME, username);
-        editor.putBoolean(KEY_FIRST_TIME, false); // Marcar que ya no es la primera vez
+        editor.putBoolean(KEY_FIRST_TIME, false);
         editor.apply();
     }
 
+    /**
+     * @brief Returns the stored username.
+     * @return Username string.
+     */
     public String getUsername() {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return prefs.getString(KEY_USERNAME, "");
     }
 
+    /** @brief Removes callbacks when activity is destroyed. */
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Detiene el handler cuando la actividad se destruye
         handler.removeCallbacks(runnable);
     }
 
+    /** @brief Saves step state and disconnects MQTT when activity stops. */
     @Override
     protected void onStop() {
         super.onStop();
@@ -232,6 +288,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mqttClient.disconnect();
     }
 
+    /** @brief Loads saved sensor state when activity starts. */
     @Override
     protected void onStart() {
         super.onStart();
@@ -253,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /** @brief Saves karma and disconnects MQTT on pause. */
     @Override
     protected void onPause() {
         super.onPause();
@@ -263,6 +321,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mqttClient.disconnect();
     }
 
+    /** @brief Reloads karma and reconnects MQTT on resume. */
     @Override
     protected void onResume() {
         super.onResume();
@@ -272,6 +331,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setupMQTT();
     }
 
+    /**
+     * @brief Handles sensor event changes.
+     * @param sensorEvent Sensor data event.
+     */
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         System.out.println(sensorEvent.sensor.getType());
@@ -288,6 +351,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /**
+     * @brief Handles permission request results.
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -299,21 +365,29 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
                 tvSteps.setText("Step detector ready");
             } else {
-                stepSensorAct = false; // Asegurarse de no registrar el sensor
+                stepSensorAct = false;
                 tvSteps.setText("Denied permiss");
             }
         }
     }
 
+    /**
+     * @brief Not used but required sensor accuracy override.
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // No necesitamos hacer nada aquí, pero el método debe estar presente
+        // Required empty method
     }
 
+    /**
+     * @brief Initializes and connects MQTT client.
+     */
     private void setupMQTT() {
         Log.i(TAG, "ENTRE EN MQTT");
         mqttClient = MQTT.getInstance(this);
         mqttClient.connect();
-        Toast.makeText(this,getSharedPreferences("UsersKarma",Context.MODE_PRIVATE).getAll().toString(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this,
+                getSharedPreferences("UsersKarma", Context.MODE_PRIVATE).getAll().toString(),
+                Toast.LENGTH_LONG).show();
     }
 }
