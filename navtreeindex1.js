@@ -1,0 +1,27 @@
+var NAVTREEINDEX1 =
+{
+"hierarchy.html":[2,2],
+"ic__launcher_8xml.html":[3,0,0,0,1,1,3,0],
+"ic__launcher__background_8xml.html":[3,0,0,0,1,1,0,0],
+"ic__launcher__foreground_8xml.html":[3,0,0,0,1,1,0,1],
+"ic__launcher__round_8xml.html":[3,0,0,0,1,1,3,1],
+"index.html":[0],
+"index.html":[],
+"interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html":[2,0,0,0,0,8,0],
+"interfacemasterIoT_1_1mdp_1_1karma_1_1MQTT_1_1MessageCallback.html#aff865bb51474871a66aab5d5733c746b":[2,0,0,0,0,8,0,0],
+"layout-land_2activity__board_8xml.html":[3,0,0,0,1,1,2,0],
+"layout-land_2activity__main_8xml.html":[3,0,0,0,1,1,2,1],
+"layout-land_2activity__missions_8xml.html":[3,0,0,0,1,1,2,2],
+"layout-land_2activity__profile_8xml.html":[3,0,0,0,1,1,2,3],
+"layout_2activity__board_8xml.html":[3,0,0,0,1,1,1,0],
+"layout_2activity__main_8xml.html":[3,0,0,0,1,1,1,1],
+"layout_2activity__missions_8xml.html":[3,0,0,0,1,1,1,3],
+"layout_2activity__profile_8xml.html":[3,0,0,0,1,1,1,4],
+"mission_8xml.html":[3,0,0,0,1,1,1,6],
+"mission__info_8xml.html":[3,0,0,0,1,1,1,7],
+"namespaces.html":[1,0],
+"pages.html":[],
+"strings_8xml.html":[3,0,0,0,1,1,4,1],
+"values-night_2themes_8xml.html":[3,0,0,0,1,1,5,0],
+"values_2themes_8xml.html":[3,0,0,0,1,1,4,2]
+};

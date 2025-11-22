@@ -1,5 +1,6 @@
 var classmasterIoT_1_1mdp_1_1karma_1_1MainActivity =
 [
+    [ "checkFirstTime", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a14a4b52012046299eeb16619dae30a7d", null ],
     [ "getUsername", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6327c360541d607d85ea36baac64c069", null ],
     [ "onAccuracyChanged", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a121d041e9e657c76f57ad6148e460850", null ],
     [ "onCreate", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#aa5c24b290d4ca212899d239a6a98883b", null ],
@@ -9,5 +10,26 @@ var classmasterIoT_1_1mdp_1_1karma_1_1MainActivity =
     [ "onResume", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#ae81d50a5d372f7ead964123991b67fc9", null ],
     [ "onSensorChanged", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a56dda0f46cecfd851f4a8c89383312b7", null ],
     [ "onStart", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#aa40820ec9c138abeda6ac387f3a50dc7", null ],
-    [ "onStop", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6371b3146b55883368dbb8b34971546f", null ]
+    [ "onStop", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6371b3146b55883368dbb8b34971546f", null ],
+    [ "saveUsername", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a1cdeabd3288795d3352e694ef1a18b31", null ],
+    [ "setupMQTT", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6933a68b92a47f94417ea0ae76ed0976", null ],
+    [ "showUsernameDialog", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a404dabe64200a4cff940168283497b07", null ],
+    [ "bBoard", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a240a397c14cfae7c90c4abad09efcc82", null ],
+    [ "bMissions", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a0880081d62f684005fc366351cfa7807", null ],
+    [ "bProfile", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#afa35df03d74458c57eb27ad4f464a92b", null ],
+    [ "handler", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#afed03de250ff6e5b567d3859101d20e4", null ],
+    [ "karmaPoints", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a69fb7e472176a499f5100881a1bbe2f0", null ],
+    [ "mensajes", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#aecf69c4e74da975547920afa4a2a3067", null ],
+    [ "mensajesMotivados", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#aa362ecec981bfe629284581ec1eb0d6b", null ],
+    [ "mqttClient", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a09726930354f820d006b2e0a710d0eaa", null ],
+    [ "numbSteps", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9a9ffc223c0c0acbc1f090fe9892b3ff", null ],
+    [ "random", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#afa3477d7ba20bba1afee3e653e7997ed", null ],
+    [ "runnable", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9ea81e67564688a63c19760943a35ff6", null ],
+    [ "sensorManager", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#abc8b27e4c1f24da892a9e4c5cda5c8fd", null ],
+    [ "step", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a07d1843edf1ddc953db9449e99a19f65", null ],
+    [ "stepSensorAct", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a410094be0b323648a22bfd1b7076e71f", null ],
+    [ "stepSwitch", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#afc63c2a221fe7a6b31071e3d418eabd7", null ],
+    [ "tvKarma", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#ad92c560b4c288b5c156d1792f4b343aa", null ],
+    [ "tvSteps", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a368d27a9dc764e7b0a66bf7e5c5a5aa6", null ],
+    [ "vibrator", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9693fde735ea01d61b40241d5bc3f705", null ]
 ];
