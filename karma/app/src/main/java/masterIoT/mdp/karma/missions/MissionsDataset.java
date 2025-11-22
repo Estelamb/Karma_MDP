@@ -1,12 +1,3 @@
-/**
- * @file MissionsDataset.java
- * @brief Singleton class managing the dataset of all missions.
- *
- * This class initializes a predefined list of missions with associated images,
- * titles, karma points, descriptions, and optional map types. Provides methods
- * to retrieve, add, and remove missions, as well as look up missions by key or position.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import masterIoT.mdp.karma.R;

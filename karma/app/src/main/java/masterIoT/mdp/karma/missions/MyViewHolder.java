@@ -1,12 +1,3 @@
-/**
- * @file MyViewHolder.java
- * @brief ViewHolder for mission items in a RecyclerView.
- *
- * This class holds references to the views for each mission item in the RecyclerView
- * and provides a method to bind mission data to these views, including formatting
- * based on selection state.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import masterIoT.mdp.karma.R;

@@ -1,11 +1,3 @@
-/**
- * @file BoardActivity.java
- * @brief Displays the leaderboard screen including karma ranking.
- * @details This activity loads user karma values from SharedPreferences,
- *          displays them in a horizontal bar chart, highlights the current user,
- *          and allows navigation to the profile screen.
- */
-
 package masterIoT.mdp.karma;
 
 import android.content.Context;

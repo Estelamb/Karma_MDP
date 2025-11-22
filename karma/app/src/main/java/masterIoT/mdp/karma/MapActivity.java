@@ -1,12 +1,3 @@
-/**
- * @file MapActivity.java
- * @brief Activity that displays different types of waypoints (trash bins, blood donation centers,
- *        libraries, etc.) on a Google Map using data downloaded from Madrid Open Data.
- *
- * This Activity receives a map type ("trash", "blood", "giver") via Intent extras,
- * downloads the corresponding JSON dataset, parses the coordinates, and places markers on a map.
- */
-
 package masterIoT.mdp.karma;
 
 import android.os.Bundle;

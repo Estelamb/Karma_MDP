@@ -1,12 +1,3 @@
-/**
- * @file MyMissionKeyProvider.java
- * @brief Provides stable selection keys for mission items in a RecyclerView.
- *
- * This class is used by the RecyclerView Selection library to map
- * positions to unique keys (Long) for selection purposes. It allows
- * SelectionTracker to identify and track selected mission items.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import android.annotation.SuppressLint;

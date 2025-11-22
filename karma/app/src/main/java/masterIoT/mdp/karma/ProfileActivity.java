@@ -1,12 +1,3 @@
-/**
- * @file ProfileActivity.java
- * @brief Activity responsible for displaying the user's profile, missions, and karma points.
- *
- * This activity loads user information from SharedPreferences, displays the list of
- * missions assigned to the user, allows deleting missions via selection, and handles
- * MQTT communication for receiving updates.
- */
-
 package masterIoT.mdp.karma;
 
 import android.content.Context;

@@ -1,13 +1,3 @@
-/**
- * @file MyMissionDetailsLookup.java
- * @brief Provides item details for mission selection in a RecyclerView.
- *
- * This class is used with SelectionTracker to retrieve information about
- * individual RecyclerView items when the user interacts with them.
- * It maps MotionEvent coordinates to a specific mission item and provides
- * its position and selection key.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import android.annotation.SuppressLint;

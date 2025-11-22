@@ -1,12 +1,3 @@
-/**
- * @file MissionsActivity.java
- * @brief Handles the main missions activity where users can view, add, and manage missions.
- *
- * This activity displays the missions dataset in a RecyclerView, supports selection,
- * and provides options to add missions or change the layout between list and grid.
- * MQTT is used to synchronize mission-related data.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import static android.content.ContentValues.TAG;

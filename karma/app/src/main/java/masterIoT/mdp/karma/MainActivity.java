@@ -1,9 +1,3 @@
-/**
- * @file MainActivity.java
- * @brief Main activity file of the Karma app.
- * @details Contains the main Android activity, sensor handling, UI logic, and MQTT communication.
- */
-
 package masterIoT.mdp.karma;
 
 import static android.content.ContentValues.TAG;

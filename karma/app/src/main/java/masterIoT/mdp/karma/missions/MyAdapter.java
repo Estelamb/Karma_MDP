@@ -1,12 +1,3 @@
-/**
- * @file MyAdapter.java
- * @brief RecyclerView adapter for displaying missions in the app.
- *
- * This adapter binds the MissionsDataset items to the RecyclerView, manages
- * selection tracking, and handles item removal. It works with MyViewHolder to
- * display individual mission items in a list or grid layout.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import masterIoT.mdp.karma.R;

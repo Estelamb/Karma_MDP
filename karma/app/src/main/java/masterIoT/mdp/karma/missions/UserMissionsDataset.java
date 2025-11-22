@@ -1,12 +1,3 @@
-/**
- * @file UserMissionsDataset.java
- * @brief Dataset containing only missions created by the user.
- *
- * This class extends MissionsDataset and filters the dataset to only include
- * missions where the user flag is set. Provides methods to get, add, and remove
- * missions, as well as retrieve positions and keys.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import android.util.Log;

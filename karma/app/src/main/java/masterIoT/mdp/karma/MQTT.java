@@ -1,12 +1,3 @@
-/**
- * @file MQTT.java
- * @brief MQTT client manager for the Android application using HiveMQ.
- *
- * This file contains the implementation of a Singleton-based MQTT handler
- * responsible for connecting to a HiveMQ broker, subscribing to topics,
- * publishing messages, and dispatching callbacks for incoming MQTT events.
- */
-
 package masterIoT.mdp.karma;
 
 import android.content.Context;

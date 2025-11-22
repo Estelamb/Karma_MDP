@@ -1,12 +1,3 @@
-/**
- * @file Mission.java
- * @brief Represents a single mission item in the dataset.
- *
- * This class stores all data related to a mission, including its title,
- * description, image, karma points, unique key, map type, and whether
- * it belongs to the user.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import android.net.Uri;

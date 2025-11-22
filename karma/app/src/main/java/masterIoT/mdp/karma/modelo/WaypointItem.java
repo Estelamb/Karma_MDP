@@ -1,12 +1,3 @@
-/**
- * @file WaypointItem.java
- * @brief Represents a waypoint used for clustering markers on Google Maps.
- *
- * This class implements the ClusterItem interface from the Google Maps
- * Android Utility Library, enabling map markers to be grouped into clusters.
- * Each waypoint contains a geographic position, a title, and a snippet.
- */
-
 package masterIoT.mdp.karma.modelo;
 
 import androidx.annotation.Nullable;

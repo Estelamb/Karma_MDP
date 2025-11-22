@@ -1,12 +1,3 @@
-/**
- * @file MissionInfo.java
- * @brief Displays detailed information about a mission and allows interaction.
- *
- * This class shows a dialog with the mission's title, description, karma points,
- * and image. It allows the user to mark the mission as complete, update karma points,
- * and optionally open a map related to the mission.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import android.app.AlertDialog;

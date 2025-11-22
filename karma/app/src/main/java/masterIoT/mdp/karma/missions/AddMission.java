@@ -1,12 +1,3 @@
-/**
- * @file AddMission.java
- * @brief Handles the UI and logic for adding a new mission in the app.
- *
- * This class provides a dialog interface to input the mission's title, karma points,
- * description, and optionally an image. Once the user confirms, the mission is added
- * to the dataset and the RecyclerView is updated.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import android.app.AlertDialog;

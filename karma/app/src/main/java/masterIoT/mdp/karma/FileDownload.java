@@ -1,11 +1,3 @@
-/**
- * @file FileDownload.java
- * @brief Implements a simple HTTP file downloader that runs in a separate thread.
- *
- * This class downloads text content from a specified URL using HttpURLConnection
- * and sends the result back to the main thread through a Handler message.
- */
-
 package masterIoT.mdp.karma;
 
 import android.os.Bundle;

@@ -1,13 +1,3 @@
-/**
- * @file MyOnMissionActivatedListener.java
- * @brief Handles activation events for mission items in a RecyclerView.
- *
- * This class implements OnItemActivatedListener<Long> to respond to item
- * activations (e.g., taps or double clicks) in a RecyclerView using the
- * selection library. When a mission item is activated, it opens a dialog
- * showing detailed information about the mission.
- */
-
 package masterIoT.mdp.karma.missions;
 
 import android.annotation.SuppressLint;
