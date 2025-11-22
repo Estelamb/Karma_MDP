@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--!
+    \file activity_board.xml
+    \brief Layout for the Karma Board activity.
+
+    \details
+    This layout displays user information at the top, followed by scrollable
+    statistical charts. The main content is wrapped in a ScrollView to allow
+    vertical scrolling when charts exceed the screen height.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,12 +17,14 @@
     android:orientation="vertical"
     tools:context=".BoardActivity">
 
+    <!--! Header section with user image and total karma -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="113dp"
         android:orientation="horizontal"
         android:paddingTop="20dp">
 
+        <!--! Profile image shown on the left -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
@@ -22,11 +33,13 @@
             android:src="@drawable/ic_launcher_foreground"
             android:contentDescription="User image"/>
 
+        <!--! Vertical section with karma label and points -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!--! Label describing the karma counter -->
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
@@ -34,6 +47,7 @@
                 android:layout_weight="1"
                 android:text="Your total karma:"/>
 
+            <!--! Displays the user's current karma points -->
             <TextView
                 android:id="@+id/tvKarmaPoints"
                 android:layout_width="wrap_content"
@@ -45,10 +59,12 @@
 
     </LinearLayout>
 
+    <!--! Scrollable container for charts and additional content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--! Main container for chart widgets -->
         <LinearLayout
             android:id="@+id/layoutContainer"
             android:layout_width="match_parent"
@@ -56,8 +72,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Gráfico de barras horizontales -->
-
+            <!--! Title for the horizontal bar chart -->
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
@@ -66,22 +81,21 @@
                 android:text="KarmaPoints score:"
                 android:textSize="24sp" />
 
+            <!--! Horizontal bar chart displaying karma distribution -->
             <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/horizontalBarChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginBottom="32dp"
                 android:background="#FAFAFA">
-
             </com.github.mikephil.charting.charts.HorizontalBarChart>
 
-            <!-- Gráfico de líneas -->
+            <!--! Line chart showing karma evolution over time -->
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/lineChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:background="#FAFAFA">
-
             </com.github.mikephil.charting.charts.LineChart>
 
         </LinearLayout>

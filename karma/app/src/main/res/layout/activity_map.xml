@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--!
+    \file activity_map.xml
+    \brief Layout for the Map screen.
+
+    \details
+    This layout displays a loading message and progress bar while the map is being initialized.
+    Once loaded, a SupportMapFragment inside a FragmentContainerView shows the interactive map.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +16,7 @@
     android:orientation="vertical"
     tools:context=".MapActivity">
 
+    <!--! Text indicating that the map is loading -->
     <TextView
         android:id="@+id/loadingmap"
         android:layout_width="match_parent"
@@ -18,6 +27,7 @@
         android:textSize="28sp"
         android:visibility="visible" />
 
+    <!--! Progress bar shown during map initialization -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -26,6 +36,7 @@
         android:scrollbarSize="10dp"
         android:visibility="visible" />
 
+    <!--! Container hosting the Google Maps fragment -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"

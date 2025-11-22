@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--!
+    \file mission_info.xml
+    \brief Layout for displaying detailed information about a mission.
+
+    \details
+    This layout shows the mission name, karma points, description,
+    a button to view the mission on the map, and an image preview.
+    It is wrapped in a ScrollView to allow scrolling when content exceeds screen size.
+-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp">
 
+    <!--! Main vertical container for all mission detail elements -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!--! Mission title shown at the top -->
         <TextView
             android:id="@+id/missionName"
             android:layout_width="match_parent"
@@ -18,6 +29,7 @@
             android:text="TextView"
             android:textSize="28sp" />
 
+        <!--! Text displaying the mission's karma points -->
         <TextView
             android:id="@+id/karmaPoints"
             android:layout_width="match_parent"
@@ -26,6 +38,7 @@
             android:text="TextView"
             android:textSize="24sp" />
 
+        <!--! Mission description text -->
         <TextView
             android:id="@+id/Description"
             android:layout_width="match_parent"
@@ -34,6 +47,7 @@
             android:text="TextView"
             android:textSize="20sp" />
 
+        <!--! Button that opens a map showing mission-related locations (initially hidden) -->
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
@@ -42,6 +56,7 @@
             android:textSize="18sp"
             android:visibility="gone" />
 
+        <!--! Image preview associated with the mission -->
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"

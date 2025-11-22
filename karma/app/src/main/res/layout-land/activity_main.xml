@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--!
+    \file activity_main.xml
+    \brief Main layout containing user information, buttons, and step counter UI.
+
+    \details
+    This layout is structured using vertical LinearLayouts.
+    The top section shows a user image and karma information.
+    The lower section contains navigation buttons, a step counter switch,
+    and additional TextViews for steps and positive messages.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,12 +18,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
+    <!--! Top horizontal section with user image and karma info -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="113dp"
         android:orientation="horizontal"
         android:paddingTop="20dp">
 
+        <!--! User profile image -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
@@ -27,11 +39,13 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <!--! Vertical layout containing karma labels -->
             <LinearLayout
                 android:layout_width="382dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <!--! Label displaying the title for karma points -->
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
@@ -39,6 +53,7 @@
                     android:layout_weight="1"
                     android:text="Your total karma:" />
 
+                <!--! TextView showing the current amount of karma points -->
                 <TextView
                     android:id="@+id/tvKarmaPoints"
                     android:layout_width="wrap_content"
@@ -48,11 +63,13 @@
                     android:textSize="55dp" />
             </LinearLayout>
 
+            <!--! Main section with buttons, step counter toggle, and informational text -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <!--! Button to open the Missions screen -->
                 <Button
                     android:id="@+id/btnMissions"
                     android:layout_width="124dp"
@@ -60,6 +77,7 @@
                     android:layout_marginHorizontal="40dp"
                     android:text="Missions" />
 
+                <!--! Button to open the Karma Leaderboard -->
                 <Button
                     android:id="@+id/btnLeaderBoard"
                     android:layout_width="wrap_content"
@@ -79,6 +97,7 @@
         android:paddingTop="25dp"
         android:gravity="center_horizontal">
 
+        <!--! Switch to enable or disable the step counter feature -->
         <Switch
             android:id="@+id/swSteps"
             android:layout_width="150dp"
@@ -90,6 +109,7 @@
             android:scaleY="1.5"
             android:textSize="12dp"/>
 
+        <!--! TextView showing the number of steps; hidden by default -->
         <TextView
             android:id="@+id/txvwNumeroPasos"
             android:layout_width="match_parent"
@@ -99,6 +119,7 @@
             android:gravity="center"
             android:visibility="gone"/>
 
+        <!--! TextView displaying random or motivational messages -->
         <TextView
             android:id="@+id/txvwMensajesPositivos"
             android:layout_width="match_parent"

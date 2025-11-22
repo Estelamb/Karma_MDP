@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--!
+    \file add_mission.xml
+    \brief Layout for entering mission data.
+
+    \details
+    This layout contains a ScrollView with input fields for creating or editing a mission.
+    It includes fields for title, karma points, description, and a preview image at the bottom.
+-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp">
 
+    <!--! Main vertical container holding all input fields -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!--! Text input for the mission title -->
         <EditText
             android:id="@+id/inputTitle"
             android:hint="Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <!--! Numeric input for the mission's karma value -->
         <EditText
             android:id="@+id/inputKarma"
             android:hint="Karma Points"
@@ -22,12 +33,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <!--! Input field for describing the mission -->
         <EditText
             android:id="@+id/inputDescription"
             android:hint="Description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <!--! Image preview displayed below the text fields -->
         <ImageView
             android:id="@+id/previewImage"
             android:layout_width="match_parent"
