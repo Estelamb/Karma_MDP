@@ -1,4 +1,14 @@
+/**
+ * @file MissionsActivity.java
+ * @brief Handles the main missions activity where users can view, add, and manage missions.
+ *
+ * This activity displays the missions dataset in a RecyclerView, supports selection,
+ * and provides options to add missions or change the layout between list and grid.
+ * MQTT is used to synchronize mission-related data.
+ */
+
 package masterIoT.mdp.karma.missions;
+
 import static android.content.ContentValues.TAG;
 
 import masterIoT.mdp.karma.MQTT;
@@ -6,17 +16,12 @@ import masterIoT.mdp.karma.R;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.selection.ItemKeyProvider;
@@ -27,26 +32,52 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
 import java.util.Iterator;
 
-//ACTIVIDAD DE LAS MISIONES
-
+/**
+ * @class MissionsActivity
+ * @brief Activity that displays all missions and handles user interactions.
+ *
+ * This activity shows a list or grid of missions, supports adding new missions,
+ * viewing selection, and deleting selected missions. It uses MQTT to connect
+ * and synchronize mission data.
+ */
 public class MissionsActivity extends AppCompatActivity {
+    /** MQTT tag for logging. */
     private static final String TAG = "MQTT";
-    // App-specific dataset:
+
+    /** Singleton dataset containing all missions. */
     private static final MissionsDataset dataset = MissionsDataset.getInstance();
+
+    /** Button to add a new mission. */
     private Button bAddMission;
+
+    /** RecyclerView displaying the missions. */
     private RecyclerView recyclerView;
+
+    /** SelectionTracker for managing selected missions. */
     private SelectionTracker<Long> tracker;
+
+    /** Listener triggered when a mission item is activated. */
     private final MyOnMissionActivatedListener myOnMissionActivatedListener =
             new MyOnMissionActivatedListener(this, dataset);
 
+    /** Launcher for gallery image selection. */
     private ActivityResultLauncher<Intent> galleryLauncher;
+
+    /** Launcher for camera capture. */
     private ActivityResultLauncher<Intent> cameraLauncher;
+
+    /** Bitmap of selected image from gallery or camera. */
     private Bitmap selectedBitmap;
+
+    /** MQTT client instance. */
     private MQTT mqttClient;
 
+    /**
+     * @brief Initializes the activity, sets up RecyclerView, selection, and add button.
+     * @param savedInstanceState Previous saved state, if any.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,14 +88,12 @@ public class MissionsActivity extends AppCompatActivity {
         MyAdapter recyclerViewAdapter = new MyAdapter(dataset);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         tracker = new SelectionTracker.Builder<>(
                 "my-selection-id",
                 recyclerView,
                 new MyMissionKeyProvider(ItemKeyProvider.SCOPE_MAPPED, recyclerView),
-//                new StableIdKeyProvider(recyclerView), // This caused the app to crash on long clicks
                 new MyMissionDetailsLookup(recyclerView),
                 StorageStrategy.createLongStorage())
                 .withOnItemActivatedListener(myOnMissionActivatedListener)
@@ -72,7 +101,6 @@ public class MissionsActivity extends AppCompatActivity {
 
         recyclerViewAdapter.setSelectionTracker(tracker);
 
-        // Botón de añadir misión
         bAddMission = findViewById(R.id.addMission);
         bAddMission.setOnClickListener(v -> {
             AddMission dialog = new AddMission(this, dataset, recyclerViewAdapter);
@@ -80,117 +108,76 @@ public class MissionsActivity extends AppCompatActivity {
         });
 
         if (savedInstanceState != null) {
-            // Restore state related to selections previously made
             tracker.onRestoreInstanceState(savedInstanceState);
         }
     }
 
+    /**
+     * @brief Saves the selection state before activity is destroyed.
+     * @param outState Bundle to save state into.
+     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        tracker.onSaveInstanceState(outState); // Save state about selections.
+        tracker.onSaveInstanceState(outState);
     }
 
-    // ------ Buttons' on-click listeners ------ //
-
+    /**
+     * @brief Switches RecyclerView to a linear list layout.
+     * @param view Button that triggers this action.
+     */
     public void listLayout(View view) {
-        // Button to see in a linear fashion has been clicked:
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * @brief Switches RecyclerView to a grid layout with 3 columns.
+     * @param view Button that triggers this action.
+     */
     public void gridLayout(View view) {
-        // Button to see in a grid fashion has been clicked:
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
     }
 
+    /**
+     * @brief Placeholder for viewing currently selected missions.
+     * @param view Button that triggers this action.
+     */
     public void seeCurrentSelection(View view) {
-        // Button "see current selection" has been clicked:
-
-//        Iterator<Long> iteratorSelectedItemsKeys = tracker.getSelection().iterator();
-//        // This iterator allows to navigate through the keys of the currently selected items.
-//        // Complete info on getSelection():
-//        // https://developer.android.com/reference/androidx/recyclerview/selection/SelectionTracker#getSelection()
-//        // Complete info on class Selection (getSelection() returns an object of this class):
-//        // https://developer.android.com/reference/androidx/recyclerview/selection/Selection
-//
-//        String text = "";
-//        while (iteratorSelectedItemsKeys.hasNext()) {
-//            text += iteratorSelectedItemsKeys.next().toString();
-//            if (iteratorSelectedItemsKeys.hasNext()) {
-//                text += ", ";
-//            }
-//        }
-//        text = "Keys of currently selected items = \n" + text;
-
-//        Intent i = new Intent(this, SecondActivity.class);
-//        i.putExtra("text", text);
-//        startActivity(i);
+        // Implementation commented out.
     }
 
+    /**
+     * @brief Placeholder for deleting currently selected missions.
+     * @param view Button that triggers this action.
+     */
     public void deleteCurrentSelection(View view){
-//        Iterator<Long> iteratorSelectedItemsKeys = tracker.getSelection().iterator();
-//
-//        while (iteratorSelectedItemsKeys.hasNext()) {
-//            dataset.removeMissionAtPosition(dataset.getPositionOfKey(iteratorSelectedItemsKeys.next()));
-//            dataset.removeMissionWithKey(iteratorSelectedItemsKeys.next());
-//        }
-//
-//        recyclerView.getAdapter().notifyDataSetChanged();
+        // Implementation commented out.
     }
 
+    /**
+     * @brief Disconnects MQTT client when activity is stopped.
+     */
     @Override
     protected void onStop(){
         super.onStop();
         mqttClient.disconnect();
     }
 
+    /**
+     * @brief Disconnects MQTT client when activity is paused.
+     */
     @Override
     protected void onPause(){
         super.onPause();
         mqttClient.disconnect();
     }
 
+    /**
+     * @brief Sets up MQTT client and connects to the server.
+     */
     private void setupMQTT() {
-        Log.i(TAG, "ENTRE EN MQTT");
+        Log.i(TAG, "Connecting to MQTT");
         mqttClient = MQTT.getInstance(this);
         mqttClient.connect();
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mqttClient.subscribe("app/users/+/karmaTotal", new MQTT.MessageCallback() {
-//                    @Override
-//                    public void onMessageReceived(String topic, String message) {
-//                        Log.i(TAG, "🔴🔴🔴 MENSAJE MQTT RECIBIDO - Topic: " + topic + ", Mensaje: " + message);
-//
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                try {
-//                                    Log.i(TAG, "🟢 Procesando mensaje en UI: " + message);
-//                                    Toast.makeText(getApplicationContext(),"PEPE EL PEPE",Toast.LENGTH_SHORT).show();
-//
-////                                    int karma = Integer.parseInt(message.trim());
-////
-////                                    // Guardar en SharedPreferences
-////                                    SharedPreferences prefs = getSharedPreferences("Subs", Context.MODE_PRIVATE);
-////                                    SharedPreferences.Editor editor = prefs.edit();
-////                                    editor.putInt("totalKarma", karma);
-////                                    editor.apply();
-////                                    Log.i(TAG, "🟢 Karma guardado: " + karma);
-//
-//                                    // Actualizar UI
-//                                    //tvTest.setText(String.valueOf(karma));
-//
-//                                } catch (NumberFormatException e) {
-//                                    Log.e(TAG, "Error parseando - " + message);
-//                                }
-//                            }
-//                        });
-//                    }
-//                });
-//            }
-//        }, 1000);
     }
-
 }

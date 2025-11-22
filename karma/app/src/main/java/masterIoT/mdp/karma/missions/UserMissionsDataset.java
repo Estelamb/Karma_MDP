@@ -1,3 +1,12 @@
+/**
+ * @file UserMissionsDataset.java
+ * @brief Dataset containing only missions created by the user.
+ *
+ * This class extends MissionsDataset and filters the dataset to only include
+ * missions where the user flag is set. Provides methods to get, add, and remove
+ * missions, as well as retrieve positions and keys.
+ */
+
 package masterIoT.mdp.karma.missions;
 
 import android.util.Log;
@@ -5,11 +14,26 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @class UserMissionsDataset
+ * @brief Holds missions created by the user.
+ *
+ * Filters the main MissionsDataset to include only missions with user flag set to true.
+ * Provides methods for accessing size, missions by position, keys, and removing or adding missions.
+ */
 public class UserMissionsDataset extends MissionsDataset {
 
+    /** Reference to the global missions dataset */
     private MissionsDataset missionsDataset = MissionsDataset.getInstance();
+
+    /** List of missions created by the user */
     private List<Mission> userMissions;
 
+    /**
+     * @brief Constructor for UserMissionsDataset.
+     *
+     * Initializes the list of user missions by filtering the global dataset.
+     */
     public UserMissionsDataset() {
         userMissions = new ArrayList<>();
         for (int i = 0; i < missionsDataset.getSize(); i++) {
@@ -20,31 +44,58 @@ public class UserMissionsDataset extends MissionsDataset {
         Log.d("", "UserMissionsDataset() called");
     }
 
+    /**
+     * @brief Returns the number of user-created missions.
+     * @return Number of missions.
+     */
     int getSize() {
         return userMissions.size();
     }
 
+    /**
+     * @brief Returns the mission at a given position.
+     * @param pos The position in the list.
+     * @return Mission object at the specified position.
+     */
     Mission getMissionAtPosition(int pos) {
         return userMissions.get(pos);
     }
 
+    /**
+     * @brief Returns the key of the mission at a given position.
+     * @param pos The position in the list.
+     * @return Key of the mission.
+     */
     Long getKeyAtPosition(int pos) {
         return (userMissions.get(pos).getKey());
     }
 
+    /**
+     * @brief Returns the position of a mission with a given key.
+     * @param searchedkey The key to search for.
+     * @return Position of the mission with the specified key.
+     */
     public int getPositionOfKey(Long searchedkey) {
-        // Look for the position of the Item with key = searchedkey.
-        // The following works because in Item, the method "equals" is overriden to compare only keys:
-        //int position = listofmissions.indexOf(new Item("placeholder", "placeholder", searchedkey));
-        //Log.d(TAG, "getPositionOfKey() called for key " + searchedkey + ", returns " + position);
-        int position = userMissions.indexOf(new Mission("placeholder",0, 0, "descrption", searchedkey, "none", false));
+        int position = userMissions.indexOf(new Mission("placeholder", 0, 0, "descrption", searchedkey, "none", false));
         return position;
     }
 
+    /**
+     * @brief Adds a new mission to the user missions dataset.
+     * @param mission The mission to add.
+     */
     void addMission(Mission mission) { userMissions.add(mission); }
 
+    /**
+     * @brief Removes the mission at a specific position.
+     * @param i Position of the mission to remove.
+     */
     void removeMissionAtPosition(int i) { userMissions.remove(i); }
 
+    /**
+     * @brief Removes a mission by its key.
+     * @param key Key of the mission to remove.
+     */
     public void removeMissionWithKey(Long key) {
         removeMissionAtPosition(getPositionOfKey(key));
     }

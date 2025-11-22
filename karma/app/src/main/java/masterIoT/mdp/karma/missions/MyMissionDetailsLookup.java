@@ -1,3 +1,13 @@
+/**
+ * @file MyMissionDetailsLookup.java
+ * @brief Provides item details for mission selection in a RecyclerView.
+ *
+ * This class is used with SelectionTracker to retrieve information about
+ * individual RecyclerView items when the user interacts with them.
+ * It maps MotionEvent coordinates to a specific mission item and provides
+ * its position and selection key.
+ */
+
 package masterIoT.mdp.karma.missions;
 
 import android.annotation.SuppressLint;
@@ -10,18 +20,40 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.ItemDetailsLookup;
 import androidx.recyclerview.widget.RecyclerView;
 
-final public class MyMissionDetailsLookup  extends ItemDetailsLookup<Long> {
+/**
+ * @class MyMissionDetailsLookup
+ * @brief Maps MotionEvent to RecyclerView item details for selection tracking.
+ *
+ * This class extends ItemDetailsLookup<Long> and provides the SelectionTracker
+ * with the position and selection key of the mission item under a touch event.
+ */
+final public class MyMissionDetailsLookup extends ItemDetailsLookup<Long> {
 
+    /** Tag for logging purposes. */
     private static final String TAG = "TAGListOfMissions, MyMissionDetailsLookup";
 
+    /** Reference to the RecyclerView. */
     private final RecyclerView mRecyclerView;
 
+    /**
+     * @brief Constructor for MyMissionDetailsLookup.
+     * @param recyclerView The RecyclerView that contains mission items.
+     */
     @SuppressLint("LongLogTag")
     public MyMissionDetailsLookup(RecyclerView recyclerView) {
         Log.d(TAG, "MyMissionDetailsLookup() called");
         mRecyclerView = recyclerView;
     }
 
+    /**
+     * @brief Returns item details corresponding to a MotionEvent.
+     *
+     * Maps the touch coordinates to a child view in the RecyclerView and retrieves
+     * the ViewHolder, position, and key of the mission item.
+     *
+     * @param e MotionEvent from the user interaction.
+     * @return ItemDetails<Long> containing position and selection key, or null if no item found.
+     */
     @SuppressLint("LongLogTag")
     @Nullable
     @Override
@@ -37,12 +69,12 @@ final public class MyMissionDetailsLookup  extends ItemDetailsLookup<Long> {
                 ItemDetails<Long> missionDetails = new ItemDetails<Long>() {
                     @Override
                     public int getPosition() {
-                        return (positionOfTheHolder);
+                        return positionOfTheHolder;
                     }
                     @Nullable
                     @Override
                     public Long getSelectionKey() {
-                        return (keyOfTheHolder);
+                        return keyOfTheHolder;
                     }
                 };
 
@@ -51,5 +83,4 @@ final public class MyMissionDetailsLookup  extends ItemDetailsLookup<Long> {
         }
         return null;
     }
-
 }

@@ -1,3 +1,12 @@
+/**
+ * @file MyMissionKeyProvider.java
+ * @brief Provides stable selection keys for mission items in a RecyclerView.
+ *
+ * This class is used by the RecyclerView Selection library to map
+ * positions to unique keys (Long) for selection purposes. It allows
+ * SelectionTracker to identify and track selected mission items.
+ */
+
 package masterIoT.mdp.karma.missions;
 
 import android.annotation.SuppressLint;
@@ -8,22 +17,27 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.ItemKeyProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * @class MyMissionKeyProvider
+ * @brief Maps RecyclerView positions to stable Long keys for selection.
+ *
+ * This class extends ItemKeyProvider<Long> and provides SelectionTracker
+ * with a way to retrieve a unique key for each mission item at a given position,
+ * and vice versa.
+ */
 public class MyMissionKeyProvider extends ItemKeyProvider<Long> {
 
-    // From [https://developer.android.com/reference/androidx/recyclerview/selection/ItemKeyProvider]:
-    // "Provides selection library access to stable selection keys identifying items presented
-    // by a RecyclerView instance."
-
-    // In this app, we decide that our keys will be of type Long.
-    // More info: https://developer.android.com/guide/topics/ui/layout/recyclerview-custom#select
-
+    /** Tag for logging purposes */
     private static final String TAG = "TAGListOfItems, MyItemKeyProvider";
+
+    /** Reference to the RecyclerView containing mission items */
     RecyclerView recView;
 
     /**
-     * Creates a new provider with the given scope.
+     * @brief Constructor for MyMissionKeyProvider.
      *
-     * @param scope Scope can't be changed at runtime.
+     * @param scope Scope of the provider (SCOPE_MAPPED or SCOPE_CACHED).
+     * @param rv RecyclerView that contains the mission items.
      */
     @SuppressLint("LongLogTag")
     public MyMissionKeyProvider(int scope, RecyclerView rv) {
@@ -32,6 +46,12 @@ public class MyMissionKeyProvider extends ItemKeyProvider<Long> {
         Log.d(TAG, "MyMissionKeyProvider() called");
     }
 
+    /**
+     * @brief Returns the unique key associated with a given position.
+     *
+     * @param position Position of the item in the RecyclerView.
+     * @return Unique Long key for the item at that position.
+     */
     @SuppressLint("LongLogTag")
     @Nullable
     @Override
@@ -40,6 +60,12 @@ public class MyMissionKeyProvider extends ItemKeyProvider<Long> {
         return (((MyAdapter) recView.getAdapter()).getKeyAtPosition(position));
     }
 
+    /**
+     * @brief Returns the position of the item corresponding to the given key.
+     *
+     * @param key Unique Long key of the item.
+     * @return Position of the item in the RecyclerView.
+     */
     @SuppressLint("LongLogTag")
     @Override
     public int getPosition(@NonNull Long key) {

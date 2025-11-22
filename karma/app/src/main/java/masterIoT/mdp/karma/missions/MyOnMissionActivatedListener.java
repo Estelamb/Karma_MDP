@@ -1,3 +1,13 @@
+/**
+ * @file MyOnMissionActivatedListener.java
+ * @brief Handles activation events for mission items in a RecyclerView.
+ *
+ * This class implements OnItemActivatedListener<Long> to respond to item
+ * activations (e.g., taps or double clicks) in a RecyclerView using the
+ * selection library. When a mission item is activated, it opens a dialog
+ * showing detailed information about the mission.
+ */
+
 package masterIoT.mdp.karma.missions;
 
 import android.annotation.SuppressLint;
@@ -8,49 +18,53 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.selection.ItemDetailsLookup;
 import androidx.recyclerview.selection.OnItemActivatedListener;
 
+/**
+ * @class MyOnMissionActivatedListener
+ * @brief Listens for item activation events and shows mission details.
+ *
+ * This class is used with RecyclerView's SelectionTracker. When a mission
+ * item is activated (e.g., tapped), it retrieves the corresponding mission
+ * from the dataset and opens a MissionInfo dialog to show its details.
+ */
 public class MyOnMissionActivatedListener implements OnItemActivatedListener<Long> {
 
+    /** Tag for logging purposes */
     private static final String TAG = "TAGListOfItems, MyOnItemActivatedListener";
 
+    /** Application context */
     private final Context context;
-    private MissionsDataset dataset; // reference to the dataset, so that the activated item's data can be accessed if necessary
 
+    /** Reference to the missions dataset */
+    private MissionsDataset dataset;
+
+    /**
+     * @brief Constructor for MyOnMissionActivatedListener.
+     *
+     * @param context Application context for creating dialogs or starting activities.
+     * @param ds Reference to the dataset containing mission items.
+     */
     public MyOnMissionActivatedListener(Context context, MissionsDataset ds) {
         this.context = context;
         this.dataset = ds;
     }
 
-    // ------ Implementation of methods ------ //
-
+    /**
+     * @brief Called when a mission item is activated (tapped or double-clicked).
+     *
+     * This method retrieves the mission at the activated item's position
+     * and opens a MissionInfo dialog to display its details.
+     *
+     * @param itemdetails Details of the activated item, including its position and selection key.
+     * @param e MotionEvent associated with the activation.
+     * @return true if the activation was handled successfully.
+     */
     @SuppressLint("LongLogTag")
     @Override
     public boolean onItemActivated(@NonNull ItemDetailsLookup.ItemDetails itemdetails,
                                    @NonNull MotionEvent e) {
-        // From [https://developer.android.com/reference/androidx/recyclerview/selection/OnItemActivatedListener]:
-        // "Called when an item is "activated". An item is activated, for example,
-        // when no selection exists and the user taps an item with her finger,
-        // or double clicks an item with a pointing device like a Mouse."
-
-//        Log.d(TAG, "Clicked item with position = " + itemdetails.getPosition()
-//                + " and key = " + itemdetails.getSelectionKey());
-//
-//        Intent i = new Intent(context, SecondActivity.class);
-//        i.putExtra("text", "Clicked item with position = " + itemdetails.getPosition()
-//                + " and key = " + itemdetails.getSelectionKey());
-//        context.startActivity(i);
         Mission mission = dataset.getMissionAtPosition(itemdetails.getPosition());
         MissionInfo dialog = new MissionInfo(context, mission);
         dialog.show();
-
-//        Long key =(Long) missiondetails.getSelectionKey();
-//        int pos = dataset.getPositionOfKey(key);
-//        if (pos >= 0) {
-//            Mission mission = dataset.getMissionAtPosition(pos);
-//            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mission.getURI()));
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(intent);
-//            return true;
-//        }
         return true;
     }
 }
