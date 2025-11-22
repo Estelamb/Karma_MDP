@@ -130,25 +130,35 @@ $(document).ready(function(){initNavTree('classmasterIoT_1_1mdp_1_1karma_1_1miss
   <div class="headertitle"><div class="title">masterIoT.mdp.karma.missions.MyMissionDetailsLookup Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Maps MotionEvent to RecyclerView item details for selection tracking.  
+ <a href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionDetailsLookup.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5d64959b02bcae961c49f10524b60dbc" id="r_a5d64959b02bcae961c49f10524b60dbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionDetailsLookup.html#a5d64959b02bcae961c49f10524b60dbc">MyMissionDetailsLookup</a> (RecyclerView recyclerView)</td></tr>
+<tr class="memdesc:a5d64959b02bcae961c49f10524b60dbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for MyMissionDetailsLookup.  <br /></td></tr>
 <tr class="separator:a5d64959b02bcae961c49f10524b60dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e01a1752272fa80d5076c119340abcd" id="r_a0e01a1752272fa80d5076c119340abcd"><td class="memItemLeft" align="right" valign="top">ItemDetails&lt; Long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionDetailsLookup.html#a0e01a1752272fa80d5076c119340abcd">getItemDetails</a> (@NonNull MotionEvent e)</td></tr>
+<tr class="memdesc:a0e01a1752272fa80d5076c119340abcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns item details corresponding to a MotionEvent.  <br /></td></tr>
 <tr class="separator:a0e01a1752272fa80d5076c119340abcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af2302257f1bf85e285ad2c3eb68c4574" id="r_af2302257f1bf85e285ad2c3eb68c4574"><td class="memItemLeft" align="right" valign="top">final RecyclerView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionDetailsLookup.html#af2302257f1bf85e285ad2c3eb68c4574">mRecyclerView</a></td></tr>
+<tr class="memdesc:af2302257f1bf85e285ad2c3eb68c4574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the RecyclerView.  <br /></td></tr>
 <tr class="separator:af2302257f1bf85e285ad2c3eb68c4574"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a034e71797f934a518d699bd6a02f598c" id="r_a034e71797f934a518d699bd6a02f598c"><td class="memItemLeft" align="right" valign="top">static final String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionDetailsLookup.html#a034e71797f934a518d699bd6a02f598c">TAG</a> = &quot;TAGListOfMissions, MyMissionDetailsLookup&quot;</td></tr>
+<tr class="memdesc:a034e71797f934a518d699bd6a02f598c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag for logging purposes.  <br /></td></tr>
 <tr class="separator:a034e71797f934a518d699bd6a02f598c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Maps MotionEvent to RecyclerView item details for selection tracking. </p>
+<p>This class extends ItemDetailsLookup&lt;Long&gt; and provides the SelectionTracker with the position and selection key of the mission item under a touch event. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5d64959b02bcae961c49f10524b60dbc" name="a5d64959b02bcae961c49f10524b60dbc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d64959b02bcae961c49f10524b60dbc">&#9670;&#160;</a></span>MyMissionDetailsLookup()</h2>
 
@@ -172,6 +182,14 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructor for MyMissionDetailsLookup. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">recyclerView</td><td>The RecyclerView that contains mission items. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -200,6 +218,16 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns item details corresponding to a MotionEvent. </p>
+<p>Maps the touch coordinates to a child view in the RecyclerView and retrieves the ViewHolder, position, and key of the mission item.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>MotionEvent from the user interaction. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ItemDetails&lt;Long&gt; containing position and selection key, or null if no item found. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Field Documentation</h2>
@@ -223,6 +251,8 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Reference to the RecyclerView. </p>
+
 </div>
 </div>
 <a id="a034e71797f934a518d699bd6a02f598c" name="a034e71797f934a518d699bd6a02f598c"></a>
@@ -244,6 +274,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Tag for logging purposes. </p>
 
 </div>
 </div>

@@ -129,23 +129,32 @@ $(document).ready(function(){initNavTree('classmasterIoT_1_1mdp_1_1karma_1_1miss
   <div class="headertitle"><div class="title">masterIoT.mdp.karma.missions.MyMissionKeyProvider Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Maps RecyclerView positions to stable Long keys for selection.  
+ <a href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a37823ef4269ab70d8e340df2dc5b1747" id="r_a37823ef4269ab70d8e340df2dc5b1747"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider.html#a37823ef4269ab70d8e340df2dc5b1747">MyMissionKeyProvider</a> (int scope, RecyclerView rv)</td></tr>
-<tr class="memdesc:a37823ef4269ab70d8e340df2dc5b1747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new provider with the given scope.  <br /></td></tr>
+<tr class="memdesc:a37823ef4269ab70d8e340df2dc5b1747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for MyMissionKeyProvider.  <br /></td></tr>
 <tr class="separator:a37823ef4269ab70d8e340df2dc5b1747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66ef3090993f218a77dad6875895ee8" id="r_ae66ef3090993f218a77dad6875895ee8"><td class="memItemLeft" align="right" valign="top">Long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider.html#ae66ef3090993f218a77dad6875895ee8">getKey</a> (int position)</td></tr>
+<tr class="memdesc:ae66ef3090993f218a77dad6875895ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique key associated with a given position.  <br /></td></tr>
 <tr class="separator:ae66ef3090993f218a77dad6875895ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09c4b7870ebc96a8273032d9dd5fa3f0" id="r_a09c4b7870ebc96a8273032d9dd5fa3f0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider.html#a09c4b7870ebc96a8273032d9dd5fa3f0">getPosition</a> (@NonNull Long key)</td></tr>
+<tr class="memdesc:a09c4b7870ebc96a8273032d9dd5fa3f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the position of the item corresponding to the given key.  <br /></td></tr>
 <tr class="separator:a09c4b7870ebc96a8273032d9dd5fa3f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:ae1271c0907a60ad39c8ee50df765450d" id="r_ae1271c0907a60ad39c8ee50df765450d"><td class="memItemLeft" align="right" valign="top">static final String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyMissionKeyProvider.html#ae1271c0907a60ad39c8ee50df765450d">TAG</a> = &quot;TAGListOfItems, MyItemKeyProvider&quot;</td></tr>
+<tr class="memdesc:ae1271c0907a60ad39c8ee50df765450d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag for logging purposes.  <br /></td></tr>
 <tr class="separator:ae1271c0907a60ad39c8ee50df765450d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Maps RecyclerView positions to stable Long keys for selection. </p>
+<p>This class extends ItemKeyProvider&lt;Long&gt; and provides SelectionTracker with a way to retrieve a unique key for each mission item at a given position, and vice versa. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a37823ef4269ab70d8e340df2dc5b1747" name="a37823ef4269ab70d8e340df2dc5b1747"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a37823ef4269ab70d8e340df2dc5b1747">&#9670;&#160;</a></span>MyMissionKeyProvider()</h2>
 
@@ -180,10 +189,11 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates a new provider with the given scope. </p>
+<p>Constructor for MyMissionKeyProvider. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scope</td><td>Scope can't be changed at runtime. </td></tr>
+    <tr><td class="paramname">scope</td><td>Scope of the provider (SCOPE_MAPPED or SCOPE_CACHED). </td></tr>
+    <tr><td class="paramname">rv</td><td>RecyclerView that contains the mission items. </td></tr>
   </table>
   </dd>
 </dl>
@@ -215,6 +225,15 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns the unique key associated with a given position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>Position of the item in the RecyclerView. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Unique Long key for the item at that position. </dd></dl>
+
 </div>
 </div>
 <a id="a09c4b7870ebc96a8273032d9dd5fa3f0" name="a09c4b7870ebc96a8273032d9dd5fa3f0"></a>
@@ -241,6 +260,15 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns the position of the item corresponding to the given key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Unique Long key of the item. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Position of the item in the RecyclerView. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Field Documentation</h2>
@@ -263,6 +291,8 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Tag for logging purposes. </p>
 
 </div>
 </div>
