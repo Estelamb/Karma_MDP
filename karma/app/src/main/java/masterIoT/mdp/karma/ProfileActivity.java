@@ -1,3 +1,12 @@
+/**
+ * @file ProfileActivity.java
+ * @brief Activity responsible for displaying the user's profile, missions, and karma points.
+ *
+ * This activity loads user information from SharedPreferences, displays the list of
+ * missions assigned to the user, allows deleting missions via selection, and handles
+ * MQTT communication for receiving updates.
+ */
+
 package masterIoT.mdp.karma;
 
 import android.content.Context;
@@ -29,18 +38,54 @@ import masterIoT.mdp.karma.missions.MyMissionKeyProvider;
 import masterIoT.mdp.karma.missions.MyOnMissionActivatedListener;
 import masterIoT.mdp.karma.missions.UserMissionsDataset;
 
+/**
+ * @class ProfileActivity
+ * @brief Activity showing the user's profile information and mission list.
+ *
+ * This activity manages the user's karma display, mission list interaction,
+ * deletion of missions, and MQTT connectivity used to synchronize mission data.
+ */
 public class ProfileActivity extends AppCompatActivity {
-    private TextView tvKarma, tvName;
+
+    /** TextView displaying the user's karma points. */
+    private TextView tvKarma;
+
+    /** TextView displaying the user's name. */
+    private TextView tvName;
+
+    /** Button used to delete the currently selected missions. */
     private Button btnDelete;
+
+    /** MQTT client instance for handling MQTT updates. */
     private MQTT mqttClient;
+
+    /** Total karma points for the current user. */
     int karma_points = 0;
+
+    /** Log tag for debugging output. */
     private String TAG = "ProfileActivity";
+
+    /** RecyclerView showing the list of missions. */
     private RecyclerView recyclerView;
+
+    /** SelectionTracker for multiselect operations on mission items. */
     private SelectionTracker<Long> tracker;
+
+    /** Dataset containing missions assigned specifically to the user. */
     private UserMissionsDataset dataset = new UserMissionsDataset();
+
+    /** Listener used when mission items are activated. */
     private final MyOnMissionActivatedListener myOnMissionActivatedListener =
             new MyOnMissionActivatedListener(this, dataset);
 
+    /**
+     * @brief Called when the activity is created.
+     *
+     * Initializes UI elements, loads user data, configures RecyclerView for missions,
+     * and establishes MQTT communication.
+     *
+     * @param savedInstanceState Saved activity state, if any.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,24 +98,24 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         tvKarma = findViewById(R.id.textView3);
-        tvName=findViewById(R.id.NameTextView);
-        String username= getUsername();
-        tvName.setText(username+" Profile: ");
+        tvName = findViewById(R.id.NameTextView);
+
+        String username = getUsername();
+        tvName.setText(username + " Profile: ");
 
         btnDelete = findViewById(R.id.button2);
         btnDelete.setOnClickListener(this::deleteCurrentSelection);
+
         recyclerView = findViewById(R.id.recyclerProf);
         MyAdapter recyclerViewAdapter = new MyAdapter(dataset);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         tracker = new SelectionTracker.Builder<>(
                 "my-selection-id",
                 recyclerView,
                 new MyMissionKeyProvider(ItemKeyProvider.SCOPE_MAPPED, recyclerView),
-//                new StableIdKeyProvider(recyclerView), // This caused the app to crash on long clicks
                 new MyMissionDetailsLookup(recyclerView),
                 StorageStrategy.createLongStorage())
                 .withOnItemActivatedListener(myOnMissionActivatedListener)
@@ -78,8 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         recyclerViewAdapter.setSelectionTracker(tracker);
 
-
-        // Cargar karma points desde SharedPreferences (CORREGIDO)
+        // Load stored karma points
         SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
         karma_points = prefs.getInt("totalKarma", 0);
         tvKarma.setText(karma_points + " Karma Points");
@@ -87,53 +131,43 @@ public class ProfileActivity extends AppCompatActivity {
         setupMQTT();
     }
 
+    /**
+     * @brief Initializes the MQTT client and connects to the broker.
+     *
+     * Subscriptions can be added here if needed for dynamic profile updates.
+     */
     private void setupMQTT() {
         mqttClient = MQTT.getInstance(this);
         mqttClient.connect();
-
-//        tvKarma.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mqttClient.subscribe("mv/KarmaPoints", new MQTT.MessageCallback() {
-//                    @Override
-//                    public void onMessageReceived(String topic, String message) {
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                try {
-//                                    karma_points = Integer.parseInt(message.trim());
-//
-//                                    // Guardar en shared preferences
-//                                    SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
-//                                    SharedPreferences.Editor editor = prefs.edit();
-//                                    editor.putInt("totalKarma", karma_points);
-//                                    editor.apply();
-//
-//                                } catch (NumberFormatException e) {
-//                                    tvKarma.setText("Error: " + message);
-//                                }
-//                            }
-//                        });
-//                    }
-//                });
-//            }
-//        }, 1000); // Esperar 1 segundo para conectar
     }
 
+    /**
+     * @brief Retrieves the saved username from SharedPreferences.
+     * @return Stored username, or "Usuario" if no value is found.
+     */
     private String getUsername() {
         SharedPreferences prefs = getSharedPreferences("KarmaAppPrefs", Context.MODE_PRIVATE);
-        return prefs.getString("username", "Usuario"); // "Usuario" es valor por defecto
+        return prefs.getString("username", "Usuario");
     }
 
+    /**
+     * @brief Called when the activity becomes visible.
+     *
+     * Ensures MQTT is connected after returning from background.
+     */
     @Override
     protected void onResume() {
         super.onResume();
-        // Reconectar si es necesario
         if (mqttClient != null && !mqttClient.isConnected()) {
             mqttClient.connect();
         }
     }
 
+    /**
+     * @brief Called before the activity is destroyed.
+     *
+     * Unsubscribes profile-related topics from MQTT.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -142,6 +176,13 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * @brief Deletes all selected missions from the profile mission list.
+     *
+     * Removes missions from both the user dataset and the shared MissionsDataset.
+     *
+     * @param view Reference to the delete button.
+     */
     public void deleteCurrentSelection(View view){
         Iterator<Long> iteratorSelectedItemsKeys = tracker.getSelection().iterator();
 
@@ -151,7 +192,6 @@ public class ProfileActivity extends AppCompatActivity {
             dataset.removeMissionWithKey(key);
             missionsDataset.removeMissionWithKey(key);
         }
-
 
         recyclerView.getAdapter().notifyDataSetChanged();
     }

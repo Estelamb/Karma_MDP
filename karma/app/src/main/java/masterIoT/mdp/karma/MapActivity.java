@@ -1,12 +1,18 @@
-package masterIoT.mdp.karma;
+/**
+ * @file MapActivity.java
+ * @brief Activity that displays different types of waypoints (trash bins, blood donation centers,
+ *        libraries, etc.) on a Google Map using data downloaded from Madrid Open Data.
+ *
+ * This Activity receives a map type ("trash", "blood", "giver") via Intent extras,
+ * downloads the corresponding JSON dataset, parses the coordinates, and places markers on a map.
+ */
 
-import static java.lang.Double.NaN;
+package masterIoT.mdp.karma;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,7 +26,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
@@ -32,32 +37,58 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import masterIoT.mdp.karma.modelo.WaypointItem;
 
+/**
+ * @class MapActivity
+ * @brief Loads waypoint data from a remote JSON source and displays it on a Google Map.
+ *
+ * The Activity determines the dataset based on the "mapType" extra. Data is downloaded
+ * asynchronously using FileDownload and populated on the map once ready.
+ */
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    /** Executor service for background operations (JSON download). */
     ExecutorService es;
+
+    /** GoogleMap instance once map is ready. */
     GoogleMap mMap;
 
+    /** Label displayed while loading data. */
     TextView tv;
+
+    /** Progress bar shown during data download and parsing. */
     ProgressBar pg;
+
+    /** Response string containing JSON data downloaded from the remote source. */
     String response;
+
+    /** Type of map to display: "trash", "blood" or "giver". */
     String mapType = "";
+
+    /** Map of waypoint titles to their geographic coordinates. */
     Map<String, LatLng> waypointsMap;
+
+    /** Fragment that contains and displays the Google Map UI. */
     SupportMapFragment mapFragment;
+
+    /** Cluster manager for grouping map marker items (currently unused). */
     private ClusterManager<WaypointItem> clusterManager;
+
+    /**
+     * @brief Initializes the Activity, UI, map fragment, resolves dataset type, and triggers download.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_map);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -69,14 +100,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         es = Executors.newSingleThreadExecutor();
 
-
-
         String strUrl = "";
 
+        // Initialize map fragment
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        // Determine which dataset to use
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             mapType = extras.getString("mapType", "");
@@ -94,68 +125,89 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 break;
         }
 
-        if(!strUrl.isEmpty()) {
-            DescargaFichero loadURLContents = new DescargaFichero(handler, strUrl);
+        // Launch asynchronous download
+        if (!strUrl.isEmpty()) {
+            FileDownload loadURLContents = new FileDownload(handler, strUrl);
             es.execute(loadURLContents);
         }
     }
 
+    /**
+     * @brief Handler invoked when the background downloader finishes.
+     *
+     * Receives JSON, parses it into waypoint coordinates, and updates the map if already initialized.
+     *
+     * @param msg Message containing "response" String with the downloaded JSON or error text.
+     */
     Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            // message received from background thread: load complete (or failure)
-            String string_result;
             super.handleMessage(msg);
-            string_result = msg.getData().getString("response");
+
+            String string_result = msg.getData().getString("response");
+
             try {
-
                 if (string_result != null) {
-                    if (mapType.equals("trash")) waypointsMap = parseJsonTrash(string_result);
-                    else waypointsMap = parseJsonBookandBlood(string_result);
-
+                    if (mapType.equals("trash"))
+                        waypointsMap = parseJsonTrash(string_result);
+                    else
+                        waypointsMap = parseJsonBookandBlood(string_result);
                 }
 
                 if (mMap != null) {
+                    // Display markers on the map
                     for (String id : waypointsMap.keySet()) {
                         mMap.addMarker(new MarkerOptions().position(waypointsMap.get(id)).title(id));
-//                        WaypointItem item = new WaypointItem(waypointsMap.get(id), id, "");
-//                        clusterManager.addItem(item);
                     }
                     mapFragment.getView().setVisibility(View.VISIBLE);
                     pg.setVisibility(View.GONE);
                     tv.setVisibility(View.GONE);
-//                    clusterManager.cluster();
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     };
 
+    /**
+     * @brief Callback executed when the Google Map instance is fully ready.
+     *
+     * Sets up UI settings, initial camera position, and displays markers if already parsed.
+     *
+     * @param googleMap Ready-to-use map instance.
+     */
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
         clusterManager = new ClusterManager<>(this, mMap);
-        LatLng ui = new LatLng(40.403577814444176, -3.6724086076957154 );
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(ui));
+
+        LatLng ui = new LatLng(40.403577814444176, -3.6724086076957154);
+
         UiSettings uis = mMap.getUiSettings();
         uis.setZoomControlsEnabled(true);
+
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ui, 15));
-        if (waypointsMap!=null) {
+
+        // If data was already parsed before map initialization, add markers now
+        if (waypointsMap != null) {
             for (String id : waypointsMap.keySet()) {
                 mMap.addMarker(new MarkerOptions().position(waypointsMap.get(id)).title(id));
-//                WaypointItem item = new WaypointItem(waypointsMap.get(id), id, "");
-//                clusterManager.addItem(item);
             }
             mapFragment.getView().setVisibility(View.VISIBLE);
             pg.setVisibility(View.GONE);
             tv.setVisibility(View.GONE);
-//            clusterManager.cluster();
-
         }
     }
 
+    /**
+     * @brief Parses JSON for "blood" and "giver" map types (dataset with @graph array).
+     *
+     * @param Response Raw JSON string obtained from Madrid Open Data.
+     * @return Map of waypoint titles to their geographic LatLng positions.
+     * @throws JSONException If parsing fails.
+     */
     private Map<String, LatLng> parseJsonBookandBlood(String Response) throws JSONException {
         Map<String, LatLng> results = new HashMap<>();
 
@@ -165,6 +217,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         for (int i = 0; i < graph.length(); i++) {
             JSONObject node = graph.optJSONObject(i);
             if (node == null) continue;
+
             String title = node.optString("title");
             JSONObject loc = node.optJSONObject("location");
             if (loc == null) continue;
@@ -176,6 +229,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         return results;
     }
+
+    /**
+     * @brief Parses JSON for "trash" map type (simple array of objects).
+     *
+     * @param Response Raw JSON array string from Madrid Open Data.
+     * @return Map of IDs to LatLng coordinates.
+     * @throws JSONException If JSON is malformed.
+     */
     private Map<String, LatLng> parseJsonTrash(String Response) throws JSONException {
         Map<String, LatLng> results = new HashMap<>();
         JSONArray graph = new JSONArray(Response);
@@ -183,6 +244,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         for (int i = 0; i < graph.length(); i++) {
             JSONObject node = graph.getJSONObject(i);
             if (node == null) continue;
+
             String title = node.optString("ID");
 
             double latObj = node.optDouble("LATITUD");
@@ -190,7 +252,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             results.put(title, new LatLng(latObj, lonObj));
         }
+
         return results;
     }
-
 }

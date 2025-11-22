@@ -1,3 +1,11 @@
+/**
+ * @file BoardActivity.java
+ * @brief Displays the leaderboard screen including karma ranking.
+ * @details This activity loads user karma values from SharedPreferences,
+ *          displays them in a horizontal bar chart, highlights the current user,
+ *          and allows navigation to the profile screen.
+ */
+
 package masterIoT.mdp.karma;
 
 import android.content.Context;
@@ -30,17 +38,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @class BoardActivity
+ * @brief Handles the leaderboard activity screen.
+ * @details Loads and displays user karma values using a horizontal bar chart and
+ *          allows profile navigation.
+ */
 public class BoardActivity extends AppCompatActivity {
+
+    /** Profile button */
     private ImageView bProfile;
+
+    /** TextView showing current user's karma */
     private TextView tvKarma;
+
+    /** MQTT client instance */
     private MQTT mqttClient;
+
+    /** Horizontal bar chart displaying karma ranking */
     private HorizontalBarChart graf_horizontal;
 
+    /**
+     * @brief Called when the activity is created.
+     * @param savedInstanceState Saved instance state bundle.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_board);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -58,6 +85,7 @@ public class BoardActivity extends AppCompatActivity {
         setupMQTT();
         setupChart();
 
+        // Profile button opens the ProfileActivity
         bProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +97,9 @@ public class BoardActivity extends AppCompatActivity {
         loadChartData();
     }
 
+    /**
+     * @brief Configures visual and interactive settings for the horizontal bar chart.
+     */
     private void setupChart() {
         graf_horizontal.setDrawBarShadow(false);
         graf_horizontal.setDrawValueAboveBar(true);
@@ -76,12 +107,14 @@ public class BoardActivity extends AppCompatActivity {
         graf_horizontal.setPinchZoom(false);
         graf_horizontal.setDrawGridBackground(false);
         graf_horizontal.getLegend().setEnabled(false);
+
         XAxis xAxis = graf_horizontal.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawAxisLine(false);
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f);
         xAxis.setLabelCount(5, true);
+
         YAxis leftAxis = graf_horizontal.getAxisLeft();
         leftAxis.setDrawAxisLine(false);
         leftAxis.setDrawGridLines(true);
@@ -93,9 +126,15 @@ public class BoardActivity extends AppCompatActivity {
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawLabels(false);
         rightAxis.setAxisMinimum(0f);
+
         graf_horizontal.animateY(1000);
     }
 
+    /**
+     * @brief Loads karma data for all users and populates the chart.
+     * @details Reads SharedPreferences "UsersKarma", sorts users by value,
+     *          highlights current user and refreshes the chart view.
+     */
     private void loadChartData() {
         Map<String, ?> MapaDatos = getSharedPreferences("UsersKarma", Context.MODE_PRIVATE).getAll();
 
@@ -123,11 +162,13 @@ public class BoardActivity extends AppCompatActivity {
             entries.add(new BarEntry(count, value));
             count++;
         }
+
         BarDataSet dataSet = new BarDataSet(entries, "Puntos de Karma");
+
         int[] colors = new int[entries.size()];
         for (int i = 0; i < labels.length; i++) {
             if (labels[i].equals(currentUsername)) {
-                colors[i] = Color.parseColor("#C020EE");
+                colors[i] = Color.parseColor("#C020EE");  // highlight current user
             } else {
                 colors[i] = Color.parseColor("#8EE962");
             }
@@ -136,14 +177,22 @@ public class BoardActivity extends AppCompatActivity {
 
         dataSet.setValueTextSize(12f);
         dataSet.setValueTextColor(getResources().getColor(android.R.color.black));
+
         graf_horizontal.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
         graf_horizontal.getXAxis().setLabelCount(labels.length);
+
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.6f);
+
         graf_horizontal.setData(barData);
         graf_horizontal.invalidate();
     }
 
+    /**
+     * @brief Converts an object from SharedPreferences to float.
+     * @param value Object to convert.
+     * @return Corresponding float value or 0 if conversion fails.
+     */
     private float convertToFloat(Object value) {
         if (value instanceof Integer) {
             return ((Integer) value).floatValue();
@@ -159,6 +208,9 @@ public class BoardActivity extends AppCompatActivity {
         return 0f;
     }
 
+    /**
+     * @brief Initializes and connects the MQTT client.
+     */
     private void setupMQTT() {
         mqttClient = MQTT.getInstance(this);
         mqttClient.connect();
