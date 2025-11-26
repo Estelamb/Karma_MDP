@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import masterIoT.mdp.karma.R;
 import masterIoT.mdp.karma.MapActivity;
@@ -99,6 +100,7 @@ public class MissionInfo {
             editor.putInt("totalKarma", karma);
             editor.apply();
             publicarKarma(points,karma);
+            Toast.makeText(context, "Mission Completed!!", Toast.LENGTH_SHORT).show();
         });
         builder.setNegativeButton("Close", (dialog, which) -> dialog.dismiss());
         builder.create().show();

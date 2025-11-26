@@ -112,7 +112,7 @@ public class MissionsDataset {
      * @brief Returns the number of missions in the dataset.
      * @return Number of missions.
      */
-    int getSize() {
+    public int getSize() {
         return listofmissions.size();
     }
 
@@ -148,7 +148,7 @@ public class MissionsDataset {
      * @brief Adds a mission to the dataset.
      * @param mission Mission to add.
      */
-    void addMission(Mission mission) {
+    public void addMission(Mission mission) {
         listofmissions.add(mission);
     }
 

@@ -2,13 +2,18 @@ package masterIoT.mdp.karma.missions;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.UUID;
+
+import masterIoT.mdp.karma.MQTT;
 import masterIoT.mdp.karma.R;
 
 /**
@@ -42,6 +47,7 @@ public class AddMission {
     /** ImageView for displaying a preview image (optional). */
     private ImageView previewImage;
 
+    private MQTT mqttClient;
     /**
      * @brief Constructs a new AddMission dialog manager.
      * @param context The application context.
@@ -53,6 +59,8 @@ public class AddMission {
         this.context = context;
         this.dataset = dataset;
         this.adapter = adapter;
+        this.mqttClient = MQTT.getInstance(context);
+        this.mqttClient.connect();
     }
 
     /**
@@ -81,12 +89,36 @@ public class AddMission {
             } catch (NumberFormatException ignored) {}
 
             int imageRes = R.drawable.addmission;
-            Mission newMission = new Mission(title, imageRes, karmaPoints, description, (long) dataset.getSize(), "", true);
+            Mission newMission = new Mission(title, imageRes, karmaPoints, description, UUID.randomUUID().getMostSignificantBits(), "", true);
             dataset.addMission(newMission);
             adapter.notifyItemInserted(dataset.getSize() - 1);
+            Toast.makeText(context, "Mission added", Toast.LENGTH_SHORT).show();
+            publishMission(newMission);
+            dialog.dismiss();
         });
 
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
         builder.create().show();
     }
+
+    /**
+     * @brief Publishes a mission created by the user via MQTT.
+     * @param mission Mission to be published.
+     */
+    private void publishMission(Mission mission){
+        String username=getUsername();
+        //mqttClient.publish("app/addPuntos",String.valueOf(points), false);
+        String message= username+":"+mission.getTitle()+":"+mission.getImage()+":"+mission.getKarmaPoints()+":"+mission.getDescription()+":"+mission.getKey();
+        mqttClient.publish("app/users/"+username+"/missionPublish", message,true);
+    }
+
+    /**
+     * @brief Returns the username stored in SharedPreferences.
+     * @return Username as a String.
+     */
+    private String getUsername() {
+        SharedPreferences prefs = context.getSharedPreferences("KarmaAppPrefs", Context.MODE_PRIVATE);
+        return prefs.getString("username", "Usuario"); // Default value "Usuario"
+    }
+
 }

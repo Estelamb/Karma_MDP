@@ -42,7 +42,7 @@ public class Mission {
      * @param mapType Type of map associated with this mission.
      * @param user Boolean indicating if this mission belongs to the user.
      */
-    Mission(String title, int image, int karmaPoints, String description, Long key, String mapType, boolean user) {
+    public Mission(String title, int image, int karmaPoints, String description, Long key, String mapType, boolean user) {
         this.image = image;
         this.title = title;
         this.karmaPoints = karmaPoints;

@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import masterIoT.mdp.karma.missions.Mission;
+import masterIoT.mdp.karma.missions.MissionsDataset;
+
 /**
  * @class MQTT
  * @brief Singleton class managing MQTT communication for the application.
@@ -124,16 +127,20 @@ public class MQTT {
                     if (publish.getPayloadAsBytes()!=null){
                         String mensaje=new String(publish.getPayloadAsBytes());
                         String[] sep = mensaje.split(":");
-
-                        if (sep.length==2){
+                        String tp = publish.getTopic().toString();
+                        String[] parts = tp.split("/");
+                        if (parts[3].equals("karmaTotal")){
                             SharedPreferences prefs = context.getSharedPreferences("UsersKarma", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putInt(sep[0], Integer.parseInt(sep[1]));
                             editor.apply();
                         }
-                        if (sep.length>2){
+                        if (parts[3].equals("missionPublish")){
                             SharedPreferences prefs = context.getSharedPreferences("UsersMissions", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
+                            MissionsDataset missionsDataset = MissionsDataset.getInstance();
+                            Mission newMission = new Mission(sep[1], Integer.parseInt(sep[2]), Integer.parseInt(sep[3]), sep[4], Long.getLong(sep[5]), "", false);
+                            missionsDataset.addMission(newMission);
 
                             StringBuilder t=new StringBuilder();
                             for(int i=1;i<sep.length;i++){
@@ -141,6 +148,11 @@ public class MQTT {
                             }
                             editor.putString(sep[0], t.toString());
                             editor.apply();
+                        }
+                        if (parts[3].equals("missionDelete")) {
+                            MissionsDataset missionsDataset = MissionsDataset.getInstance();
+                            missionsDataset.removeMissionWithKey(Long.parseLong(sep[1]));
+
                         }
                     }
                 })

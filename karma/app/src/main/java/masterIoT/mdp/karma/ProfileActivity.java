@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Iterator;
 
+import masterIoT.mdp.karma.missions.Mission;
 import masterIoT.mdp.karma.missions.MissionsDataset;
 import masterIoT.mdp.karma.missions.MyAdapter;
 import masterIoT.mdp.karma.missions.MyMissionDetailsLookup;
@@ -182,8 +183,21 @@ public class ProfileActivity extends AppCompatActivity {
             Long key = iteratorSelectedItemsKeys.next();
             dataset.removeMissionWithKey(key);
             missionsDataset.removeMissionWithKey(key);
+            deleteMission(key);
         }
 
         recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    /**
+     * @brief Deletes a mission created by the user via MQTT.
+     * @param key Key of the mission to be deleted.
+     */
+    private void deleteMission(long key){
+        String username=getUsername();
+        //mqttClient.publish("app/addPuntos",String.valueOf(points), false);
+        String message= username+":"+ key;
+
+        mqttClient.publish("app/users/"+username+"/missionDelete", message,true);
     }
 }

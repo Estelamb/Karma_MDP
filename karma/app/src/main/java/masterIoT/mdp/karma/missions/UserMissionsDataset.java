@@ -39,7 +39,7 @@ public class UserMissionsDataset extends MissionsDataset {
      * @brief Returns the number of user-created missions.
      * @return Number of missions.
      */
-    int getSize() {
+    public int getSize() {
         return userMissions.size();
     }
 
@@ -75,7 +75,7 @@ public class UserMissionsDataset extends MissionsDataset {
      * @brief Adds a new mission to the user missions dataset.
      * @param mission The mission to add.
      */
-    void addMission(Mission mission) { userMissions.add(mission); }
+    public void addMission(Mission mission) { userMissions.add(mission); }
 
     /**
      * @brief Removes the mission at a specific position.
