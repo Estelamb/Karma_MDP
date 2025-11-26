@@ -10,5 +10,6 @@ var searchData=
   ['profileactivity_2ejava_7',['ProfileActivity.java',['../ProfileActivity_8java.html',1,'']]],
   ['programming_8',['Karma - Mobiles Device Programming',['../index.html',1,'']]],
   ['publicarkarma_9',['publicarKarma',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionInfo.html#a65fddb2b0a422b8f22d916cc7fc5517c',1,'masterIoT::mdp::karma::missions::MissionInfo']]],
-  ['publish_10',['publish',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#aff7f34e7b81107789368553973d48355',1,'masterIoT::mdp::karma::MQTT']]]
+  ['publish_10',['publish',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#aff7f34e7b81107789368553973d48355',1,'masterIoT::mdp::karma::MQTT']]],
+  ['publishmission_11',['publishMission',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html#a115b09827a3bfcffd01803d83120c947',1,'masterIoT::mdp::karma::missions::AddMission']]]
 ];

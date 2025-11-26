@@ -1,6 +1,8 @@
 var classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset =
 [
+    [ "addMission", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a23d7264121002b6af014a61314ff05f3", null ],
     [ "getPositionOfKey", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a434c5f8d9a2da75efc4aacb81eb30f6d", null ],
+    [ "getSize", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a7cb84c8e449d252e8e67607304ec597d", null ],
     [ "removeMissionWithKey", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a58105698010f7a16188cc6bb9de137d6", null ],
     [ "description", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a9f01edf07cced4014ede32d8352d2d07", null ],
     [ "images", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a472837a1a48836044c27a8f70e3cbd61", null ],

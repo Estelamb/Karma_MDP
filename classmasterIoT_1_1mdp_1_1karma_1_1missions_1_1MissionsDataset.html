@@ -137,9 +137,15 @@ $(document).ready(function(){initNavTree('classmasterIoT_1_1mdp_1_1karma_1_1miss
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a7cb84c8e449d252e8e67607304ec597d" id="r_a7cb84c8e449d252e8e67607304ec597d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a7cb84c8e449d252e8e67607304ec597d">getSize</a> ()</td></tr>
+<tr class="memdesc:a7cb84c8e449d252e8e67607304ec597d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of missions in the dataset.  <br /></td></tr>
+<tr class="separator:a7cb84c8e449d252e8e67607304ec597d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a434c5f8d9a2da75efc4aacb81eb30f6d" id="r_a434c5f8d9a2da75efc4aacb81eb30f6d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a434c5f8d9a2da75efc4aacb81eb30f6d">getPositionOfKey</a> (Long searchedkey)</td></tr>
 <tr class="memdesc:a434c5f8d9a2da75efc4aacb81eb30f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the position of a mission in the dataset given its key.  <br /></td></tr>
 <tr class="separator:a434c5f8d9a2da75efc4aacb81eb30f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d7264121002b6af014a61314ff05f3" id="r_a23d7264121002b6af014a61314ff05f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a23d7264121002b6af014a61314ff05f3">addMission</a> (<a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html">Mission</a> mission)</td></tr>
+<tr class="memdesc:a23d7264121002b6af014a61314ff05f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a mission to the dataset.  <br /></td></tr>
+<tr class="separator:a23d7264121002b6af014a61314ff05f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58105698010f7a16188cc6bb9de137d6" id="r_a58105698010f7a16188cc6bb9de137d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a58105698010f7a16188cc6bb9de137d6">removeMissionWithKey</a> (Long key)</td></tr>
 <tr class="memdesc:a58105698010f7a16188cc6bb9de137d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a mission from the dataset given its key.  <br /></td></tr>
 <tr class="separator:a58105698010f7a16188cc6bb9de137d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,6 +190,42 @@ Static Private Attributes</h2></td></tr>
 <div class="textblock"><p>Represents the dataset containing all mission objects. </p>
 <p>This class follows the singleton pattern and holds an ArrayList of Mission objects. It provides utility functions to access missions by position or key, add new missions, and remove existing ones. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a23d7264121002b6af014a61314ff05f3" name="a23d7264121002b6af014a61314ff05f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23d7264121002b6af014a61314ff05f3">&#9670;&#160;</a></span>addMission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void masterIoT.mdp.karma.missions.MissionsDataset.addMission </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html">Mission</a>&#160;</td>
+          <td class="paramname"><em>mission</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a mission to the dataset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mission</td><td>Mission to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1UserMissionsDataset.html#a249338cf2c220ad6ad5d90243c57066d">masterIoT.mdp.karma.missions.UserMissionsDataset</a>.</p>
+
+</div>
+</div>
 <a id="aa75c6144c73add02dd37263749dc2606" name="aa75c6144c73add02dd37263749dc2606"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa75c6144c73add02dd37263749dc2606">&#9670;&#160;</a></span>getInstance()</h2>
 
@@ -246,6 +288,36 @@ Static Private Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Position index of the mission, or -1 if not found. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1UserMissionsDataset.html#afeeba02300feadb52ee59ffb1fb862e2">masterIoT.mdp.karma.missions.UserMissionsDataset</a>.</p>
+
+</div>
+</div>
+<a id="a7cb84c8e449d252e8e67607304ec597d" name="a7cb84c8e449d252e8e67607304ec597d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb84c8e449d252e8e67607304ec597d">&#9670;&#160;</a></span>getSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int masterIoT.mdp.karma.missions.MissionsDataset.getSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the number of missions in the dataset. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of missions. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1UserMissionsDataset.html#afb459121415d08c035e5eb2b7632dc3f">masterIoT.mdp.karma.missions.UserMissionsDataset</a>.</p>
 
 </div>
 </div>

@@ -1,6 +1,7 @@
 var classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity =
 [
     [ "deleteCurrentSelection", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a49c3e9628b7d5a025321a99864431fe1", null ],
+    [ "deleteMission", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a20ff7ac5489a47b39b0fe257b90f6ec8", null ],
     [ "getUsername", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#aee0bf0a37b6a75998380b0481097a20a", null ],
     [ "onCreate", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#ad6798db8120017e3cda7fdf6566ae7ee", null ],
     [ "onDestroy", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#af436f51da0e4a52c8f33ec0c0975bb46", null ],

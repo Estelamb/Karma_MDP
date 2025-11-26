@@ -125,6 +125,7 @@ $(document).ready(function(){initNavTree('classmasterIoT_1_1mdp_1_1karma_1_1miss
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle"><div class="title">masterIoT.mdp.karma.missions.AddMission Class Reference</div></div>
 </div><!--header-->
@@ -142,6 +143,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad705b79688c55a23ad4a0350a8b7fbc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the dialog for adding a new mission.  <br /></td></tr>
 <tr class="separator:ad705b79688c55a23ad4a0350a8b7fbc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a115b09827a3bfcffd01803d83120c947" id="r_a115b09827a3bfcffd01803d83120c947"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html#a115b09827a3bfcffd01803d83120c947">publishMission</a> (<a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html">Mission</a> mission)</td></tr>
+<tr class="memdesc:a115b09827a3bfcffd01803d83120c947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes a mission created by the user via MQTT.  <br /></td></tr>
+<tr class="separator:a115b09827a3bfcffd01803d83120c947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b0ce9d40b04c0f7902d20d735d7acf" id="r_a23b0ce9d40b04c0f7902d20d735d7acf"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html#a23b0ce9d40b04c0f7902d20d735d7acf">getUsername</a> ()</td></tr>
+<tr class="memdesc:a23b0ce9d40b04c0f7902d20d735d7acf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the username stored in SharedPreferences.  <br /></td></tr>
+<tr class="separator:a23b0ce9d40b04c0f7902d20d735d7acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aab8ba3904fd9b8450d9c73b8c948bd45" id="r_aab8ba3904fd9b8450d9c73b8c948bd45"><td class="memItemLeft" align="right" valign="top">final Context&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html#aab8ba3904fd9b8450d9c73b8c948bd45">context</a></td></tr>
@@ -156,6 +166,8 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a83127dee46c625412752417151afd47c" id="r_a83127dee46c625412752417151afd47c"><td class="memItemLeft" align="right" valign="top">ImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html#a83127dee46c625412752417151afd47c">previewImage</a></td></tr>
 <tr class="memdesc:a83127dee46c625412752417151afd47c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ImageView for displaying a preview image (optional).  <br /></td></tr>
 <tr class="separator:a83127dee46c625412752417151afd47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7741d1202bbb5e04a6adc484ecf347aa" id="r_a7741d1202bbb5e04a6adc484ecf347aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html">MQTT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html#a7741d1202bbb5e04a6adc484ecf347aa">mqttClient</a></td></tr>
+<tr class="separator:a7741d1202bbb5e04a6adc484ecf347aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for displaying a dialog to add a new mission. </p>
@@ -214,6 +226,68 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a23b0ce9d40b04c0f7902d20d735d7acf" name="a23b0ce9d40b04c0f7902d20d735d7acf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23b0ce9d40b04c0f7902d20d735d7acf">&#9670;&#160;</a></span>getUsername()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String masterIoT.mdp.karma.missions.AddMission.getUsername </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the username stored in SharedPreferences. </p>
+<dl class="section return"><dt>Returns</dt><dd>Username as a String. </dd></dl>
+
+</div>
+</div>
+<a id="a115b09827a3bfcffd01803d83120c947" name="a115b09827a3bfcffd01803d83120c947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a115b09827a3bfcffd01803d83120c947">&#9670;&#160;</a></span>publishMission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void masterIoT.mdp.karma.missions.AddMission.publishMission </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html">Mission</a>&#160;</td>
+          <td class="paramname"><em>mission</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Publishes a mission created by the user via MQTT. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mission</td><td>Mission to be published. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad705b79688c55a23ad4a0350a8b7fbc4" name="ad705b79688c55a23ad4a0350a8b7fbc4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad705b79688c55a23ad4a0350a8b7fbc4">&#9670;&#160;</a></span>show()</h2>
 
@@ -312,6 +386,28 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Dataset that stores all missions. </p>
+
+</div>
+</div>
+<a id="a7741d1202bbb5e04a6adc484ecf347aa" name="a7741d1202bbb5e04a6adc484ecf347aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7741d1202bbb5e04a6adc484ecf347aa">&#9670;&#160;</a></span>mqttClient</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html">MQTT</a> masterIoT.mdp.karma.missions.AddMission.mqttClient</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

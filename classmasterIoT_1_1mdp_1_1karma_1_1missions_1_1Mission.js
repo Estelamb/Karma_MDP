@@ -1,5 +1,6 @@
 var classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission =
 [
+    [ "Mission", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html#afb38d94c1b6130c6003c13ead183e607", null ],
     [ "equals", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html#a6668dd83c4f0b18c983d22aab0c0a363", null ],
     [ "getDescription", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html#acbbdcdf15d56b422ba0cd1f9b42e1e78", null ],
     [ "getImage", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html#adbc28d8c881e8167c71767ae71abbbb1", null ],
