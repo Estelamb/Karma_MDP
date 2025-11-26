@@ -1,4 +1,38 @@
 \section{App development}
-\todo{4 page}
+\subsection{Technologies and Enviroment Development}
+The \textbf{Karma} application was developed using \textbf{Android Studio}, with \textbf{Java} as the main programming lenguage. The minimun \textbf{Android SDK} version requiered for the application is \textbf{Android 7.0} (Nougat), API level 24.
+This SDK version provides access to native components required fro the application, such as user interface components, background services and hardware sensors, like the step counter sensors.
+The following technologies and external services were incorporated:
+\begin{itemize}
+    \item \textbf{Step counter sensor:} used to record user's physical activity through the sensor incorporated on the device.
+    \item \textbf{MQTT:} as a lightwieigth communication protocol, as a publish-subscribe system, suitable for exchanging small updates between users and the system in real time. MQTT is described in more detail later in the document.
+    \item \textbf{MQTT Mosquitto:} the MQTT broker used in this project is Mosquitto, deployed on a virtual machine running Ubuntu.
+    \item \textbf{MQTT Client Hivemq:} a library integrated into the project to handle the connections, topic subscriptions and message publishing.
+    \item \textbf{Google Maps Api:} used to display interactive maps, locations of the missions and waypoints for point them in the map, with a private key given by google.
+    \item \textbf{Open data JSON:} public datasets provided by the Comunidad de Madrid, offering real-world geographic locations used as points of interest for certain missions.
+\end{itemize}
+
+Each technology was selected to ensoure a smooth and confortable user experience on mobile devices.
+
+\subsection{System Architecture}
+The application follows a publish-subscribe architecture, where the Android client comunicates directly with the MQTT broker.
+As mentioned before, the system is divided in an external MQTT mosquitto broker, which is held in a virtual machine based in Ubuntu as Operative System.
+Meanwhile, as the client of the app, the library Hivemq is used. With this library we manage to do a publish-subscribe enviroment for communication between multiple moviles.
+The topic for this communication is:
+\begin{center}
+\begin{quote}
+"app/users/+/karmaTotal"
+\end{quote}
+\end{center}
+As the joker "+" the app fill it with the user name of the application. This information is asked to the user the first time that the application is open.
+The application saves that name in a SharedPreferences named \textit{KarmaAppPrefs}. When the update number of \textbf{Karma Points} is completed, a topic as the one expressed before is send with the name saved in the SharedPreferences.
+This information is send to all the devices with the next format: 
+\begin{center}
+\begin{quote}
+"username:karmaPoints"
+\end{quote}
+\end{center}
+This is important to understand the way this information is saved by the other devices. Once the message is recived in some of the subscribers, the information is saved in another SharedPreferences called \textit{UsersKarma}.
+When the information is needed, for making a graph as an example, the message is split by the operand ":", in this way, we identify who many \textbf{Karma Points} have each one of the users.
 
 For more information about the code, check \url{https://estelamb.github.io/Karma_MDP/}.
