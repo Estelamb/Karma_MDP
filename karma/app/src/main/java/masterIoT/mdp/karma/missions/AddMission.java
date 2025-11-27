@@ -89,7 +89,7 @@ public class AddMission {
             } catch (NumberFormatException ignored) {}
 
             int imageRes = R.drawable.addmission;
-            Mission newMission = new Mission(title, imageRes, karmaPoints, description, UUID.randomUUID().getMostSignificantBits(), "", true);
+            Mission newMission = new Mission(title, imageRes, karmaPoints, description, UUID.randomUUID().getMostSignificantBits(), "none", true);
             dataset.addMission(newMission);
             adapter.notifyItemInserted(dataset.getSize() - 1);
             Toast.makeText(context, "Mission added", Toast.LENGTH_SHORT).show();

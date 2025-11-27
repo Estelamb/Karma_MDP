@@ -145,11 +145,12 @@ public class MissionsDataset {
     }
 
     /**
-     * @brief Adds a mission to the dataset.
+     * @brief Adds a mission to the dataset if it doesn't exists.
      * @param mission Mission to add.
      */
     public void addMission(Mission mission) {
-        listofmissions.add(mission);
+        if(getPositionOfKey(mission.getKey())==-1)
+            listofmissions.add(mission);
     }
 
     /**
@@ -161,10 +162,11 @@ public class MissionsDataset {
     }
 
     /**
-     * @brief Removes a mission from the dataset given its key.
+     * @brief Removes a mission from the dataset given its key if it exists.
      * @param key Key of the mission to remove.
      */
     public void removeMissionWithKey(Long key) {
-        removeMissionAtPosition(getPositionOfKey(key));
+        if(getPositionOfKey(key)!=-1)
+            removeMissionAtPosition(getPositionOfKey(key));
     }
 }
