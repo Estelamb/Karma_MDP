@@ -2,6 +2,8 @@ package masterIoT.mdp.karma.missions;
 
 import android.net.Uri;
 
+import java.util.Objects;
+
 /**
  * @class Mission
  * @brief Contains all data for a mission item.
@@ -79,5 +81,10 @@ public class Mission {
      * @return True if the keys are equal, false otherwise.
      */
     @Override
-    public boolean equals(Object other) { return this.key.equals(((Mission) other).getKey()); }
+    public boolean equals(Object other) {
+        if(this == other) return true;
+        if(other == null || getClass() != other.getClass()) return false;
+        Mission mission = (Mission)other;
+        return Objects.equals(key, mission.key);
+    }
 }

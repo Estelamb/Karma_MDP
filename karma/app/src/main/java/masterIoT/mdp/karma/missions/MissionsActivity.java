@@ -73,7 +73,7 @@ public class MissionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_missions);
-        setupMQTT();
+
 
         recyclerView = findViewById(R.id.recyclerView);
         MyAdapter recyclerViewAdapter = new MyAdapter(dataset);
@@ -101,6 +101,8 @@ public class MissionsActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             tracker.onRestoreInstanceState(savedInstanceState);
         }
+
+        setupMQTT();
     }
 
     /**
@@ -151,7 +153,7 @@ public class MissionsActivity extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-        mqttClient.disconnect();
+        //mqttClient.disconnect();
     }
 
     /**
@@ -160,14 +162,14 @@ public class MissionsActivity extends AppCompatActivity {
     @Override
     protected void onPause(){
         super.onPause();
-        mqttClient.disconnect();
+        //mqttClient.disconnect();
     }
 
     /**
      * @brief Sets up MQTT client and connects to the server.
      */
     private void setupMQTT() {
-        Log.i(TAG, "Connecting to MQTT");
+        Log.i(TAG, "MISSIONS ACTIVITY Connecting to MQTT");
         mqttClient = MQTT.getInstance(this);
         mqttClient.connect();
     }

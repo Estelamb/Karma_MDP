@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         editor.putBoolean("estadoStep", stepSensorAct);
         editor.commit();
         sensorManager.unregisterListener(MainActivity.this);
-        mqttClient.disconnect();
+        //mqttClient.disconnect();
     }
 
     /** @brief Loads saved sensor state when activity starts. */
@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("totalKarma", karmaPoints);
         editor.apply();
-        mqttClient.disconnect();
+        //mqttClient.disconnect();
     }
 
     /** @brief Reloads karma and reconnects MQTT on resume. */
@@ -386,8 +386,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Log.i(TAG, "ENTRE EN MQTT");
         mqttClient = MQTT.getInstance(this);
         mqttClient.connect();
-        Toast.makeText(this,
-                getSharedPreferences("UsersKarma", Context.MODE_PRIVATE).getAll().toString(),
-                Toast.LENGTH_LONG).show();
+//        Toast.makeText(this,
+//                getSharedPreferences("UsersKarma", Context.MODE_PRIVATE).getAll().toString(),
+//                Toast.LENGTH_LONG).show();
     }
 }

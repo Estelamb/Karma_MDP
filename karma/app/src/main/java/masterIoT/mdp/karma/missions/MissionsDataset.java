@@ -140,7 +140,9 @@ public class MissionsDataset {
      * @return Position index of the mission, or -1 if not found.
      */
     public int getPositionOfKey(Long searchedkey) {
+        Log.d("MQTT", "getPosition key: "+searchedkey);
         int position = listofmissions.indexOf(new Mission("placeholder",0, 0, "descrption", searchedkey, "none", false));
+        Log.d("MQTT", "getPosition "+position);
         return position;
     }
 
@@ -149,8 +151,11 @@ public class MissionsDataset {
      * @param mission Mission to add.
      */
     public void addMission(Mission mission) {
-        if(getPositionOfKey(mission.getKey())==-1)
+        Log.d("MQTT", "addMission entry");
+        if(getPositionOfKey(mission.getKey())==-1) {
             listofmissions.add(mission);
+            Log.d("MQTT", "addMission added");
+        }
     }
 
     /**

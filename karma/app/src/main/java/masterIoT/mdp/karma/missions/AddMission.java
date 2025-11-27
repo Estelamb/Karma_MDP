@@ -109,7 +109,7 @@ public class AddMission {
         String username=getUsername();
         //mqttClient.publish("app/addPuntos",String.valueOf(points), false);
         String message= username+":"+mission.getTitle()+":"+mission.getImage()+":"+mission.getKarmaPoints()+":"+mission.getDescription()+":"+mission.getKey();
-        mqttClient.publish("app/users/"+username+"/missionPublish", message,true);
+        mqttClient.publish("app/users/user/missionPublish", message,false);
     }
 
     /**

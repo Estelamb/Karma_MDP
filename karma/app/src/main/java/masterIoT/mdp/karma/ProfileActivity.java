@@ -1,5 +1,7 @@
 package masterIoT.mdp.karma;
 
+import static android.os.SystemClock.sleep;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -88,7 +90,6 @@ public class ProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         tvKarma = findViewById(R.id.textView3);
         tvName = findViewById(R.id.NameTextView);
 
@@ -160,13 +161,13 @@ public class ProfileActivity extends AppCompatActivity {
      *
      * Unsubscribes profile-related topics from MQTT.
      */
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mqttClient != null) {
-            mqttClient.unsubscribeAll("mv/KarmaPoints");
-        }
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if (mqttClient != null) {
+//            mqttClient.unsubscribeAll("mv/KarmaPoints");
+//        }
+//    }
 
     /**
      * @brief Deletes all selected missions from the profile mission list.
@@ -197,7 +198,13 @@ public class ProfileActivity extends AppCompatActivity {
         String username=getUsername();
         //mqttClient.publish("app/addPuntos",String.valueOf(points), false);
         String message= username+":"+ key;
+        Log.d("MQTT", "Delete "+mqttClient.isConnected());
+        if(!mqttClient.isConnected()){
+            mqttClient.connect();
+            sleep(300);
+        }
+        Log.d("MQTT", "Delete2 "+mqttClient.isConnected());
 
-        mqttClient.publish("app/users/"+username+"/missionDelete", message,true);
+        mqttClient.publish("app/users/del/missionDelete", message,false);
     }
 }

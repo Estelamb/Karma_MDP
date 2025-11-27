@@ -1,5 +1,7 @@
 package masterIoT.mdp.karma;
 
+import static android.os.SystemClock.sleep;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -9,6 +11,7 @@ import com.hivemq.client.mqtt.MqttClient;
 import com.hivemq.client.mqtt.mqtt3.message.publish.Mqtt3Publish;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +44,7 @@ public class MQTT {
 
     /** Port number of the MQTT broker. */
     private int serverPort = 1883;
-
+    MissionsDataset missionsDataset;
     /**
      * Map storing lists of callbacks for each subscribed topic.
      * Allows multiple listeners per topic.
@@ -69,6 +72,7 @@ public class MQTT {
         this.context = context.getApplicationContext();
         this.callbacks = new HashMap<>();
         createMQTTclient();
+        missionsDataset = MissionsDataset.getInstance();
     }
 
     /**
@@ -106,9 +110,10 @@ public class MQTT {
                     Log.d("MQTT", throwable.toString());
                 } else {
                     Log.d("MQTT", "Connected to server");
+                    //sleep(1000);
                     subscribe_MQTT("app/users/+/karmaTotal");
-                    subscribe_MQTT("app/users/+/mission");
-                    subscribe_MQTT("app/users/+/remove");
+                    subscribe_MQTT("app/users/user/missionPublish");
+                    subscribe_MQTT("app/users/del/missionDelete");
                 }
             });}
     }
@@ -138,8 +143,10 @@ public class MQTT {
                         if (parts[3].equals("missionPublish")){
                             SharedPreferences prefs = context.getSharedPreferences("UsersMissions", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
-                            MissionsDataset missionsDataset = MissionsDataset.getInstance();
-                            Mission newMission = new Mission(sep[1], Integer.parseInt(sep[2]), Integer.parseInt(sep[3]), sep[4], Long.getLong(sep[5]), "", false);
+                            //Log.d("MQTT", Arrays.toString(sep));
+                            //Log.d("MQTT", "key "+Long.getLong(sep[5]));
+                            Mission newMission = new Mission(sep[1], Integer.parseInt(sep[2]), Integer.parseInt(sep[3]), sep[4], Long.parseLong(sep[5]), "", false);
+                            //Log.d("MQTT", String.valueOf(newMission.getKey()));
                             missionsDataset.addMission(newMission);
 
                             StringBuilder t=new StringBuilder();
@@ -150,7 +157,7 @@ public class MQTT {
                             editor.apply();
                         }
                         if (parts[3].equals("missionDelete")) {
-                            MissionsDataset missionsDataset = MissionsDataset.getInstance();
+                            Log.d("MQTT", "Delete");
                             missionsDataset.removeMissionWithKey(Long.parseLong(sep[1]));
 
                         }
