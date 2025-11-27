@@ -144,10 +144,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a434c5f8d9a2da75efc4aacb81eb30f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the position of a mission in the dataset given its key.  <br /></td></tr>
 <tr class="separator:a434c5f8d9a2da75efc4aacb81eb30f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23d7264121002b6af014a61314ff05f3" id="r_a23d7264121002b6af014a61314ff05f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a23d7264121002b6af014a61314ff05f3">addMission</a> (<a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html">Mission</a> mission)</td></tr>
-<tr class="memdesc:a23d7264121002b6af014a61314ff05f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a mission to the dataset.  <br /></td></tr>
+<tr class="memdesc:a23d7264121002b6af014a61314ff05f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a mission to the dataset if it doesn't exists.  <br /></td></tr>
 <tr class="separator:a23d7264121002b6af014a61314ff05f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58105698010f7a16188cc6bb9de137d6" id="r_a58105698010f7a16188cc6bb9de137d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a58105698010f7a16188cc6bb9de137d6">removeMissionWithKey</a> (Long key)</td></tr>
-<tr class="memdesc:a58105698010f7a16188cc6bb9de137d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a mission from the dataset given its key.  <br /></td></tr>
+<tr class="memdesc:a58105698010f7a16188cc6bb9de137d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a mission from the dataset given its key if it exists.  <br /></td></tr>
 <tr class="separator:a58105698010f7a16188cc6bb9de137d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -214,7 +214,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds a mission to the dataset. </p>
+<p>Adds a mission to the dataset if it doesn't exists. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mission</td><td>Mission to add. </td></tr>
@@ -345,7 +345,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Removes a mission from the dataset given its key. </p>
+<p>Removes a mission from the dataset given its key if it exists. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>Key of the mission to remove. </td></tr>
