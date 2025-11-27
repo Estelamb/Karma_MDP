@@ -4,7 +4,6 @@ var classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity =
     [ "deleteMission", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a20ff7ac5489a47b39b0fe257b90f6ec8", null ],
     [ "getUsername", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#aee0bf0a37b6a75998380b0481097a20a", null ],
     [ "onCreate", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#ad6798db8120017e3cda7fdf6566ae7ee", null ],
-    [ "onDestroy", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#af436f51da0e4a52c8f33ec0c0975bb46", null ],
     [ "onResume", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a25c8fadd115c650bfb91daf1a9a9e7d6", null ],
     [ "setupMQTT", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#ad5904b19cb1a489cf283b298205e3468", null ],
     [ "btnDelete", "classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a66d526639be40076fa753889fe1e3bcd", null ],

@@ -138,7 +138,7 @@ $(document).ready(function(){initNavTree('classmasterIoT_1_1mdp_1_1karma_1_1Prof
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a49c3e9628b7d5a025321a99864431fe1" id="r_a49c3e9628b7d5a025321a99864431fe1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a49c3e9628b7d5a025321a99864431fe1">deleteCurrentSelection</a> (View view)</td></tr>
-<tr class="memdesc:a49c3e9628b7d5a025321a99864431fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all selected missions from the profile mission list.  <br /></td></tr>
+<tr class="memdesc:a49c3e9628b7d5a025321a99864431fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called before the activity is destroyed.  <br /></td></tr>
 <tr class="separator:a49c3e9628b7d5a025321a99864431fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
@@ -149,9 +149,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a25c8fadd115c650bfb91daf1a9a9e7d6" id="r_a25c8fadd115c650bfb91daf1a9a9e7d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a25c8fadd115c650bfb91daf1a9a9e7d6">onResume</a> ()</td></tr>
 <tr class="memdesc:a25c8fadd115c650bfb91daf1a9a9e7d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the activity becomes visible.  <br /></td></tr>
 <tr class="separator:a25c8fadd115c650bfb91daf1a9a9e7d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af436f51da0e4a52c8f33ec0c0975bb46" id="r_af436f51da0e4a52c8f33ec0c0975bb46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#af436f51da0e4a52c8f33ec0c0975bb46">onDestroy</a> ()</td></tr>
-<tr class="memdesc:af436f51da0e4a52c8f33ec0c0975bb46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called before the activity is destroyed.  <br /></td></tr>
-<tr class="separator:af436f51da0e4a52c8f33ec0c0975bb46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -223,7 +220,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Deletes all selected missions from the profile mission list. </p>
+<p>Called before the activity is destroyed. </p>
+<p>Unsubscribes profile-related topics from MQTT.</p>
+<p>Deletes all selected missions from the profile mission list.</p>
 <p>Removes missions from both the user dataset and the shared MissionsDataset.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -328,34 +327,6 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="af436f51da0e4a52c8f33ec0c0975bb46" name="af436f51da0e4a52c8f33ec0c0975bb46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af436f51da0e4a52c8f33ec0c0975bb46">&#9670;&#160;</a></span>onDestroy()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void masterIoT.mdp.karma.ProfileActivity.onDestroy </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Called before the activity is destroyed. </p>
-<p>Unsubscribes profile-related topics from MQTT. </p>
 
 </div>
 </div>
@@ -509,7 +480,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">            <span class="keyword">new</span> MyOnMissionActivatedListener(<span class="keyword">this</span>, <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a05a75779d18de973c04c47628f491816">dataset</a>)</div>
-<div class="ttc" id="aclassmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity_html_a05a75779d18de973c04c47628f491816"><div class="ttname"><a href="classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a05a75779d18de973c04c47628f491816">masterIoT.mdp.karma.ProfileActivity.dataset</a></div><div class="ttdeci">UserMissionsDataset dataset</div><div class="ttdoc">Dataset containing missions assigned specifically to the user.</div><div class="ttdef"><b>Definition</b> ProfileActivity.java:67</div></div>
+<div class="ttc" id="aclassmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity_html_a05a75779d18de973c04c47628f491816"><div class="ttname"><a href="classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a05a75779d18de973c04c47628f491816">masterIoT.mdp.karma.ProfileActivity.dataset</a></div><div class="ttdeci">UserMissionsDataset dataset</div><div class="ttdoc">Dataset containing missions assigned specifically to the user.</div><div class="ttdef"><b>Definition</b> ProfileActivity.java:69</div></div>
 </div><!-- fragment -->
 <p>Listener used when mission items are activated. </p>
 
