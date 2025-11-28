@@ -34,7 +34,7 @@ var NAVTREE =
       [ "Data Structure Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Data Fields", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
@@ -48,7 +48,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AddMission_8java.html",
-"dir_e96cc1cb7bf430e6ebb4946327598c61.html"
+"dir_c5bd7aedd3f94ad49bf67fcc6ef1e72a.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
