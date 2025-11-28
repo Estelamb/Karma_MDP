@@ -90,13 +90,6 @@
                 android:background="#FAFAFA">
             </com.github.mikephil.charting.charts.HorizontalBarChart>
 
-            <!--! Line chart showing karma evolution over time -->
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lineChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="#FAFAFA">
-            </com.github.mikephil.charting.charts.LineChart>
 
         </LinearLayout>
     </ScrollView>
