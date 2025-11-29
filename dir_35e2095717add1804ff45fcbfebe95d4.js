@@ -7,5 +7,6 @@ var dir_35e2095717add1804ff45fcbfebe95d4 =
     [ "MainActivity.java", "MainActivity_8java.html", "MainActivity_8java" ],
     [ "MapActivity.java", "MapActivity_8java.html", "MapActivity_8java" ],
     [ "MQTT.java", "MQTT_8java.html", "MQTT_8java" ],
-    [ "ProfileActivity.java", "ProfileActivity_8java.html", "ProfileActivity_8java" ]
+    [ "ProfileActivity.java", "ProfileActivity_8java.html", "ProfileActivity_8java" ],
+    [ "StepService.java", "StepService_8java.html", "StepService_8java" ]
 ];

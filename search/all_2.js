@@ -9,5 +9,6 @@ var searchData=
   ['connect_6',['connect',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#a98f4e357e0fff3dcfa0168d5453691c3',1,'masterIoT::mdp::karma::MQTT']]],
   ['context_7',['context',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1AddMission.html#aab8ba3904fd9b8450d9c73b8c948bd45',1,'masterIoT.mdp.karma.missions.AddMission.context'],['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionInfo.html#ab9a45e3ce9bdf2664795ebbac86d29f8',1,'masterIoT.mdp.karma.missions.MissionInfo.context'],['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyOnMissionActivatedListener.html#a8fbe694793194e183f046f51db8c0712',1,'masterIoT.mdp.karma.missions.MyOnMissionActivatedListener.context'],['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#afefc52be321ef67676dfc82900ab01a3',1,'masterIoT.mdp.karma.MQTT.context']]],
   ['converttofloat_8',['convertToFloat',['../classmasterIoT_1_1mdp_1_1karma_1_1BoardActivity.html#a014e6075d4696d82de910c1872570598',1,'masterIoT::mdp::karma::BoardActivity']]],
-  ['createmqttclient_9',['createMQTTclient',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#a23b64b80d5aaf1fc9caacb0b2f10ebbc',1,'masterIoT::mdp::karma::MQTT']]]
+  ['createmqttclient_9',['createMQTTclient',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#a23b64b80d5aaf1fc9caacb0b2f10ebbc',1,'masterIoT::mdp::karma::MQTT']]],
+  ['createnotification_10',['createNotification',['../classmasterIoT_1_1mdp_1_1karma_1_1StepService.html#aa2b89c65588539f9bb18208bebf667b0',1,'masterIoT::mdp::karma::StepService']]]
 ];

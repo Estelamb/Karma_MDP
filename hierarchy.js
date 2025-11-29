@@ -39,7 +39,10 @@ var hierarchy =
       [ "masterIoT.mdp.karma.FileDownload", "classmasterIoT_1_1mdp_1_1karma_1_1FileDownload.html", null ]
     ] ],
     [ "SensorEventListener", null, [
-      [ "masterIoT.mdp.karma.MainActivity", "classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html", null ]
+      [ "masterIoT.mdp.karma.StepService", "classmasterIoT_1_1mdp_1_1karma_1_1StepService.html", null ]
+    ] ],
+    [ "Service", null, [
+      [ "masterIoT.mdp.karma.StepService", "classmasterIoT_1_1mdp_1_1karma_1_1StepService.html", null ]
     ] ],
     [ "RecyclerView.ViewHolder", null, [
       [ "masterIoT.mdp.karma.missions.MyViewHolder", "classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyViewHolder.html", null ]

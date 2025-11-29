@@ -141,15 +141,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6327c360541d607d85ea36baac64c069" id="r_a6327c360541d607d85ea36baac64c069"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6327c360541d607d85ea36baac64c069">getUsername</a> ()</td></tr>
 <tr class="memdesc:a6327c360541d607d85ea36baac64c069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the stored username.  <br /></td></tr>
 <tr class="separator:a6327c360541d607d85ea36baac64c069"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56dda0f46cecfd851f4a8c89383312b7" id="r_a56dda0f46cecfd851f4a8c89383312b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a56dda0f46cecfd851f4a8c89383312b7">onSensorChanged</a> (SensorEvent sensorEvent)</td></tr>
-<tr class="memdesc:a56dda0f46cecfd851f4a8c89383312b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles sensor event changes.  <br /></td></tr>
-<tr class="separator:a56dda0f46cecfd851f4a8c89383312b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8967d69acb0eb02101654f915e5e52d7" id="r_a8967d69acb0eb02101654f915e5e52d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a8967d69acb0eb02101654f915e5e52d7">onRequestPermissionsResult</a> (int requestCode, String[] permissions, int[] grantResults)</td></tr>
 <tr class="memdesc:a8967d69acb0eb02101654f915e5e52d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles permission request results.  <br /></td></tr>
 <tr class="separator:a8967d69acb0eb02101654f915e5e52d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a121d041e9e657c76f57ad6148e460850" id="r_a121d041e9e657c76f57ad6148e460850"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a121d041e9e657c76f57ad6148e460850">onAccuracyChanged</a> (Sensor sensor, int accuracy)</td></tr>
-<tr class="memdesc:a121d041e9e657c76f57ad6148e460850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not used but required sensor accuracy override.  <br /></td></tr>
-<tr class="separator:a121d041e9e657c76f57ad6148e460850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -166,10 +160,10 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:aa40820ec9c138abeda6ac387f3a50dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads saved sensor state when activity starts.  <br /></td></tr>
 <tr class="separator:aa40820ec9c138abeda6ac387f3a50dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b49bb37847b784d298fe77d2cad421b" id="r_a1b49bb37847b784d298fe77d2cad421b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a1b49bb37847b784d298fe77d2cad421b">onPause</a> ()</td></tr>
-<tr class="memdesc:a1b49bb37847b784d298fe77d2cad421b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves karma and disconnects MQTT on pause.  <br /></td></tr>
+<tr class="memdesc:a1b49bb37847b784d298fe77d2cad421b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves karma and steps and disconnects MQTT on pause.  <br /></td></tr>
 <tr class="separator:a1b49bb37847b784d298fe77d2cad421b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae81d50a5d372f7ead964123991b67fc9" id="r_ae81d50a5d372f7ead964123991b67fc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#ae81d50a5d372f7ead964123991b67fc9">onResume</a> ()</td></tr>
-<tr class="memdesc:ae81d50a5d372f7ead964123991b67fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reloads karma and reconnects MQTT on resume.  <br /></td></tr>
+<tr class="memdesc:ae81d50a5d372f7ead964123991b67fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reloads karma and steps and reconnects MQTT on resume.  <br /></td></tr>
 <tr class="separator:ae81d50a5d372f7ead964123991b67fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
@@ -186,6 +180,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a6933a68b92a47f94417ea0ae76ed0976" id="r_a6933a68b92a47f94417ea0ae76ed0976"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6933a68b92a47f94417ea0ae76ed0976">setupMQTT</a> ()</td></tr>
 <tr class="memdesc:a6933a68b92a47f94417ea0ae76ed0976"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes and connects MQTT client.  <br /></td></tr>
 <tr class="separator:a6933a68b92a47f94417ea0ae76ed0976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aada79775489777415939e3d8bf2306d8" id="r_aada79775489777415939e3d8bf2306d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#aada79775489777415939e3d8bf2306d8">stepsPermission</a> ()</td></tr>
+<tr class="memdesc:aada79775489777415939e3d8bf2306d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests activity recognition permission for the activity in the background.  <br /></td></tr>
+<tr class="separator:aada79775489777415939e3d8bf2306d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -240,6 +237,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a09726930354f820d006b2e0a710d0eaa" id="r_a09726930354f820d006b2e0a710d0eaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html">MQTT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a09726930354f820d006b2e0a710d0eaa">mqttClient</a></td></tr>
 <tr class="memdesc:a09726930354f820d006b2e0a710d0eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT client instance.  <br /></td></tr>
 <tr class="separator:a09726930354f820d006b2e0a710d0eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1a4e1673d0571e98917fe4046304052" id="r_ae1a4e1673d0571e98917fe4046304052"><td class="memItemLeft" align="right" valign="top">final BroadcastReceiver&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#ae1a4e1673d0571e98917fe4046304052">stepReceiver</a></td></tr>
+<tr class="memdesc:ae1a4e1673d0571e98917fe4046304052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles step sensor updates.  <br /></td></tr>
+<tr class="separator:ae1a4e1673d0571e98917fe4046304052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -315,44 +315,6 @@ Static Private Attributes</h2></td></tr>
 
 <p>Returns the stored username. </p>
 <dl class="section return"><dt>Returns</dt><dd>Username string. </dd></dl>
-
-</div>
-</div>
-<a id="a121d041e9e657c76f57ad6148e460850" name="a121d041e9e657c76f57ad6148e460850"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a121d041e9e657c76f57ad6148e460850">&#9670;&#160;</a></span>onAccuracyChanged()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void masterIoT.mdp.karma.MainActivity.onAccuracyChanged </td>
-          <td>(</td>
-          <td class="paramtype">Sensor&#160;</td>
-          <td class="paramname"><em>sensor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>accuracy</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Not used but required sensor accuracy override. </p>
 
 </div>
 </div>
@@ -440,7 +402,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Saves karma and disconnects MQTT on pause. </p>
+<p>Saves karma and steps and disconnects MQTT on pause. </p>
 
 </div>
 </div>
@@ -511,41 +473,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reloads karma and reconnects MQTT on resume. </p>
-
-</div>
-</div>
-<a id="a56dda0f46cecfd851f4a8c89383312b7" name="a56dda0f46cecfd851f4a8c89383312b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56dda0f46cecfd851f4a8c89383312b7">&#9670;&#160;</a></span>onSensorChanged()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void masterIoT.mdp.karma.MainActivity.onSensorChanged </td>
-          <td>(</td>
-          <td class="paramtype">SensorEvent&#160;</td>
-          <td class="paramname"><em>sensorEvent</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Handles sensor event changes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sensorEvent</td><td>Sensor data event. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Reloads karma and steps and reconnects MQTT on resume. </p>
 
 </div>
 </div>
@@ -688,6 +616,33 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Shows dialog to request the username. </p>
+
+</div>
+</div>
+<a id="aada79775489777415939e3d8bf2306d8" name="aada79775489777415939e3d8bf2306d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aada79775489777415939e3d8bf2306d8">&#9670;&#160;</a></span>stepsPermission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void masterIoT.mdp.karma.MainActivity.stepsPermission </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Requests activity recognition permission for the activity in the background. </p>
 
 </div>
 </div>
@@ -1095,6 +1050,42 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Step detector sensor. </p>
+
+</div>
+</div>
+<a id="ae1a4e1673d0571e98917fe4046304052" name="ae1a4e1673d0571e98917fe4046304052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1a4e1673d0571e98917fe4046304052">&#9670;&#160;</a></span>stepReceiver</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final BroadcastReceiver masterIoT.mdp.karma.MainActivity.stepReceiver</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> BroadcastReceiver() {</div>
+<div class="line">        @Override</div>
+<div class="line">        <span class="keyword">public</span> <span class="keywordtype">void</span> onReceive(Context context, Intent intent) {</div>
+<div class="line"> </div>
+<div class="line">            SharedPreferences prefs = getSharedPreferences(<span class="stringliteral">&quot;SensorData&quot;</span>, Context.MODE_PRIVATE);</div>
+<div class="line">            <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9a9ffc223c0c0acbc1f090fe9892b3ff">numbSteps</a> = prefs.getInt(<span class="stringliteral">&quot;totalSteps&quot;</span>, 0);</div>
+<div class="line">            Log.d(<span class="stringliteral">&quot;StepService&quot;</span>, <span class="stringliteral">&quot;Receiving steps&quot;</span>);</div>
+<div class="line">            <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a368d27a9dc764e7b0a66bf7e5c5a5aa6">tvSteps</a>.setText(<span class="stringliteral">&quot;Steps: &quot;</span> + <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9a9ffc223c0c0acbc1f090fe9892b3ff">numbSteps</a>);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="ttc" id="aclassmasterIoT_1_1mdp_1_1karma_1_1MainActivity_html_a368d27a9dc764e7b0a66bf7e5c5a5aa6"><div class="ttname"><a href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a368d27a9dc764e7b0a66bf7e5c5a5aa6">masterIoT.mdp.karma.MainActivity.tvSteps</a></div><div class="ttdeci">TextView tvSteps</div><div class="ttdef"><b>Definition</b> MainActivity.java:86</div></div>
+<div class="ttc" id="aclassmasterIoT_1_1mdp_1_1karma_1_1MainActivity_html_a9a9ffc223c0c0acbc1f090fe9892b3ff"><div class="ttname"><a href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9a9ffc223c0c0acbc1f090fe9892b3ff">masterIoT.mdp.karma.MainActivity.numbSteps</a></div><div class="ttdeci">int numbSteps</div><div class="ttdoc">Number of counted steps.</div><div class="ttdef"><b>Definition</b> MainActivity.java:77</div></div>
+</div><!-- fragment -->
+<p>Handles step sensor updates. </p>
 
 </div>
 </div>
