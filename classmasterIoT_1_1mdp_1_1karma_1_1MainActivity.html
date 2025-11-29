@@ -238,7 +238,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a09726930354f820d006b2e0a710d0eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT client instance.  <br /></td></tr>
 <tr class="separator:a09726930354f820d006b2e0a710d0eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1a4e1673d0571e98917fe4046304052" id="r_ae1a4e1673d0571e98917fe4046304052"><td class="memItemLeft" align="right" valign="top">final BroadcastReceiver&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#ae1a4e1673d0571e98917fe4046304052">stepReceiver</a></td></tr>
-<tr class="memdesc:ae1a4e1673d0571e98917fe4046304052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles step sensor updates.  <br /></td></tr>
+<tr class="memdesc:ae1a4e1673d0571e98917fe4046304052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles step sensor updates changes the step count and the karma count when necessary.  <br /></td></tr>
 <tr class="separator:ae1a4e1673d0571e98917fe4046304052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
@@ -1078,14 +1078,19 @@ Static Private Attributes</h2></td></tr>
 <div class="line"> </div>
 <div class="line">            SharedPreferences prefs = getSharedPreferences(<span class="stringliteral">&quot;SensorData&quot;</span>, Context.MODE_PRIVATE);</div>
 <div class="line">            <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9a9ffc223c0c0acbc1f090fe9892b3ff">numbSteps</a> = prefs.getInt(<span class="stringliteral">&quot;totalSteps&quot;</span>, 0);</div>
-<div class="line">            Log.d(<span class="stringliteral">&quot;StepService&quot;</span>, <span class="stringliteral">&quot;Receiving steps&quot;</span>);</div>
+<div class="line">            SharedPreferences prefskarma = getSharedPreferences(<span class="stringliteral">&quot;KarmaPoints&quot;</span>, Context.MODE_PRIVATE);</div>
+<div class="line">            <span class="keywordtype">int</span> <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a69fb7e472176a499f5100881a1bbe2f0">karmaPoints</a> = prefskarma.getInt(<span class="stringliteral">&quot;totalKarma&quot;</span>, 0);</div>
+<div class="line">            <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#ad92c560b4c288b5c156d1792f4b343aa">tvKarma</a>.setText(String.valueOf(<a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a69fb7e472176a499f5100881a1bbe2f0">karmaPoints</a>));</div>
+<div class="line">            Log.d(<span class="stringliteral">&quot;StepService&quot;</span>, <span class="stringliteral">&quot;Receiving steps &quot;</span>+<a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a69fb7e472176a499f5100881a1bbe2f0">karmaPoints</a>);</div>
 <div class="line">            <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a368d27a9dc764e7b0a66bf7e5c5a5aa6">tvSteps</a>.setText(<span class="stringliteral">&quot;Steps: &quot;</span> + <a class="code hl_variable" href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9a9ffc223c0c0acbc1f090fe9892b3ff">numbSteps</a>);</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="ttc" id="aclassmasterIoT_1_1mdp_1_1karma_1_1MainActivity_html_a368d27a9dc764e7b0a66bf7e5c5a5aa6"><div class="ttname"><a href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a368d27a9dc764e7b0a66bf7e5c5a5aa6">masterIoT.mdp.karma.MainActivity.tvSteps</a></div><div class="ttdeci">TextView tvSteps</div><div class="ttdef"><b>Definition</b> MainActivity.java:86</div></div>
+<div class="ttc" id="aclassmasterIoT_1_1mdp_1_1karma_1_1MainActivity_html_a69fb7e472176a499f5100881a1bbe2f0"><div class="ttname"><a href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a69fb7e472176a499f5100881a1bbe2f0">masterIoT.mdp.karma.MainActivity.karmaPoints</a></div><div class="ttdeci">int karmaPoints</div><div class="ttdoc">Total karma points.</div><div class="ttdef"><b>Definition</b> MainActivity.java:80</div></div>
 <div class="ttc" id="aclassmasterIoT_1_1mdp_1_1karma_1_1MainActivity_html_a9a9ffc223c0c0acbc1f090fe9892b3ff"><div class="ttname"><a href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a9a9ffc223c0c0acbc1f090fe9892b3ff">masterIoT.mdp.karma.MainActivity.numbSteps</a></div><div class="ttdeci">int numbSteps</div><div class="ttdoc">Number of counted steps.</div><div class="ttdef"><b>Definition</b> MainActivity.java:77</div></div>
+<div class="ttc" id="aclassmasterIoT_1_1mdp_1_1karma_1_1MainActivity_html_ad92c560b4c288b5c156d1792f4b343aa"><div class="ttname"><a href="classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#ad92c560b4c288b5c156d1792f4b343aa">masterIoT.mdp.karma.MainActivity.tvKarma</a></div><div class="ttdeci">TextView tvKarma</div><div class="ttdef"><b>Definition</b> MainActivity.java:86</div></div>
 </div><!-- fragment -->
-<p>Handles step sensor updates. </p>
+<p>Handles step sensor updates changes the step count and the karma count when necessary. </p>
 
 </div>
 </div>
