@@ -156,6 +156,12 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
         karmaPoints = prefs.getInt("totalKarma", 0);
         tvKarma.setText(String.valueOf(karmaPoints));
 
+        SharedPreferences prefsS = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorS = prefsS.edit();
+        editorS.putInt("totalSteps", 195);
+        editorS.apply();
+
+
         setupMQTT();
 
         bMissions.setOnClickListener(v -> {

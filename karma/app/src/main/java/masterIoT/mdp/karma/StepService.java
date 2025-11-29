@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 /**
- * @Class StepService
+ * 
  * @brief Manages the step counter to work in the background
  */
 public class StepService extends Service implements SensorEventListener {
