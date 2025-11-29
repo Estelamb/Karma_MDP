@@ -143,7 +143,7 @@ public class StepService extends Service implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
     /**
-     * @brief Called when a sensor has changed. Increments the step count and Broadcasts it for the main activity.
+     * @brief Called when a sensor has changed. Increments the step count and Broadcasts it for the main activity and adds 1 karma point every 200 steps.
      * @param sensorEvent the {@link android.hardware.SensorEvent SensorEvent}.
      */
     @Override
@@ -162,6 +162,17 @@ public class StepService extends Service implements SensorEventListener {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt("totalSteps", numbSteps);
             editor.apply();
+
+
+            if(numbSteps%200 == 0) {
+                SharedPreferences prefskarma = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+                int karmaPoints = prefskarma.getInt("totalKarma", 0);
+                Log.d("StepService", "Broadcasting karma: " + karmaPoints);
+                SharedPreferences.Editor editorkarma = prefskarma.edit();
+                karmaPoints++;
+                editorkarma.putInt("totalKarma", karmaPoints);
+                editorkarma.commit();
+            }
             Intent intent = new Intent(getPackageName()+".STEP_UPDATE");
             intent.putExtra("totalSteps", numbSteps);
             Log.d("StepService", "Broadcasting steps: " + numbSteps);

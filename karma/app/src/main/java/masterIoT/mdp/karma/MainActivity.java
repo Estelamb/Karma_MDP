@@ -420,7 +420,7 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
     }
 
     /**
-     * @brief Handles step sensor updates.
+     * @brief Handles step sensor updates changes the step count and the karma count when necessary.
      */
     private final BroadcastReceiver stepReceiver = new BroadcastReceiver() {
         @Override
@@ -428,7 +428,10 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
 
             SharedPreferences prefs = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
             numbSteps = prefs.getInt("totalSteps", 0);
-            Log.d("StepService", "Receiving steps");
+            SharedPreferences prefskarma = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
+            int karmaPoints = prefskarma.getInt("totalKarma", 0);
+            tvKarma.setText(String.valueOf(karmaPoints));
+            Log.d("StepService", "Receiving steps "+karmaPoints);
             tvSteps.setText("Steps: " + numbSteps);
         }
     };
