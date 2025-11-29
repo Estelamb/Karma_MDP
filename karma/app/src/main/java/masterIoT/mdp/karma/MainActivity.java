@@ -3,16 +3,20 @@ package masterIoT.mdp.karma;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -27,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -45,7 +50,7 @@ import masterIoT.mdp.karma.missions.MissionsActivity;
  * @details Handles UI initialization, step sensor management, motivational messages,
  *          user profile handling, SharedPreferences storage and MQTT communication.
  */
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity /*implements SensorEventListener*/ {
 
     /** TAG for MQTT logs */
     private static final String TAG = "MQTT";
@@ -127,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         // First-time check
         checkFirstTime();
 
+
+
         // Request sensor permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -170,18 +177,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         step = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-
+        stepsPermission();
         // Step switch listener
         stepSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                sensorManager.registerListener(MainActivity.this, step, SensorManager.SENSOR_DELAY_NORMAL);
-                tvSteps.setVisibility(View.VISIBLE);
-                tvSteps.setText("Waiting for first step sensor value");
-                stepSensorAct = true;
+                if (checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    stepsPermission();
+                }else {
+                    Intent serviceIntent = new Intent(this, StepService.class);
+                    ContextCompat.startForegroundService(this, serviceIntent);
+                    tvSteps.setVisibility(View.VISIBLE);
+                    SharedPreferences prefsSensor = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
+                    numbSteps = prefsSensor.getInt("totalSteps", -1);
+                    tvSteps.setText("Steps: " + prefsSensor.getInt("totalSteps", 0));
+                }
             } else {
-                sensorManager.unregisterListener(MainActivity.this, step);
-                stepSensorAct = false;
-                tvSteps.setText("Proximity sensor is OFF");
+                Intent serviceIntent = new Intent(this, StepService.class);
+                stopService(serviceIntent);
                 tvSteps.setVisibility(View.GONE);
             }
         });
@@ -203,6 +216,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             handler.postDelayed(runnable, 10000);
         };
         handler.post(runnable);
+
+
+        IntentFilter filter = new IntentFilter(getPackageName() + ".STEP_UPDATE");
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//            registerReceiver(stepReceiver, filter, Context.RECEIVER_EXPORTED);
+//        } else {
+//            registerReceiver(stepReceiver, filter);
+//        }
+
+
     }
 
     /**
@@ -279,12 +302,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onStop() {
         super.onStop();
-        SharedPreferences prefs = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("totalSteps", numbSteps);
-        editor.putBoolean("estadoStep", stepSensorAct);
-        editor.commit();
-        sensorManager.unregisterListener(MainActivity.this);
+//        SharedPreferences prefs = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putInt("totalSteps", numbSteps);
+//        editor.putBoolean("estadoStep", stepSensorAct);
+//        editor.commit();
+        //sensorManager.unregisterListener(MainActivity.this);
         //mqttClient.disconnect();
     }
 
@@ -292,25 +315,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences prefs = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
-        numbSteps = prefs.getInt("totalSteps", -1);
-        boolean savedStepState = prefs.getBoolean("estadoStep", false);
 
-        stepSensorAct = savedStepState;
-
-        if (savedStepState) {
-            sensorManager.registerListener(this, step, SensorManager.SENSOR_DELAY_NORMAL);
-            if (numbSteps != -1f) {
-                tvSteps.setText("Pasos: " + numbSteps);
-            } else {
-                tvSteps.setText("Waiting for first step detection value");
-            }
-        } else {
-            tvSteps.setText("Step detector sensor is OFF");
-        }
     }
 
-    /** @brief Saves karma and disconnects MQTT on pause. */
+    /** @brief Saves karma and steps and disconnects MQTT on pause. */
     @Override
     protected void onPause() {
         super.onPause();
@@ -318,10 +326,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("totalKarma", karmaPoints);
         editor.apply();
+        unregisterReceiver(stepReceiver);
+        SharedPreferences prefsSensor = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorSensor = prefs.edit();
+        editorSensor.putInt("totalSteps", numbSteps);
+        editorSensor.putBoolean("estadoStep", stepSensorAct);
+        editor.commit();
         //mqttClient.disconnect();
     }
 
-    /** @brief Reloads karma and reconnects MQTT on resume. */
+    /** @brief Reloads karma and steps and reconnects MQTT on resume. */
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -329,27 +345,30 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         karmaPoints = prefs.getInt("totalKarma", 0);
         tvKarma.setText(String.valueOf(karmaPoints));
         setupMQTT();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(stepReceiver, new IntentFilter(getPackageName()+".STEP_UPDATE"), Context.RECEIVER_EXPORTED);
+        }else {
+            registerReceiver(stepReceiver, new IntentFilter(getPackageName()+".STEP_UPDATE"));
+        }
+        SharedPreferences prefsSensor = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
+        numbSteps = prefsSensor.getInt("totalSteps", -1);
+        boolean savedStepState = prefs.getBoolean("estadoStep", false);
+        tvSteps.setText("Pasos: " + numbSteps);
+        stepSensorAct = savedStepState;
+
+//        if (savedStepState) {
+//            //sensorManager.registerListener(this, step, SensorManager.SENSOR_DELAY_NORMAL);
+//            if (numbSteps != -1f) {
+//                tvSteps.setText("Pasos: " + numbSteps);
+//            } else {
+//                tvSteps.setText("Waiting for first step detection value");
+//            }
+//        } else {
+//            //tvSteps.setText("Step detector sensor is OFF");
+//        }
     }
 
-    /**
-     * @brief Handles sensor event changes.
-     * @param sensorEvent Sensor data event.
-     */
-    @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
-        System.out.println(sensorEvent.sensor.getType());
-        if (sensorEvent.sensor.getType() == 18) {
-            numbSteps = (int) sensorEvent.values[0] + numbSteps;
-            if (numbSteps != 0 && numbSteps % 250 == 0) {
-                vibrator.vibrate(1000);
-                SharedPreferences prefs = getSharedPreferences("KarmaPoints", Context.MODE_PRIVATE);
-                karmaPoints = prefs.getInt("totalKarma", 0);
-                karmaPoints++;
-                tvKarma.setText(String.valueOf(karmaPoints));
-            }
-            tvSteps.setText("Pasos: " + numbSteps);
-        }
-    }
+
 
     /**
      * @brief Handles permission request results.
@@ -361,7 +380,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (stepSensorAct) {
                     step = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-                    sensorManager.registerListener(this, step, SensorManager.SENSOR_DELAY_NORMAL);
+                    //sensorManager.registerListener(this, step, SensorManager.SENSOR_DELAY_NORMAL);
                 }
                 tvSteps.setText("Step detector ready");
             } else {
@@ -371,13 +390,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
-    /**
-     * @brief Not used but required sensor accuracy override.
-     */
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Required empty method
-    }
+
 
     /**
      * @brief Initializes and connects MQTT client.
@@ -390,4 +403,33 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //                getSharedPreferences("UsersKarma", Context.MODE_PRIVATE).getAll().toString(),
 //                Toast.LENGTH_LONG).show();
     }
+
+    /**
+     * @brief Requests activity recognition permission for the activity in the background.
+     */
+    private void stepsPermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                requestPermissions(new String[]{
+                        Manifest.permission.ACTIVITY_RECOGNITION
+                }, 1);
+            }
+        }
+    }
+
+    /**
+     * @brief Handles step sensor updates.
+     */
+    private final BroadcastReceiver stepReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            SharedPreferences prefs = getSharedPreferences("SensorData", Context.MODE_PRIVATE);
+            numbSteps = prefs.getInt("totalSteps", 0);
+            Log.d("StepService", "Receiving steps");
+            tvSteps.setText("Steps: " + numbSteps);
+        }
+    };
 }
