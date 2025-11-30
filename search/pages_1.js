@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['karma_20mobiles_20device_20programming_0',['Karma - Mobiles Device Programming',['../index.html',1,'']]]
+  ['karma_20—_20mobile_20application_0',['📱 Karma — Mobile Application',['../index.html',1,'']]]
 ];

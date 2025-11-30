@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Karma", "index.html", [
-    [ "Karma - Mobiles Device Programming", "index.html", null ],
+    [ "📱 Karma — Mobile Application", "index.html", "index" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", null ]
     ] ],

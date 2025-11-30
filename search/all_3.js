@@ -6,6 +6,5 @@ var searchData=
   ['deleteitem_3',['deleteItem',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MyAdapter.html#a63a57f97103642b0164dbbe0fcaa9db4',1,'masterIoT::mdp::karma::missions::MyAdapter']]],
   ['deletemission_4',['deleteMission',['../classmasterIoT_1_1mdp_1_1karma_1_1ProfileActivity.html#a20ff7ac5489a47b39b0fe257b90f6ec8',1,'masterIoT::mdp::karma::ProfileActivity']]],
   ['description_5',['description',['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1Mission.html#ae81dc06a504c4313e8f9289cca3afd85',1,'masterIoT.mdp.karma.missions.Mission.description'],['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsDataset.html#a9f01edf07cced4014ede32d8352d2d07',1,'masterIoT.mdp.karma.missions.MissionsDataset.description']]],
-  ['device_20programming_6',['Karma - Mobiles Device Programming',['../index.html',1,'']]],
-  ['disconnect_7',['disconnect',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#a3d7107d9bd8c59e4e1d9c731ea5086f1',1,'masterIoT::mdp::karma::MQTT']]]
+  ['disconnect_6',['disconnect',['../classmasterIoT_1_1mdp_1_1karma_1_1MQTT.html#a3d7107d9bd8c59e4e1d9c731ea5086f1',1,'masterIoT::mdp::karma::MQTT']]]
 ];

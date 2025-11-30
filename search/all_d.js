@@ -16,5 +16,6 @@ var searchData=
   ['onsensorchanged_13',['onSensorChanged',['../classmasterIoT_1_1mdp_1_1karma_1_1StepService.html#aa70c1262fd72edf441c65dd9692e3c6a',1,'masterIoT::mdp::karma::StepService']]],
   ['onstart_14',['onStart',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#aa40820ec9c138abeda6ac387f3a50dc7',1,'masterIoT::mdp::karma::MainActivity']]],
   ['onstartcommand_15',['onStartCommand',['../classmasterIoT_1_1mdp_1_1karma_1_1StepService.html#a57ba5b37d3c61fecb54cbad42240fceb',1,'masterIoT::mdp::karma::StepService']]],
-  ['onstop_16',['onstop',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6371b3146b55883368dbb8b34971546f',1,'masterIoT.mdp.karma.MainActivity.onStop()'],['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsActivity.html#a27b6bf11746a83bcb2820dd9eb6ed0c5',1,'masterIoT.mdp.karma.missions.MissionsActivity.onStop()']]]
+  ['onstop_16',['onstop',['../classmasterIoT_1_1mdp_1_1karma_1_1MainActivity.html#a6371b3146b55883368dbb8b34971546f',1,'masterIoT.mdp.karma.MainActivity.onStop()'],['../classmasterIoT_1_1mdp_1_1karma_1_1missions_1_1MissionsActivity.html#a27b6bf11746a83bcb2820dd9eb6ed0c5',1,'masterIoT.mdp.karma.missions.MissionsActivity.onStop()']]],
+  ['overview_17',['🏗️ Architecture Overview',['../index.html#autotoc_md14',1,'']]]
 ];

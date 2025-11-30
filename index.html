@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Embedded Platforms and Communications for IoT" />
 <meta name="twitter:description" content="Estela Mora Barba" />
 <!-- END twitter metadata -->
-<title>Karma: Karma - Mobiles Device Programming</title>
+<title>Karma: 📱 Karma — Mobile Application</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -123,10 +123,179 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Karma - Mobiles Device Programming </div></div>
+  <div class="headertitle"><div class="title">📱 Karma — Mobile Application </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_main"></a> TODO (Doxygen) </p>
+<div class="textblock"><p><a class="anchor" id="md_main"></a> Karma is an Android application designed to promote positive, sustainable, and socially responsible behavior. Through a gamified system of missions and Karma Points, users are encouraged to perform beneficial actions for themselves, their community, and the environment.</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md2"></a>
+🌍 Purpose</h1>
+<p>Karma aims to foster long-term positive habits by transforming everyday actions into engaging challenges. The app supports the following UN Sustainable Development Goals:</p>
+<ul>
+<li><b>SDG 3:</b> Good Health and Well-Being <br  />
+</li>
+<li><b>SDG 11:</b> Sustainable Cities and Communities <br  />
+</li>
+<li><b>SDG 12:</b> Responsible Consumption and Production <br  />
+</li>
+<li><b>SDG 13:</b> Climate Action <br  />
+</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md4"></a>
+✨ Features</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+🧭 Main Screen</h2>
+<ul>
+<li>Total Karma Points <br  />
+</li>
+<li>Quick access to missions, leaderboard, and step counter <br  />
+</li>
+<li>Motivational quotes <br  />
+</li>
+<li>Simple and accessible layout <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md6"></a>
+🏆 Leaderboard &amp; Statistics</h2>
+<ul>
+<li>Comparison of users’ Karma Points <br  />
+</li>
+<li>Daily Karma Points chart <br  />
+</li>
+<li>High-contrast, easy-to-read visuals <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md7"></a>
+🎯 Missions System</h2>
+<ul>
+<li>Explore community missions <br  />
+</li>
+<li>Create custom missions (title, description, icon, reward) <br  />
+</li>
+<li>Delete your own missions <br  />
+</li>
+<li>Real-time updates via MQTT <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+👤 Profile</h2>
+<ul>
+<li>Total Karma Points <br  />
+</li>
+<li>Completed and published missions <br  />
+</li>
+<li>Activity history <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md9"></a>
+🚶 Step Counter Integration</h2>
+<ul>
+<li>Uses the device’s built-in step counter <br  />
+</li>
+<li>Awards <b>1 Karma Point per 200 steps</b> <br  />
+</li>
+<li>Low battery usage <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
+🗺️ Real-World Interaction</h2>
+<ul>
+<li>Google Maps integration <br  />
+</li>
+<li>Open data from Comunidad de Madrid <br  />
+</li>
+<li>Mission markers for donation centers (blood, books, toys)</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md12"></a>
+🛠️ Technologies Used</h1>
+<ul>
+<li>Android Studio (Java) <br  />
+</li>
+<li>MQTT (Mosquitto broker + HiveMQ client) <br  />
+</li>
+<li>Google Maps API <br  />
+</li>
+<li>Open Data JSON <br  />
+</li>
+<li>Android step counter sensor <br  />
+</li>
+<li>SharedPreferences for local persistence <br  />
+</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md14"></a>
+🏗️ Architecture Overview</h1>
+<p>Karma uses a <b>publish–subscribe MQTT structure</b>:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Purpose   </th><th class="markdownTableHeadNone">Topic    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Karma updates   </td><td class="markdownTableBodyNone"><code>app/users/+/karmaTotal</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Mission publication   </td><td class="markdownTableBodyNone"><code>app/users/+/missionPublish</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Mission deletion   </td><td class="markdownTableBodyNone"><code>app/users/+/missionDelete</code>   </td></tr>
+</table>
+<p>The app processes and stores data using SharedPreferences to synchronize information across users and devices.</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md16"></a>
+▶️ Running the Environment</h1>
+<ol type="1">
+<li>Connect the Android devices to the host machine <br  />
+</li>
+<li>Set the correct IP for the VirtualBox Mosquitto server <br  />
+</li>
+<li>Start the Mosquitto broker <br  />
+</li>
+<li>Connect devices with <code>./gnirehtet autorun</code> <br  />
+</li>
+<li>Install and launch the app on each device <br  />
+</li>
+</ol>
+<hr  />
+<h1><a class="anchor" id="autotoc_md18"></a>
+🧪 Testing</h1>
+<h2><a class="anchor" id="autotoc_md19"></a>
+&lt;strong&gt;Functional Testing&lt;/strong&gt;</h2>
+<p>Validated mission creation, completion, profile, leaderboard, step tracking, and MQTT communication across devices.</p>
+<h2><a class="anchor" id="autotoc_md20"></a>
+&lt;strong&gt;Accessibility Testing&lt;/strong&gt;</h2>
+<p>Performed with Android Accessibility Scanner; improvements made to:</p><ul>
+<li>Text contrast <br  />
+</li>
+<li>Labels <br  />
+</li>
+<li>Touch targets <br  />
+</li>
+<li>Overall readability <br  />
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md21"></a>
+&lt;strong&gt;User Testing&lt;/strong&gt;</h2>
+<p>Users of varying ages evaluated clarity, usability, and the motivational impact of the gamification system.</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md23"></a>
+📌 Conclusions</h1>
+<p>Karma demonstrates how gamification and mobile technology can encourage sustainable and socially responsible behavior. The app is functional, intuitive, accessible, and aligned with sustainability goals.</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md25"></a>
+🚀 Future Improvements</h1>
+<ul>
+<li>Firebase / Google authentication <br  />
+</li>
+<li>New mission types and time-limited challenges <br  />
+</li>
+<li>More advanced analytics <br  />
+</li>
+<li>Expanded accessibility features (voice, haptics, themes) <br  />
+</li>
+<li>iOS version <br  />
+</li>
+<li>Badges, levels, streaks, and daily challenges <br  />
+ </li>
+</ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
